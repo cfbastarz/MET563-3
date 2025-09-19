@@ -1,0 +1,532 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>**Introdução à Assimilação de Dados**</title>
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+		<!-- Theme used for syntax highlighted code -->
+<link rel="stylesheet" href="plugin/highlight/zenburn.min.css" id="highlight-theme"></head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+<section data-markdown ><textarea data-template>
+---
+theme: gaia
+_class: lead
+paginate: true
+backgroundColor: #fff
+backgroundImage: url('https://marp.app/assets/hero-background.svg')
+marp: true
+---
+
+![bg left:40%](./background.jpg)
+
+<!-- Scoped style -->
+<style scoped>
+p {
+  font-size: 30px;
+}
+</style>
+
+# **Introdução à Assimilação de Dados**
+
+### Apresentação da Disciplina
+
+<p>Dr. Carlos Frederico Bastarz<br />
+Dr. Dirceu Luis Herdies<br /><br />
+PGMET, 2025
+</p>
+
+---
+
+![bg right:40%](./sumario.png)
+
+# Sumário
+
+1. Objetivo
+2. Escopo
+3. Pré-requisitos
+4. Plano de Aula
+5. Forma de avaliação
+6. Instrutores
+7. Dúvidas
+
+---
+
+# Objetivo
+
+* Fornecer aos alunos uma visão geral sobre o que é a Assimilação de Dados, os seus métodos principais e técnicas relacionadas.
+
+---
+
+# Escopo
+
+* Assimilação de dados atmosféricos
+    * As mesmas técnicas podem ser pensadas para aplicações em outros fluídos, levendo-se em consderação as peculiaridades e as especificidades de outros modelos.
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 30px;
+}
+</style>
+
+# Pré-requisitos
+
+* Parte teórica (desejável):
+  * Meteorologia Dinâmica I (MET 225-3)
+  * Métodos Matemáticos em Meteorologia (MET 560-3)
+  * Modelagem Numérica da Atmosfera (MET 576-4)
+  * Álgebra Linear
+  * Cálculo Diferencial e Integral
+
+* Parte prática (desejável):
+  * Bash
+  * Fortran
+  * Python
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+li {
+  font-size: 20px;
+}
+</style>
+
+# Plano de Aula
+
+<table style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <td style="vertical-align: top; padding-right: 2rem;">
+      <ol>
+        <li>Histórico da Assimilação de Dados</li>
+        <li>O Sistema Global de Observações Meteorológicas</li>
+        <li>Controle de Qualidade das Observações</li>
+        <li>Revisão de Álgebra Linear (Operações com Matrizes)</li>
+        <li>Métodos Clássicos (Esquemas de Interpolação Estatística)</li>
+        <li>Cálculo Variacional e Teoria de Controle e Estimação</li>
+        <li>Métodos Variacionais (3DVar e 4DVar)</li>
+        <li>Métodos Baseados em Conjuntos (EnKF et al.)</li>
+      </ol>
+    </td>
+    <td style="vertical-align: top; padding-left: 2rem;">
+      <ol start="9">
+        <li>Métodos Híbridos (Ensemble-Variacional)</li>
+        <li>Frameworks de Assimilação de Dados</li>
+        <li>Assimilação de Dados Regional</li>
+        <li>Assimilação de Dados de Radar</li>
+        <li>Impacto da Assimilação das Observações</li>
+        <li>Observing System Experiment (OSE) e Observing System Simulation Experiment (OSSE)</li>
+        <li>Assimilação de Dados de Superfície</li>
+        <li>Matriz de Covariâncias dos Erros de Previsão</li>
+        <li>Revisão do Estado da Arte em Assimilação de Dados no Brasil e América do Sul</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+
+Sujeito a alterações e ajustes :godmode:
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+![bg right:30%](./dahistory2.jpg)
+
+# Plano de Aula
+
+## **Aula 1 - Histórico da Assimilação de Dados**
+
+* Apresentar uma revisão do histórico da assimilação de dados, as motivações para o seu desenvolvimento, passando pelos métodos tradicionais/clássicos até o estabelecimento dos métodos operacionais para modelos massivamente paralelos.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+h2 {  
+  font-size: 40px;
+}
+section { 
+  font-size: 30px;
+}
+</style>
+
+![bg left:30%](./globalobssys3.png)
+
+# Plano de Aula
+
+## **Aula 2 - O Sistema Global de Observações Meteorológicas**
+
+* Falar sobre os primórdios do sistema de observações meteorológicas, sobre o GTS, sobre a contribuição dos dados de satélites, sobre os retrievals e as radiâncias. Falar sobre os diferentes tipos de dados de superfície e ar superior e sobre o impacto dos diferentes tipos de dados na análise.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+![bg right:30%](./qualitycontrol.png)
+
+# Plano de Aula
+
+## **Aula 3 - Controle de Qualidade das Observações**
+
+* Apresentar aos alunos o que é, como é feito e para que serve o controle de qualidade das observações.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+![bg left:30%](./linearalgebra.png)
+
+# Plano de Aula
+
+## **Aula 4 - Revisão de Álgebra Linear (Operações com Matrizes)**
+
+* Rever e exercitar os conceitos necessários para a minimização da função custo variacional do 3DVar.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+![bg right:30%](./classicalmethods.jpeg)
+
+# Plano de Aula
+
+## **Aula 5 - Métodos Clássicos (Esquemas de Interpolação Estatística)**
+
+* Apresentar aos alunos os métodos clássicos de assimilação de dados baseados em interpolação estatística.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+![bg left:30%](./braquistocrona.png)
+
+# Plano de Aula
+
+## **Aula 6 - Cálculo Variacional e Teoria de Controle e Estimação**
+
+* Apresentar aos alunos o que é o Cálculo Variacional e a Teoria de Controle e Estimação, os quais são fundamentais para o desenvolvimento das técnicas de Assimilação de Dados.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+h2 {  
+  font-size: 40px;
+}
+section { 
+  font-size: 30px;
+}
+</style>
+
+![bg right:30%](./steepestdescent.jpg)
+
+# Plano de Aula
+
+## **Aula 7 - Métodos Variacionais (3DVar)**
+
+* Apresentar o método 3DVar, seu histórico, desenvolvimento e suas principais características e diferentes implementação como o PSAS. Apresentar para o alunos as atividades realizadas no CPTEC com o 3DVar. Realizar o passo a passo da minimização da função custo do 3DVar. Falar sobre o Jacobiano.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 8 - Métodos Baseados em Conjuntos (EnKF et al.)**
+
+* Apresentar aos alunos o método EnKF, seu histórico, desenvolvimento e suas principais características e diferenças em relação aos métodos variacionais. Falar sobre localização e inflation.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 9 - Métodos Híbridos (Ensemble-Variacional)**
+
+* Apresentar aos alunos o método híbrido 3DEnVar, suas motivações, desenvolvimentos e aplicações.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 10 - Frameworks de Assimilação de Dados**
+
+* Falar sobre o GSI e o JEDI, explicar a importância do JEDI sob os seus preceitos e o esforço conjunto para o seu desenvolvimento. 
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 11 - Assimilação de Dados Regional**
+
+* Apresentar aos alunos as particularidades de um sistema de assimilação de dados regional e o sistema de observações (mesonet?)
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 12 - Assimilação de Dados de Radar**
+
+* Apresentar aos alunos uma visão geral sobre a assimilação de dados de radar, seus benefícios e desafios.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 13 - Impacto da Assimilação das Observações**
+
+* Apresentar aos alunos uma visão geral sobre a metodologia e a ferramenta para o estudo de impacto das observações empregada no sistema de assimilação de dados do CPTEC.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 14 - Observing System Experiment (OSE) e Observing System Simulation Experiment (OSSE)**
+
+* Apresentar aos alunos uma visão geral sobre as metodologias OSE e OSSE para a avaliação do impacto potencial de sistemas de observação na assimilação de dados.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 15 - Assimilação de Dados de Superfície**
+
+* Apresentar aos alunos uma visão geral sobre a assimilação de dados de superfície, seus impactos e desafios.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 16 - Matriz de Covariâncias dos Erros de Previsão**
+
+* Falar sobre a importância da matriz de covariâncias dos erros de previsão. Falar sobre o método NMC. Falar sobre os softwares disponíveis para o seu cálculo.
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+<!-- Scoped style -->
+<style scoped>h2 {  font-size: 40px;}</style>
+
+# Plano de Aula
+
+## **Aula 17 - Revisão do Estado da Arte em Assimilação de Dados no Brasil e América do Sul**
+
+* Apresentar aos alunos o que está sendo feito em termos de pesquisa e operação em assimilação de dados no Brasil e América do Sul
+* Carga horária: 2 horas
+* Instrutor(es): Carlos
+
+---
+
+# Forma de avaliação
+
+* Trabalhos práticos com relatórios (individual)
+  * Experimentos com **toy models** e os sistemas de assimilação de dados com a produção de relatórios
+    * Uso de containers Apptainer e Docker
+* Interação durante as aulas
+  * Dúvidas, perguntas e respostas
+* Apresentação de artigos para discussão em sala de aula
+
+--- 
+
+<!-- Scoped style -->
+<style scoped>img {  padding-left: 50px;}</style>
+
+# Instrutores
+
+<img align="right" width="150" height="150" src="cfbastarz.png">
+
+* Dr. Carlos Frederico Bastarz
+  * Graduação em Licenciatura em Matemática (UNESP, 2005)
+  * Mestrado e Doutorado em Meteorologia (INPE, 2010 e 2017)
+
+<img align="right" width="150" height="150" src="dlherdies.png">
+
+* Dr. Dirceu Luis Herdies
+  * Graduação em Física (UFSM, 1983)
+  * Mestrado em Meteorologia (INPE, 1991)
+  * Doutorado em Meteorologia (USP, 2002)
+  
+--- 
+
+<!-- Scoped style -->
+<style scoped>img {  padding-left: 50px;}</style>
+
+# Instrutores Convidados
+
+<img align="right" width="150" height="150" src="cfbastarz.png">
+
+* Dr. João Gerd Zell de Mattos
+  * Graduação em Licenciatura em Matemática (UNESP, 2005)
+  * Mestrado e Doutorado em Meteorologia (INPE, 2010 e 2017)
+
+<img align="right" width="150" height="150" src="dlherdies.png">
+
+* Dr. Luiz Fernando Sapucci
+  * Graduação em Física (UFSM, 1983)
+  * Mestrado em Meteorologia (INPE, 1991)
+  * Doutorado em Meteorologia (USP, 2002)
+
+--- 
+
+<!-- Scoped style -->
+<style scoped>img {  padding-left: 50px;}</style>
+
+# Instrutores Convidados
+
+<img align="right" width="150" height="150" src="cfbastarz.png">
+
+* Dr. Éder de Paulo Vendrasco
+  * Graduação em Licenciatura em Matemática (UNESP, 2005)
+  * Mestrado e Doutorado em Meteorologia (INPE, 2010 e 2017)
+
+<img align="right" width="150" height="150" src="dlherdies.png">
+
+* Dr. Sérgio Henrique Ferreira Soares
+  * Graduação em Física (UFSM, 1983)
+  * Mestrado em Meteorologia (INPE, 1991)
+  * Doutorado em Meteorologia (USP, 2002)
+
+--- 
+
+<!-- Scoped style -->
+<style scoped>img {  padding-left: 50px;}</style>
+
+# Instrutores Convidados
+
+<img align="right" width="150" height="150" src="cfbastarz.png">
+
+* Dr. José Antônio Aravéquia
+  * Graduação em Licenciatura em Matemática (UNESP, 2005)
+  * Mestrado e Doutorado em Meteorologia (INPE, 2010 e 2017)
+
+<img align="right" width="150" height="150" src="dlherdies.png">
+
+* Dr. Eduardo Barbosa
+  * Graduação em Física (UFSM, 1983)
+  * Mestrado em Meteorologia (INPE, 1991)
+  * Doutorado em Meteorologia (USP, 2002)
+
+--- 
+
+<!-- Scoped style -->
+<style scoped>img {  padding-left: 50px;}</style>
+
+# Instrutores Convidados
+
+<img align="right" width="150" height="150" src="cfbastarz.png">
+
+* Dra. Helena Barbieri de Azevedo
+  * Graduação em Licenciatura em Matemática (UNESP, 2005)
+  * Mestrado e Doutorado em Meteorologia (INPE, 2010 e 2017)
+
+<img align="right" width="150" height="150" src="dlherdies.png">
+
+* Dra. Liviany Viana
+  * Graduação em Física (UFSM, 1983)
+  * Mestrado em Meteorologia (INPE, 1991)
+  * Doutorado em Meteorologia (USP, 2002)
+
+---
+
+![bg right:40%](./background.jpg)
+
+# Dúvidas
+
+* Dúvidas e discussão
+
+:link: https://cfbastarz.github.io/
+:email: carlos.bastarz@inpe.br
+:octopus: cfbastarz
+
+
+</textarea></section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+Reveal.initialize({
+controls : false,
+markdown : {smartypants: true},
+				hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+			});
+		</script>
+	</body>
+</html>

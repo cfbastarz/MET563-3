@@ -1,0 +1,23 @@
+name: IntroAssimDados
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - dask=2025.7.0
+  - dask-core=2025.7.0
+  - esmf=8.9.0
+  - esmpy=8.9.0
+  - geopandas=1.1.1
+  - geopandas-base=1.1.1
+  - jupyterlab=4.4.7
+  - matplotlib-base=3.10.6
+  - numpy=2.3.1
+  - pandas=2.3.2
+  - pip=25.2
+  - python=3.13.2
+  - python-dateutil=2.9.0post0
+  - scikit-learn=1.7.2
+  - scipy=1.16.1
+  - setuptools=72.1.0
+  - xarray=2025.4.0
