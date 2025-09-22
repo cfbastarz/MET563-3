@@ -25,4 +25,8 @@ conda activate IntroAssimDados
 jupyter-lab atividade_01_equacao_de_analise_empirica.ipynb
 ```
 
+**Nota:**
+
+* A página do curso encontra-se em [https://cfbastarz.github.io/met563-3/](https://cfbastarz.github.io/met563-3/).
+
 @cfbastarz (Setembro de 2025)
