@@ -748,7 +748,7 @@ section {
 - Observe que a análise (curva vermelha) representa o ajuste do background (curva azul) às observações (pontos azuis)
 - Quanto mais precisa a observação, melhor o ajuste
 
-🎲 Notebook com <a href="https://colab.research.google.com/" target="_blank">Atividade Prática 1</a>
+🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_01_equacao_de_analise_empirica.ipynb" target="_blank">Atividade Prática 1</a>
 
 </div>
 </div>
