@@ -800,6 +800,6 @@ section {
 <br />
 <br />
 
-:link: https://cfbastarz.github.io
+:link: https://cfbastarz.github.io/met563-3/
+:octopus: https://github.com/cfbastarz/MET563-3
 :email: carlos.bastarz@inpe.br
-:octopus: https://github.com/cfbastarz
