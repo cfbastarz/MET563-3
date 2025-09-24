@@ -1261,7 +1261,7 @@ section {
 
 <br />  
   
-🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_02_equacao_de_analise_empirica.ipynb" target="_blank">Atividade Prática 2</a>
+🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_02_equacao_de_analise_empirica_multi.ipynb" target="_blank">Atividade Prática 2</a>
 
 ---
 
