@@ -55,7 +55,7 @@ span.footnote {
 
 # **Introdução à Assimilação de Dados (MET 563-3)**
 
-### Motivação - Equação de Análise Empírica
+### Motivação - Equação de Análise Empírica (Parte I)
 
 <p>Dr. Carlos Frederico Bastarz
 <br />
@@ -265,7 +265,7 @@ section {
  
 ## **Distribuição Normal**
 
-- Observe que ambos, $\mathbf{x_{b}}$ e $\mathbf{y}$, possuem distribuição normal, isto é, ambos são representados por valores aleatórios distribuídos sobre uma curva normal com $\mu_{xb} = 0,0019$ e $\sigma_{xb} = 0,8909$ e $\mu_{y} = -0.011$ e $\sigma_{y} = 0.8563$:
+- Observe que ambos, $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$, possuem distribuição normal, isto é, ambos são representados por valores aleatórios distribuídos sobre uma curva normal com $\mu_{xb} = 0,0019$ e $\sigma_{xb} = 0,8909$ e $\mu_{y} = -0.011$ e $\sigma_{y} = 0.8563$:
  
  
 <div align="center">
@@ -657,7 +657,7 @@ $$
 
 - $\alpha$: é um valor único ($\alpha \approx 0,99$)
 - $\mathbf{y_{o}}$: é um vetor com valores "observados" de apenas uma grandeza (e.g., temperatura)
-- $\mathbf{x_{b}}$: é um vetor com valores produzidos (calculados) por um modelo matemático (neste caso, a função seno adicionada de um ruído de distribuição próxima à Normal)
+- $\mathbf{x_{b}}$: é um vetor com valores produzidos (calculados) por um modelo matemático (neste caso, a função seno adicionada de um ruído de distribuição próxima da normal)
  
 ---
  
@@ -747,6 +747,8 @@ section {
 
 - Observe que a análise (curva vermelha) representa o ajuste do background (curva azul) às observações (pontos azuis)
 - Quanto mais precisa a observação, melhor o ajuste
+
+<br />
 
 🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_01_equacao_de_analise_empirica.ipynb" target="_blank">Atividade Prática 1</a>
 
