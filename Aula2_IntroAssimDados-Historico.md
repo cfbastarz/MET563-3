@@ -84,14 +84,14 @@ Dr. Dirceu Luis Herdies
 
 <!-- _backgroundColor: "#000000" -->
 
-![bg right:42%](./figs/linha_tempo_cptec.png)
+![bg right:46%](./figs/linha_tempo_cptec.png)
 
 <!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
 }
 .columns {
   display: grid;
@@ -368,10 +368,12 @@ section {
 
 ## **Tecnologia nos anos 1950**
 
-- Na imagem ao lado, máquina IBM 704 (1954) na NACA<sup>&#128312;</sup> 
+- Na imagem ao lado, máquina IBM<sup>&#128312;</sup> 704 (1954) na NACA<sup>&#128312;</sup> 
   - Fonte: [https://en.wikipedia.org/wiki/IBM_704](https://en.wikipedia.org/wiki/IBM_704)
 
 <span class="footnote">
+<sup>&#128312;</sup>IBM: <i>International Business Machines</i>
+<br />
 <sup>&#128312;</sup>NACA: <i>National Advisory Committee for Aeronautics</i>
 </span>
 
@@ -482,24 +484,11 @@ section {
 * Primeiros experimentos em PNT foram realizados por meio da **análise subjetiva** (interpolação manual das observações em ponto de grade)
 * Primeiras tentativas de **análise objetiva** (interpolação matemática das observações):
   * Panofsky, 1949: polonômio "global" (o mesmo polinômio é usado em toda a grade)
+    * Problema: como tratar regiões com poucas observações?
   * Gilchrist e Cressman (1954): polinômio "local" (um polinômio é definido para cada ponto de grade)
-
-<div class="columns">
-<div>
 
 <br />
   
-## **A partir de 1955**
-
-* Início da previsão numérica de tempo operacional
-* Ano de lançamento da primeira máquina lançada pela IBM<sup>&#128312;</sup>
-
-</div>
-<div>
-
-<br />
-<br />
-
 <div style="
   background-color: #dbf8d5; 
   color: #1d721f; 
@@ -513,9 +502,6 @@ section {
 ">
 Como automatizar o procedimento de análise objetiva e torná-lo operacional (baixo tempo de computação e erro comparável com a da análise subjetiva)?
 </div>   
-
-</div>
-</div>
 
 <span class="footnote">
 <sup>&#128312;</sup>IBM: <i>International Business Machines Corporation</i>
