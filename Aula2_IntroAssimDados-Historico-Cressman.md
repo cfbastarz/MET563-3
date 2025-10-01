@@ -680,7 +680,7 @@ section {
 
 ### Exemplo 1D
 
-- O que acontece quando escolhemos apenas 2 raios? $R = [3,0, 2,0]$
+- O que acontece quando escolhemos apenas 2 raios? $R = [3.0, 2.0]$
 
 <div align="center">
   <img src="./figs/xa1dcressmanr32.png" width="650"/>
@@ -708,7 +708,7 @@ section {
 
 ### Exemplo 1D
 
-- O que acontece quando escolhemos 3 raios? $R = [3,0, 2,0, 1,0]$
+- O que acontece quando escolhemos 3 raios? $R = [3.0, 2.0, 1.0]$
 
 <div align="center">
   <img src="./figs/xa1dcressmanr321.png" width="650"/>
@@ -736,7 +736,7 @@ section {
 
 ### Exemplo 1D
 
-- O que acontece quando escolhemos 4 raios? $R = [3,0, 2,0, 1,0, 0,5]$
+- O que acontece quando escolhemos 4 raios? $R = [3.0, 2.0, 1.0, 0.5]$
 
 <div align="center">
   <img src="./figs/xa1dcressmanr32105.png" width="650"/>
@@ -764,7 +764,7 @@ section {
 
 ### Exemplo 1D
 
-- O que acontece quando escolhemos 5 raios? $R = [3,0, 2,0, 1,0, 0,5, 0,25]$
+- O que acontece quando escolhemos 5 raios? $R = [3.0, 2.0, 1.0, 0.5, 0.25]$
 
 <div align="center">
   <img src="./figs/xa1dcressmanr32105025.png" width="650"/>
@@ -792,7 +792,7 @@ section {
 
 ### Exemplo 1D
 
-- O que acontece quando escolhemos 6 raios? $R = [3,0, 2,0, 1,0, 0,5, 0,25, 0,75]$
+- O que acontece quando escolhemos 6 raios? $R = [3.0, 2.0, 1.0, 0.5, 0.25, 0.75]$
 
 <div align="center">
   <img src="./figs/xa1dcressman.png" width="650"/>
@@ -915,6 +915,13 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
+<br />
+
+### Exemplo 2D
+
+- Definimos dois vetores com o domínio para $x$ e $y$
+- Definimos uma malha a partir dos valores do domínio
+
 ```
 lon = np.linspace(-np.pi, np.pi, 10)
 lat = np.linspace(-np.pi, np.pi, 10)
@@ -941,6 +948,14 @@ section {
 <br />
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
+
+<br />
+
+### Exemplo 2D
+
+- Aplicamos a função $\sin$ para os valores do domínio
+- Definimos um ruído
+- Somamos o ruído à função
 
 ```
 xb_seno = np.sin(LON)
@@ -970,6 +985,10 @@ section {
 <br />
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
+
+### Exemplo 2D
+
+- Definição das posições e valores das observações
 
 ```
 # Posições
@@ -1008,6 +1027,13 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
+<br />
+
+### Exemplo 2D
+
+- Definição dos pesos dados em função da distância entre o ponto a ser analisado e as observações
+- O peso será zero quando a observação estiver fora do raio de influência
+
 ```
 def weight(dx, dy, R):
     r2 = dx**2 + dy**2
@@ -1037,11 +1063,20 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
+<br />
+
+### Exemplo 2D
+
+- Definimos um vetor com os valores dos raios de influência
+- Observe que, neste exemplo, os valores são adimensionais
+
 ```
 radii = [3.0, 2.5, 2.0, 1.5, 1.0, 0.5] # passos sucessivos
 ```
 
 ---
+
+<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -1060,6 +1095,13 @@ section {
 <br />
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
+
+<br />
+
+### Exemplo 2D
+
+- Iniciamos a análise como sendo o background
+- Para cada raio de influência, para cada observação, calculamos os pesos de acordo com o valor do raio de influência
 
 ```
 xa = xb.copy()
@@ -1097,7 +1139,10 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 3,0$
+
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 3.0$
 
 <br />
 
@@ -1125,7 +1170,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 2,0$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 2.0$
 
 <br />
 
@@ -1153,7 +1200,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 1,0$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 1.0$
 
 <br />
 
@@ -1181,7 +1230,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 0,5$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 0.5$
 
 <br />
 
@@ -1209,7 +1260,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 0,25$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 0.25$
 
 <br />
 
@@ -1237,7 +1290,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 1 raio? $R = 0,175$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 1 raio? $R = 0.175$
 
 <br />
 
@@ -1265,7 +1320,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos apenas 2 raios? $R = [3,0, 2,0]$
+### Exemplo 2D
+
+- O que acontece quando escolhemos apenas 2 raios? $R = [3.0, 2.0]$
 
 <br />
 
@@ -1293,7 +1350,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos 3 raios? $R = [3,0, 2,0, 1,0]$
+### Exemplo 2D
+
+- O que acontece quando escolhemos 3 raios? $R = [3.0, 2.0, 1.0]$
 
 <br />
 
@@ -1321,7 +1380,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos 4 raios? $R = [3,0, 2,0, 1,0, 0,5]$
+### Exemplo 2D
+
+- O que acontece quando escolhemos 4 raios? $R = [3.0, 2.0, 1.0, 0.5]$
 
 <br />
 
@@ -1349,7 +1410,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos 5 raios? $R = [3,0, 2,0, 1,0, 0,5, 0,25]$
+### Exemplo 2D
+
+- O que acontece quando escolhemos 5 raios? $R = [3.0, 2.0, 1.0, 0.5, 0.25]$
 
 <br />
 
@@ -1377,7 +1440,9 @@ section {
 
 ## **_An Operational Objective Analysis System_ (Cressman, 1959)**
 
-- O que acontece quando escolhemos 6 raios? $R = [3,0, 2,0, 1,0, 0,5, 0,25, 0,175]$
+### Exemplo 2D
+
+- O que acontece quando escolhemos 6 raios? $R = [3.0, 2.0, 1.0, 0.5, 0.25, 0.175]$
 
 <br />
 
@@ -1407,10 +1472,17 @@ section {
 
 <br />
 
-Em breve...
-
 🎲 Notebook com <a href="#" target="_blank">Atividade Prática 4</a>
 
+<br />
+
+- Insights e questões interessantes que surgiram durante a aula 💡:
+  * 💭 Como generalizar a determinação do raio de influência nos pontos de grade a serem analisados?
+  * 💭 Como fazer com que os raios de influência possam ser distintos entre os pontos de grade?
+    * A densidade de observações ao redor de cada ponto de grade seria um meio para isto?
+  * 💭 Como fica a assimilação das observações na vertical? Os métodos empíricos que vimos até agora, contabilizam a estrutura vertical do modelo ou apenas a estrutura horizontal?
+  * 💭 Como devem ser definidos os valores dos raios de influência?
+    * A resolução do modelo seria um critério a ser utilizado?
 
 ---
 
