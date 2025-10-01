@@ -65,7 +65,7 @@ span.footnote2 {
 
 # **Introdução à Assimilação de Dados (MET 563-3)**
 
-### Histórico da Assimilação de Dados
+### Histórico da Assimilação de Dados - Análise de Bergthórsson e Döös (1955)
 
 <p>Dr. Carlos Frederico Bastarz
 <br />
