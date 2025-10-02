@@ -6,12 +6,6 @@ Repositório da disciplina Introdução à Assimilação de Dados (MET 563-3) da
 
 Para abrir os notebooks com as atividades, pode-se utilizar o Google Colab ou criar um ambiente Python local (recomenda-se a utilização do Anaconda/Miniconda).
 
-### Google Colab
-
-* [Atividade 1](https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_01_equacao_de_analise_empirica.ipynb)
-* [Atividade 2](https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_02_equacao_de_analise_empirica_multi.ipynb)
-* [Atividade 3](https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_03_analise_bd1955_1d2d.ipynb)
-
 ### Ambiente local
 
 Utilize o arquivo `environment.yml` deste repositório para criar o ambiente `IntroAssimDados` na sua máquina:
