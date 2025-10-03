@@ -284,7 +284,7 @@ section {
 - Considere um modelo matemático simples:
 
 $$
-f(\mathbf{x}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le \mathbf{x} \le \pi
+f(x) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi
 $$
 
 - A função seno com a adição de um ruído normalmente distribuído
@@ -798,7 +798,6 @@ section {
   <img src="./figs/xa1dcressman.png" width="650"/>
 </div>
 
-
 ---
 
 <!-- Scoped style -->
@@ -829,54 +828,7 @@ section {
 - Considere um modelo matemático simples:
 
 $$
-f(\mathbf{x, y}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le \mathbf{x} \le \pi, \quad -\pi \le \mathbf{y} \le \pi
-$$
-
-- A função seno com a adição de um ruído normalmente distribuído
-- Definimos um plano Cartesiano de 100 pontos onde esta função será aplicada
-- 👉 Utilizando `ruido = np.random.randn(len(LON)) * sigma`
-
-</div>
-<div>
-
-<div align="center">
-  <img src="./figs/bkg2d.png" width="400"/>
-</div> 
-
-</div>
-</div> 
-
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 21px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# Histórico da Assimilação de Dados
-
-<br />
-
-## **_An Operational Objective Analysis System_ (Cressman, 1959)**
-
-<div class="columns">
-<div>
-
-<br />
-
-### Exemplo 2D
-
-- Considere um modelo matemático simples:
-
-$$
-f(\mathbf{x, y}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le \mathbf{x} \le \pi, \quad -\pi \le \mathbf{y} \le \pi
+f(x, y) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi, \quad -\pi \le y \le \pi
 $$
 
 - A função seno com a adição de um ruído normalmente distribuído

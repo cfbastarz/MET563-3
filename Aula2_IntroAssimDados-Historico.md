@@ -690,7 +690,7 @@ section {
 - Considere um modelo matemático simples:
 
 $$
-f(\mathbf{x}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le \mathbf{x} \le \pi
+f(x) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi
 $$
 
 - A função seno com a adição de um ruído normalmente distribuído
@@ -963,7 +963,7 @@ section {
 - Considere um modelo matemático simples:
 
 $$
-f(\mathbf{x, y}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le \mathbf{x} \le \pi, \quad -\pi \le \mathbf{y} \le \pi
+f(x, y) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi, \quad -\pi \le y \le \pi
 $$
 
 - A função seno com a adição de um ruído normalmente distribuído

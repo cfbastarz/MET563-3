@@ -131,15 +131,15 @@ section {
 - Para que possamos extrapolar o problema para $n$ variáveis, será necessário calcular $n$ análises, uma para cada **variável de estado**:
 
 $$
-\mathbf{x_{a}^{\textit{n}}} = \alpha^{n}\mathbf{y_{o}^{\textit{n}}} + (1 - \alpha^{n})\mathbf{x_{b}^{\textit{n}}}
+x_{a,n} = \alpha_{n} y_{o,n} + (1 - \alpha_{n}) x_{b,n}
 $$
 
 - Onde:
-  * $\mathbf{x_{a}^{\textit{n}}}$: é o vetor análise da enésima variável
-  * $\mathbf{x_{b}^{\textit{n}}}$: é o vetor background da enésima variável
-  * $\mathbf{y_{o}^{\textit{n}}}$: é o vetor observação da enésima variável
-  * $\alpha^{n}$: é um vetor com os pesos dado à observação 
-  * $1 - \alpha^{n}$: é um vetor com os pesos dado ao background)
+  * $x_{a,n}$: é o vetor análise da enésima variável
+  * $x_{b,n}$: é o vetor background da enésima variável
+  * $y_{o,n}$: é o vetor observação da enésima variável
+  * $\alpha_{n}$: é um vetor com os pesos dado à observação 
+  * $1 - \alpha_{n}$: é um vetor com os pesos dado ao background)
 
 ---
 
@@ -201,7 +201,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{x_{b}^\text{1}}$?**
+## **Como é $x_{b1}$?**
 
 <br /> 
 
@@ -264,7 +264,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{x_{b}^\text{2}}$?**
+## **Como é $x_{b2}$?**
 
 <br /> 
 
@@ -329,7 +329,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{x_{b}^\text{3}}$?**
+## **Como é $x_{b3}$?**
 
 <br /> 
 
@@ -386,7 +386,7 @@ section {
 
 ## **As observações**
 
-- O vetor observação $\mathbf{y_{o}^{\textit{n}}}$ para cada variável, pode ser definido de forma semelhante ao vetor background $\mathbf{x_{b}^{\textit{n}}}$ ($n \in [1,3]$), também com 100 elementos cada:
+- O vetor observação $y_{o,n}$ para cada variável, pode ser definido de forma semelhante ao vetor background $x_{b,n}$ ($n \in [1,3]$), também com 100 elementos cada:
 
 ```
 # Observações da Temperatura do Ar [C]
@@ -425,7 +425,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{y_{o}^\text{1}}$?**
+## **Como é $y_{o1}$?**
 
 <br /> 
 
@@ -488,7 +488,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{y_{o}^\text{2}}$?**
+## **Como é $y_{o2}$?**
 
 <br /> 
 
@@ -551,7 +551,7 @@ section {
 <div class="columns">
 <div>
 
-## **Como é $\mathbf{y_{o}^\text{3}}$?**
+## **Como é $y_{o3}$?**
 
 <br /> 
 
@@ -614,7 +614,7 @@ section {
 
 ## **Distribuição Normal**
 
-- Observe que $\mathbf{x_{b}^\text{1}}$ e $\mathbf{y_{o}^\text{1}}$ possuem distribuições próximas da normal:
+- Observe que $x_{b1}$ e $y_{o1}$ possuem distribuições próximas da normal:
 
 <div align="center">
   <img src="./figs/xb1_yo1.png" width="1150"/>
@@ -640,7 +640,7 @@ section {
 
 ## **Distribuição Normal**
 
-- Observe que $\mathbf{x_{b}^\text{2}}$ e $\mathbf{y_{o}^\text{2}}$ possuem distribuições próximas da normal:
+- Observe que $x_{b2}$ e $y_{o2}$ possuem distribuições próximas da normal:
 
 <div align="center">
   <img src="./figs/xb2_yo2.png" width="1150"/>
@@ -666,7 +666,7 @@ section {
 
 ## **Distribuição Normal**
 
-- Observe que $\mathbf{x_{b}^\text{3}}$ e $\mathbf{y_{o}^\text{3}}$ possuem distribuições próximas da normal:
+- Observe que $x_{b3}$ e $y_{o3}$ possuem distribuições próximas da normal:
 
 <div align="center">
   <img src="./figs/xb3_yo3.png" width="1150"/>
@@ -690,9 +690,9 @@ section {
  
 <br /> 
 
-## **Séries de $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$**
+## **Séries de $x_{b,n}$ e $y_{o,n}$**
 
-- Com $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$ definidos, podemos plotar os seus elementos:
+- Com $x_{b,n}$ e $y_{o,n}$ definidos, podemos plotar os seus elementos:
 
 <br />
 
@@ -718,13 +718,13 @@ section {
  
 <br /> 
 
-## **Determinação de $\alpha^{n}$ (continua...)**
+## **Determinação de $\alpha_{n}$ (continua...)**
 
-- Antes de determinarmos o parâmetro $\alpha^{n}$, precisamos saber o que ele é e como pode ser definido
-- $\alpha^{n}$ é um parâmetro que relaciona as medidas das variâncias do background e das observações:
+- Antes de determinarmos o parâmetro $\alpha_{n}$, precisamos saber o que ele é e como pode ser definido
+- $\alpha_{n}$ é um parâmetro que relaciona as medidas das variâncias do background e das observações:
 
 $$
-\alpha^{n} = \frac{\sigma^2_{b,n}}{\sigma^2_{b,n} + \sigma^2_{o,n}}
+\alpha_{n} = \frac{\sigma^2_{b,n}}{\sigma^2_{b,n} + \sigma^2_{o,n}}
 $$
 
 - Onde:
@@ -732,7 +732,7 @@ $$
   * $\sigma^2_{o,n}$: é o enésimo vetor com as variâncias das observações
 
 * Os valores destes vetores são obtidos a partir das **matrizes de covariâncias** dos erros de background e observação
-* Então, para calcular $\alpha^{n}$, precisamos determinar as matrizes de covariâncias dos erros de $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$, as quais denominaremos $\mathbf{B}$ e $\mathbf{R}$, respectivamente
+* Então, para calcular $\alpha_{n}$, precisamos determinar as matrizes de covariâncias dos erros de $x_{b,n}$ e $y_{o,n}$, as quais denominaremos $\mathbf{B}$ e $\mathbf{R}$, respectivamente
 
 ---
 
@@ -754,13 +754,13 @@ section {
 <br /> 
 <br /> 
 
-## **Erros $E(\mathbf{x_{b}^\textit{n}})$ e $E(\mathbf{y_{o}^\textit{n}})$**
+## **Erros $E(x_{b,n})$ e $E(y_{o,n})$**
 
 <br /> 
 
-- Vamos considerar que os erros dos elementos dos vetores $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$ são randômicos, ou seja:
-  * Não há relação entre os elementos dos dois vetores $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$
-  * Os erros dos elementos dos vetores $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$ são randômicos, ou seja, não há relação entre os erros dos elementos do vetor background e entre os elementos do vetor observação
+- Vamos considerar que os erros dos elementos dos vetores $x_{b,n}$ e $y_{o,n}$ são randômicos, ou seja:
+  * Não há relação entre os elementos dos dois vetores $x_{b,n}$ e $y_{o,n}$
+  * Os erros dos elementos dos vetores $x_{b,n}$ e $y_{o,n}$ são randômicos, ou seja, não há relação entre os erros dos elementos do vetor background e entre os elementos do vetor observação
 - Manteremos a distribuição destes erros de forma conhecida, vamos manter uma distribuição próxima à normal de forma que possamos controlar a média e o desvio padrão
 
 ---
@@ -781,7 +781,7 @@ section {
 
 <br />
 
-## **Erros $E(\mathbf{x_{b}^\textit{n}})$ e $E(\mathbf{y_{o}^\textit{n}})$**
+## **Erros $E(x_{b,n})$ e $E(y_{o,n})$**
 
 <br />
 
@@ -815,10 +815,10 @@ errbp = mdbp + dpbp * np.random.randn(len(x0)) # mdbp = 2.8; dpbp = 2.1
 <br />
 
 - Onde:
-  * $mdo[t,v,p]$: é a média dos erros da observação ($\mu_{o}^{n}$)
-  * $mdb[t,v,p]$: é a média dos erros do background ($\mu_{b}^{n}$)
-  * $dpo[t,v,p]$: é o desvio padrão dos erros da observação ($\sigma_{o}^{n}$)
-  * $dpb[t,v,p]$: é o desvio padrão dos erros do background ($\sigma_{b}^{n}$)
+  * $mdo[t,v,p]$: é a média dos erros da observação ($\mu_{o,n}$)
+  * $mdb[t,v,p]$: é a média dos erros do background ($\mu_{b,n}$)
+  * $dpo[t,v,p]$: é o desvio padrão dos erros da observação ($\sigma_{o,n}$)
+  * $dpb[t,v,p]$: é o desvio padrão dos erros do background ($\sigma_{b,n}$)
  
 </div>
 </div>
@@ -842,7 +842,7 @@ section {
 <br />
 <br />
  
-## **Determinação de $\alpha^{n}$ (continuação)**
+## **Determinação de $\alpha_{n}$ (continuação)**
 
 <br />
 <br />
@@ -867,22 +867,22 @@ section {
 
 # Equação de Análise Empírica (Parte II)
  
-## **Determinação de $\alpha^{n}$**
+## **Determinação de $\alpha_{n}$**
  
 <br /> 
  
 ### Matrizes de covariâncias $\mathbf{B}$ e $\mathbf{R}$
 
-- Utilizaremos os vetores $E(\mathbf{x_{b}^\textit{n}})$ e $E(\mathbf{y_{o}^\textit{n}})$ para montar a matriz de erros de $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$:
+- Utilizaremos os vetores $E(x_{b,n})$ e $E(y_{o,n})$ para montar a matriz de erros de $x_{b,n}$ e $y_{o,n}$:
 
 ```
 xberr = [errbt, errbv, errbp]
 yerr = [errot, errov, errop]
 ```
 
-- O objetivo é calcular os pesos ($\alpha^{n}$ e $1-\alpha^{n}$) para cada uma das variáveis
-- $\alpha^{n}$ depende das variâncias dos erros de observação e background
-- Portanto, precisamos calcular as variâncias de $\mathbf{x_{b}^\textit{n}}$ e $\mathbf{y_{o}^\textit{n}}$
+- O objetivo é calcular os pesos ($\alpha_{n}$ e $1-\alpha_{n}$) para cada uma das variáveis
+- $\alpha_{n}$ depende das variâncias dos erros de observação e background
+- Portanto, precisamos calcular as variâncias de $x_{b,n}$ e $y_{o,n}$
 
 <div style="
   background-color: #f8d7da; 
@@ -916,7 +916,7 @@ section {
 
 # Equação de Análise Empírica (Parte II)
  
-## **Determinação de $\alpha^{n}$**
+## **Determinação de $\alpha_{n}$**
  
 ### Matrizes de covariâncias $\mathbf{B}$ e $\mathbf{R}$
 
@@ -963,7 +963,7 @@ section {
 <br />
 <br />
 
-## **Determinação de $\alpha^{n}$**
+## **Determinação de $\alpha_{n}$**
 
 <br />
 
@@ -1003,22 +1003,22 @@ section {
 <br /> 
 <br /> 
  
-## **Cálculo de $\mathbf{x_{a}^\textit{n}}$** 
+## **Cálculo de $x_{a,n}$** 
 
 <br /> 
 
 - Observando novamente a equação da análise, notamos que todos os parâmetros estão determinados:
 
 $$
-\mathbf{x_{a}^{\textit{n}}} = \alpha^{n}\mathbf{y_{o}^{\textit{n}}} + (1 - \alpha^{n})\mathbf{x_{b}^{\textit{n}}}
+x_{a,n} = \alpha_{n} y_{o,n} + (1 - \alpha_{n}) x_{b,n}
 $$
 
 - Onde:
-  * $\mathbf{x_{a}^{\textit{n}}}$: é o vetor análise da enésima variável
-  * $\mathbf{x_{b}^{\textit{n}}}$: é o vetor background da enésima variável
-  * $\mathbf{y_{o}^{\textit{n}}}$: é o vetor observação da enésima variável
-  * $\alpha^{n}$: é um vetor com os pesos dado à observação 
-  * $1 - \alpha^{n}$: é um vetor com os pesos dado ao background)
+  * $x_{a,n}$: é o vetor análise da enésima variável
+  * $x_{b,n}$: é o vetor background da enésima variável
+  * $y_{o,n}$: é o vetor observação da enésima variável
+  * $\alpha_{n}$: é um vetor com os pesos dado à observação 
+  * $1 - \alpha_{n}$: é um vetor com os pesos dado ao background)
 
 ---
 
@@ -1036,7 +1036,7 @@ section {
 
 # Equação de Análise Empírica (Parte II)
  
-## **Cálculo de $\mathbf{x_{a}^\text{1}}$** 
+## **Cálculo de $x_{a1}$** 
 
 ```
 xat = alphat * yo1 + (1 - alphat) * xb1
@@ -1080,7 +1080,7 @@ section {
 
 # Equação de Análise Empírica (Parte II)
  
-## **Cálculo de $\mathbf{x_{a}^\text{2}}$** 
+## **Cálculo de $x_{a2}$** 
 
 ```
 xav = alphav * yo2 + (1 - alphav) * xb2
@@ -1124,7 +1124,7 @@ section {
 
 # Equação de Análise Empírica (Parte II)
  
-## **Cálculo de $\mathbf{x_{a}^\text{3}}$** 
+## **Cálculo de $x_{a3}$** 
 
 ```
 xap = alphap * yo3 + (1 - alphap) * xb3
@@ -1171,7 +1171,7 @@ section {
 <br /> 
 <br />  
  
-## **Cálculo de $\mathbf{x_{a}^\text{1}}$**
+## **Cálculo de $x_{a1}$**
 
 <br /> 
 
@@ -1198,7 +1198,7 @@ section {
 <br /> 
 <br /> 
 
-## **Cálculo de $\mathbf{x_{a}^\text{2}}$**
+## **Cálculo de $x_{a2}$**
 
 <br /> 
 
@@ -1225,7 +1225,7 @@ section {
 <br /> 
 <br /> 
  
-## **Cálculo de $\mathbf{x_{a}^\text{3}}$** 
+## **Cálculo de $x_{a3}$** 
 
 <br /> 
 

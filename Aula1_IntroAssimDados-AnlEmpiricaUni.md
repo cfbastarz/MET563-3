@@ -98,7 +98,7 @@ section {
 - Considere um modelo matemático simples:
 
 $$
-f(\mathbf{x}) = \sin(\mathbf{x}) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi
+f(x) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi
 $$
 
 * A função seno com a adição de um ruído normalmente distribuído
@@ -134,13 +134,13 @@ section {
 - Suponha que possamos utilizar este modelo para ajustar uma curva produzida a partir de uma distribuição normal randômica utilizando uma **equação de análise empírica**:
 
 $$
-\mathbf{x_{a}} = \alpha \mathbf{y_{o}} + (1-\alpha)\mathbf{x_{b}}
+x_{a} = \alpha y_{o} + (1-\alpha)x_{b}
 $$
 
 - Onde:
-  - $\mathbf{x_{a}}$: é o vetor análise
-  - $\mathbf{x_{b}}$: é o vetor background
-  - $\mathbf{y_{o}}$: é o vetor observação
+  - $x_{a}$: é o vetor análise
+  - $x_{b}$: é o vetor background
+  - $y_{o}$: é o vetor observação
   - $\alpha$: é um peso escalar dado à observação e ao background
   
 ---
@@ -166,13 +166,13 @@ section {
 
 ## **O modelo**
 
-- Já sabemos que o nosso modelo é a função seno. Então, vamos definir um domínio para a nossa função. Seja $\mathbf{x_{0}}$ um vetor com 629 elementos de 1 a 629:
+- Já sabemos que o nosso modelo é a função seno. Então, vamos definir um domínio para a nossa função. Seja $x_{0}$ um vetor com 629 elementos de 1 a 629:
 
 ```
 x0 = np.arange(1,630,1)
 ```
 
-- Como nosso modelo é a função seno, vamos aplicar a função aos elementos do nosso domínio e vamos nomear de $\mathbf{x_{b}}$ o vetor com a imagem da nossa função, ou melhor, $\mathbf{x_{b}}$ é o nosso background:
+- Como nosso modelo é a função seno, vamos aplicar a função aos elementos do nosso domínio e vamos nomear de $x_{b}$ o vetor com a imagem da nossa função, ou melhor, $x_{b}$ é o nosso background:
 
 ```
 xb = np.sin(x0) + ruido
@@ -181,7 +181,7 @@ xb = np.sin(x0) + ruido
 </div>
 <div>
 
-## **Como é $\mathbf{x_{b}}$?**
+## **Como é $x_{b}$?**
 
 ```
 xb = 
@@ -219,7 +219,7 @@ section {
 
 ## **As observações**
 
-- O vetor observação $\mathbf{y_{o}}$, pode ser definido de forma semelhante ao vetor background $\mathbf{x_{b}}$:
+- O vetor observação $y_{o}$, pode ser definido de forma semelhante ao vetor background $x_{b}$:
 
 ```
 mu_true = 0
@@ -228,7 +228,7 @@ s = np.random.normal(mu_true, sigma_true, 629)
 y = xb + np.sin(s)
 ```
 
-## **Como é $\mathbf{y_{o}}$?** 
+## **Como é $y_{o}$?** 
 
 ```
 y = 
@@ -265,7 +265,7 @@ section {
  
 ## **Distribuição Normal**
 
-- Observe que ambos, $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$, possuem distribuição normal, isto é, ambos são representados por valores aleatórios distribuídos sobre uma curva normal com $\mu_{xb} = 0,0019$ e $\sigma_{xb} = 0,8909$ e $\mu_{y} = -0.011$ e $\sigma_{y} = 0.8563$:
+- Observe que ambos, $x_{b}$ e $y_{o}$, possuem distribuição normal, isto é, ambos são representados por valores aleatórios distribuídos sobre uma curva normal com $\mu_{xb} = 0,0019$ e $\sigma_{xb} = 0,8909$ e $\mu_{y} = -0.011$ e $\sigma_{y} = 0.8563$:
  
  
 <div align="center">
@@ -295,7 +295,7 @@ section {
 
 ## **Distribuição Normal**
 
-- Estamos mantendo as distribuições de $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$ próximas à distribuição normal, porque esta distribuição possui as seguintes propriedades:
+- Estamos mantendo as distribuições de $x_{b}$ e $y_{o}$ próximas à distribuição normal, porque esta distribuição possui as seguintes propriedades:
 
 $$
 f(\psi) = \frac{1}{\sigma\sqrt{2\pi}}{e}^{-\frac{(\psi-\mu)^{2}}{2\sigma^{2}}}
@@ -337,9 +337,9 @@ section {
  
 <br />
  
-## **Séries de $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$**
+## **Séries de $x_{b}$ e $y_{o}$**
 
-- Com $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$ definidos, podemos plotar os seus elementos:
+- Com $x_{b}$ e $y_{o}$ definidos, podemos plotar os seus elementos:
 
 <br />
 
@@ -363,15 +363,15 @@ section {
  
 ## **Equação de Análise Empírica**
 
-- Olhando para nossa equação de análise empírica, percebemos que os elementos $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$ já estão definidos
+- Olhando para nossa equação de análise empírica, percebemos que os elementos $x_{b}$ e $y_{o}$ já estão definidos
 - Ainda precisamos determinar o parâmetro $\alpha$, que é o peso a ser atribuído às observações
 - $1-\alpha$ é um outro peso que será atribuído ao background - **por que?**
-- Uma vez determinado o valor de $\alpha$, determinaremos $1-\alpha$ e, consequentemente, o valor de $\mathbf{x_{a}}$, o vetor análise (representado da mesma forma que $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$):
+- Uma vez determinado o valor de $\alpha$, determinaremos $1-\alpha$ e, consequentemente, o valor de $x_{a}$, o vetor análise (representado da mesma forma que $x_{b}$ e $y_{o}$):
 
 <br /> 
 
 $$
-\mathbf{x_{a}} = \alpha  \mathbf{y_{o}} + (1-\alpha)  \mathbf{x_{b}}
+x_{a} = \alpha  y_{o} + (1-\alpha)  x_{b}
 $$
 
 ---
@@ -401,7 +401,7 @@ $$
 
 - Onde:
   - $\sigma_{b}^{2}$ e $\sigma_{o}^{2}$ são as variâncias do background e das observações
-- Para calcular $\alpha$, precisamos calcular as variâncias dos vetores $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$ 
+- Para calcular $\alpha$, precisamos calcular as variâncias dos vetores $x_{b}$ e $y_{o}$ 
   
 
 ---
@@ -423,7 +423,7 @@ section {
 <br /> 
 <br /> 
  
-## **Erros $E(\mathbf{x_{b}})$ e $E(\mathbf{y_{o}})$**  
+## **Erros $E(x_{b})$ e $E(y_{o})$**  
  
 <br />  
  
@@ -433,8 +433,8 @@ section {
 - A variância é uma medida de dispersão
 - Ela pode ser calculada com base no erro da distribuição dos valores
 - Vamos fazer as seguintes considerações:
-  1. Não há relação entre os elementos dos dois vetores $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$
-  2. Os erros dos elementos dos vetores $\mathbf{x_{b}}$ e $\mathbf{y_{o}}$ são radômicos, ou seja, não há relação entre os erros dos elementos do vetor background e entre os elementos do vetor observação 
+  1. Não há relação entre os elementos dos dois vetores $x_{b}$ e $y_{o}$
+  2. Os erros dos elementos dos vetores $x_{b}$ e $y_{o}$ são radômicos, ou seja, não há relação entre os erros dos elementos do vetor background e entre os elementos do vetor observação 
 </div>
 <div>
 
@@ -474,7 +474,7 @@ section {
 
 ## **Testando alguns valores de $\sigma_{b}$ e $\sigma_{o}$**
 
-- Exemplo da série dos erros de background $E(\mathbf{x_{b}})$ e observação $E(\mathbf{y_{o}})$:
+- Exemplo da série dos erros de background $E(x_{b})$ e observação $E(y_{o})$:
 
 <br />
 
@@ -515,7 +515,7 @@ section {
 
 ## **Testando alguns valores de $\sigma_{b}$ e $\sigma_{o}$**
 
-- Exemplo da distribuição dos erros de background $E(\mathbf{x_{b}})$ e observação $E(\mathbf{y_{o}})$:
+- Exemplo da distribuição dos erros de background $E(x_{b})$ e observação $E(y_{o})$:
 
 <br />
 
@@ -563,7 +563,7 @@ sigmab2 = np.var(errb)
 sigmao2 = np.var(erro)
 ```
 
-- Partindo-se dos valores das distribuições de $E(\mathbf{x_{b}})$ e $E(\mathbf{y_{o}})$, obtemos as seguintes variâncias:
+- Partindo-se dos valores das distribuições de $E(x_{b})$ e $E(y_{o})$, obtemos as seguintes variâncias:
 
 ```
 sigmab2 = 0.0095226361060977
@@ -619,7 +619,7 @@ alpha = 0.9882386415340758
 <br /> 
 
 $$
-\mathbf{x_{a}} = \alpha \mathbf{y_{o}} + (1-\alpha) \mathbf{x_{b}}
+x_{a} = \alpha y_{o} + (1-\alpha) x_{b}
 $$
  
 ---
@@ -650,14 +650,14 @@ section {
 <br />
 
 $$
-\mathbf{x_{a}} = \alpha \mathbf{y_{o}} + (1-\alpha) \mathbf{x_{b}}
+x_{a} = \alpha y_{o} + (1-\alpha) x_{b}
 $$
 
 <br />
 
 - $\alpha$: é um valor único ($\alpha \approx 0,99$)
-- $\mathbf{y_{o}}$: é um vetor com valores "observados" de apenas uma grandeza (e.g., temperatura)
-- $\mathbf{x_{b}}$: é um vetor com valores produzidos (calculados) por um modelo matemático (neste caso, a função seno adicionada de um ruído de distribuição próxima da normal)
+- $y_{o}$: é um vetor com valores "observados" de apenas uma grandeza (e.g., temperatura)
+- $x_{b}$: é um vetor com valores produzidos (calculados) por um modelo matemático (neste caso, a função seno adicionada de um ruído de distribuição próxima da normal)
  
 ---
  
@@ -687,7 +687,7 @@ section {
 
 
 $$
-\mathbf{x_{a}} = \alpha \mathbf{y_{o}} + (1-\alpha) \mathbf{x_{b}}
+x_{a} = \alpha y_{o} + (1-\alpha) x_{b}
 $$
 
 <br />
