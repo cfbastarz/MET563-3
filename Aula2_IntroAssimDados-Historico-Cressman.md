@@ -1424,7 +1424,7 @@ section {
 
 <br />
 
-🎲 Notebook com <a href="#" target="_blank">Atividade Prática 4</a>
+🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_04_analise_cressman1959_1d2d.ipynb" target="_blank">Atividade Prática 4</a>
 
 <br />
 
