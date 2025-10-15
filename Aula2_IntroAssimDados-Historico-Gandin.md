@@ -75,10 +75,10 @@ Dr. Dirceu Luis Herdies
 <span class="program">Programa de Pós-Graduação em Meteorologia (PGMET) do INPE</span>
 <br />
 <br />
-<span class="date">13 de Outubro de 2025</span>
+<span class="date">15 de Outubro de 2025</span>
 <br />
 <br />
-<span class="date">Com conteúdo parcial das notas de aulas de Peter Lynch - <i>University College Dublin</i> 🍀
+<span class="date">Com conteúdo parcial das notas de aulas de <a href="https://maths.ucd.ie/~plynch/UCD_Home_Page.html" target="blank_">Peter Lynch</a> - <i>University College Dublin</i> 🍀
 </p>
 
 ---
@@ -94,12 +94,13 @@ section {
 
 # Histórico da Assimilação de Dados
 
+<br />
+
 ## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
 
-* Primeiro trabalho a formular o problema da análise objetiva utilizando estatística
+* 👉 Primeiro trabalho a formular o problema da análise objetiva utilizando estatística
   * Até aqui, os esquemas de análise objetiva eram empíricos!
-  * Lev Gandin partiu do princípio que a análise possui erros e que, portanto, o background e as observações posuem erros com momentos estatísticos definidos e conhecidos (média, variância e covariância)
-* 👉 Início da formalização estatística da análise objetiva
+  * Lev Gandin partiu do princípio que a análise possui erros e que, portanto, as previsões e as observações posuem erros com média, variância/covariância e correlação conhecidos
 * [https://www.scribd.com/document/515206963/Objective-Analysis-of-Meteorological-Fields](https://www.scribd.com/document/515206963/Objective-Analysis-of-Meteorological-Fields)
 
 ---
@@ -162,7 +163,7 @@ section {
 
 * 👉 Isotropia e homogeneidade das correlações
 * 👉 Funções de correlação com decaimento exponencial simples
-* 👉 Raio de influência - limita o número de observações consideradas ao redor de cada ponto de grade
+* 👉 Raio de influência - limita o número de observações consideradas ao redor de cada ponto de grade (escala de correlação)
 
 <br />
 
@@ -188,8 +189,6 @@ section {
 
 ## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
 
-<br />
-
 ### Equação Fundamental
 
 <br />
@@ -198,13 +197,13 @@ $$
 \mathbf{x}_{a} = \mathbf{x}_{b} + \mathbf{W}(\mathbf{y} - H\mathbf{x}_{b})
 $$
 
-- Onde:
+* Onde:
 
   * $\mathbf{x}_{a}$ é o vetor de análise (estado estimado)
-  * $\mathbf{x}_{b}$ é o vetor de background ou _first guess_
+  * $\mathbf{x}_{b}$ é o vetor de _background_ ou _first guess_
   * $\mathbf{y}$ é o vetor de observações
   * $\mathbf{W}$ é a matriz de peso (ou ganho)
-  * $H$ é o operador observação não linear (transforma o espaço do modelo para o espaço físico observações)
+  * $H$ é o operador observação não linear (transforma o espaço do modelo para o espaço físico das observações)
 
 * 👉 Esta equação é resolvida de forma analítica
 
@@ -229,7 +228,7 @@ section {
 
 <br />
 
-- A matriz $\mathbf{W}$ determina quanto cada obvservação deve corrigir o campo de background:
+- A matriz $\mathbf{W}$ determina quanto cada obvservação deve corrigir o campo de previsão:
 
 <br />
 
@@ -239,10 +238,10 @@ $$
 
 <br />
 
-- Onde:
+* Onde:
 
-  * $\mathbf{B}$ é a matriz de covbariância dos erros de background (ela é constante)
-  * $\mathbf{R}$ é a matriz de covariância dos erros de obvservação
+  * $\mathbf{B}$ é a matriz de covariância dos erros de previsão (ela é constante)
+  * $\mathbf{R}$ é a matriz de covariância dos erros de observação
 
 * Note que $\mathbf{H}$ é linear!
 
@@ -265,7 +264,7 @@ section {
 
 ### Matriz de Peso
 
-- A matriz $\mathbf{W}$ determina quanto cada observação deve corrigir o campo de background:
+- A matriz $\mathbf{W}$ determina quanto cada observação deve corrigir o campo de previsão:
 
 <br />
 
@@ -303,8 +302,8 @@ section {
 <br />
 
 - Também chamado de _forward operator_ $H(\mathbf{x}_{b})$:
-  * Permite obter o "first guess das observações"
-  * Realiza interpolações espaciais do background para o ponto das observações
+  * Permite obter o **_first guess_ das observações**
+  * Realiza interpolações espaciais das previsões para o ponto das observações
   * Realiza transformações das variáveis de estado do modelo em quantidades observadas (e.g., o modelo de transferência radiativa CRTM<sup>&#128312;</sup>)
  
 * Note que ora escrevemos $\mathbf{H}(\mathbf{x}_{b})$, ora escrevemos $H(\mathbf{x}_{b})$: 
@@ -344,13 +343,13 @@ section {
 
 <br /> 
 
-- Exemplo de interpolação linear (considere que a observação está entre dois pontos de grade; se estive entre 4 pontos, então a interpolação seria bilinear)
+- Exemplo de interpolação linear (considere que a observação está entre dois pontos de grade; se estivesse entre 4 pontos, então a interpolação seria bilinear)
 - Considerando o exemplo de uma interpolação linear, 2 pontos de grade e 1 observação, sendo que modelo e observação representam as mesmas quantidades (e.g., temperatura)
 
 </div>
 <div>
 <div align="center">
-  <img src="./figs/interpola_linear.drawio.png" width="400"/>
+  <img src="./figs/interpola_linear.drawio.png" width="450"/>
 </div>
 
 </div>
@@ -383,8 +382,6 @@ section {
 
 ### Operador Observação $\mathbf{H}$ - operador linear
 
-<br /> 
-
 - Utilzando a lei de proporções entre os seguimentos de reta:
 
 $$
@@ -400,7 +397,7 @@ $$
 </div>
 <div>
 <div align="center">
-  <img src="./figs/interpola_linear.drawio.png" width="400"/>
+  <img src="./figs/interpola_linear.drawio.png" width="450"/>
 </div>
 
 </div>
@@ -462,7 +459,7 @@ $$
 
 ---
 
-<!-- _footer: "" -->
+
 
 <!-- Scoped style -->
 <style scoped>
@@ -480,18 +477,16 @@ section {
 <br />
 
 ### Operador Observação $H$ - operador não linear
-
-<br />
  
 - Se o modelo estivesse certo, qual seria o valor observado?
   * $y = \mathbf{H(x)}$
-- Considerando o exemplo da energia radiada por um corpo negro:
+* Considerando o exemplo da energia radiada por um corpo negro:
   * Lei de Stefan Boltzman: $E = \sigma T^4$
   * Quando mais quente for um corpo, a energia total que ele irradia aumenta com a quarta potência da temperatura
  
-- Neste exemplo, definiremos a temperatura $T$ como a variável de estado (o modelo nos fornece $T$) e a energia radiada $E$ como a observação (o sensor do satélite observa $E$):
+* Neste exemplo, definiremos a temperatura $T$ como a variável de estado (o modelo nos fornece $T$) e a energia radiada $E$ como a observação (o sensor do satélite observa $E$):
   * $E = H(T) = \sigma T^{4}$
-  * A inovação $y - H(\mathbf{x}_{b})$ é então $E_{\text{observado}} - H(T_{\text{modelo}})$
+  * A inovação $y - H(\mathbf{x}_{b})$ é então $E_{\text{observada}} - H(T_{\text{modelo}})$
  
 ---
 
@@ -514,7 +509,7 @@ section {
 
 <br />
 
-- Como $H(T) = \sigma T^{4}$ é não linear, usamos uma aproximação linear em torno de uma temperatura de referência $T_0$:
+- Como $H(T) = \sigma T^{4}$ é não linear, usamos uma aproximação linear (por série de Taylor) em torno de uma temperatura de referência $T_0$:
 
 $$
 H(T) \approx H(T_{0}) + H^\prime (T_{0})(T-T_{0})
@@ -526,7 +521,7 @@ $$
 H^\prime (T_{0}) = \frac{d}{dT}(\sigma T^{4})\Bigg\vert_{T_{0}} = 4\sigma T_{0}^{3}
 $$
 
-* **Nota:** a derivada $H^\prime (T_{0})$ representa o operador tangente linear e o seu transposto, $H^{\prime\text{T}} (T_{0})$ representa o operador adjunto utilizados no 4DVar
+* **Nota:** a derivada $H^\prime (T_{0})$ representa o operador tangente linear e o seu transposto, $H^{\prime\text{T}} (T_{0})$ representa o operador adjunto utilizados no 4DVar - o adjunto, é o transposto do tangente linear 😱
 
 ---
 
@@ -547,14 +542,16 @@ section {
 
 ### Matrizes de Covariâncias 
 
-- $\mathbf{B}$ e $\mathbf{R}$ são as matrizes de covariâncias dos erros de observação e previsão, respectivamente
-- Na interpolação ótima, ambas são assumidas serem conhecidas
+- $\mathbf{B}$ e $\mathbf{R}$ são as matrizes de covariâncias dos erros de previsão e observação, respectivamente
+  * Ambas são assumidas serem conhecidas
 - $\mathbf{R}$ inclui erros dos instrumentos e de representatividade (e.g., efeitos locais) e ambos são não correlacionados
   * $\mathbf{R} = \mathbf{R}_{\text{instrumento}} + \mathbf{R}_{\text{representatividade}}$
-- $\mathbf{B}$ representa a covariância dos erros do background, i.e., como os erros na previsão do modelo estão distrbuídos no espaço e, indiretamente, no tempo
-  * $\mathbf{B}$ define o peso que cada observação terá na análise e o raio de influência das observações - por meio da escala de correlação
+- $\mathbf{B}$ representa a covariância dos erros de previsão, i.e., como os erros na previsão do modelo estão distrbuídos no espaço e, indiretamente, no tempo
+  * $\mathbf{B}$ define o peso que cada observação terá na análise e o raio de influência das observações - por meio da **escala de correlação**
 
 ---
+
+<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -581,6 +578,8 @@ section {
 <div class="columns">
 <div>
 
+<br />
+
 - De forma geral, uma matriz de covariâncias é obtida pela multiplicação do vetor de erros $\epsilon$ pelo seu transposto $\epsilon^{\text{T}}$:
 
 $$
@@ -598,6 +597,8 @@ $$
 </div>
 <div>
 
+<br />
+
 - Considerando um número de casos suficientemente grande, obtemos o valor experado:
 
 $$
@@ -613,8 +614,39 @@ $$
 </div>
 </div>
 
-* Por definição, matrizes de covariâncias são simétricas e positivas definidas.
+* Por definição, matrizes de covariâncias são **Simétricas e Positivas Definidas** (SPD)
 * Na diagonal principal, tem-se os elementos de variâncias $\sigma^{2}_{i} = \overline{\epsilon_{i}\epsilon_{i}}$
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<br />
+
+### Matrizes de Covariâncias
+
+- Matriz Simétrica e Positiva Definida:
+  * $\mathbf{M}$ é simétrica se $\mathbf{M} = \mathbf{M}^{\text{T}}$ 
+  * $\mathbf{M}$ é positiva definida se, para qualquer vetor coluna $\mathbf{x}$, todos os seus autovalores forem positivos (i.e., a variância $\mathbf{x}^{\text{T}}\mathbf{M}\mathbf{x} > 0$ é sempre positiva)
+    * Isso garante que nenhuma combinação linear entre as variáveis seja negativa e que, portanto, todas as variâncias e covariâncias serão sempre positivas
+    * Além disso, há a necessidade de inversões e decomposições (e.g, Cholesky) que necessitam destas propriedades
+    * Garante estabilidade numérica
 
 ---
 
