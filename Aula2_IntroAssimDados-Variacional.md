@@ -176,6 +176,15 @@ section {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+span.footnote {
+    border-top: 0.1em dotted #555;
+    font-size: 60%;
+    margin-top: auto;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;
+}
 </style>
 
 # Método Variacional - Parte I
@@ -189,7 +198,12 @@ section {
 * 🎲 Este problema ficou conhecido como o **Problema da Braquistócrona** (a curva descrita pela trajetória do corpo) e emprega a equação de Euler-Lagrange para a sua solução
 * 💡 Inseriu uma nova ideia na matemática: ao invés de se buscar um número que minimiza uma expressão, busca-se uma função (que descreve a forma da curva)
 * ⏳ O tempo total de descida do corpo pode ser descrito como uma integral que depende dessa função e o cálculo variacional permite determinar qual função faz essa integral ser mínima
-* 👉 A essência do cálculo variacional é encontrar uma função que minimiza ou maximiza um funcional, ou seja, uma expressão que associa um número a cada função possível
+* 👉 A essência do cálculo variacional é encontrar uma função que minimiza ou maximiza um funcional<sup>&#128312;</sup>, ou seja, uma expressão que associa um número a cada função possível
+
+
+<span class="footnote">
+<sup>&#128312;</sup>Funcional é uma generalização do conceito de função e é um número que depende de uma função
+</span>
 
 ---
 
