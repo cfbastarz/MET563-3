@@ -105,7 +105,7 @@ section {
 
 ### Parte I
 
-1. O que é método variacional?
+1. Cálculo variacional
 2. Revisão de Álgebra Linear (Matrizes)
 3. Introdução ao método 3DVar
   3.1 Histórico e desenvolvimento
@@ -149,7 +149,7 @@ section {
 
 <br />
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 * Surge no século XVII com o matemático suíço Jean Bernoulli com a proposição do seguinte problema: 
   * _Entre dois pontos, sendo um mais alto do que o outro, qual é a forma da rampa pela qual um corpo desce mais rápido, apenas sob a ação da gravidade e sem atrito?_
@@ -191,7 +191,7 @@ span.footnote {
 
 <br />
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 <br />
 
@@ -207,6 +207,9 @@ span.footnote {
 
 ---
 
+
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -221,7 +224,7 @@ section {
 
 # Método Variacional - Parte I
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 ### Um exemplo simples
 
@@ -230,8 +233,8 @@ section {
       * O comprimento $L$ da curva é $L[y] = \int_{x_{1}}^{x_{2}}{\sqrt{1 + (y\prime)^{2}}}dx$, com $y\prime = \frac{dy}{dx}$
   2) Definido o funcional $L[y]$, aplicamos a equação de Euler-Lagrange:
       * $F(x,y,y\prime) = \sqrt{1 + (y\prime)^{2}}$
-      * A equação de Euler-Lagrange é $\frac{d}{dx}(\frac{\partial F}{\partial y\prime}) - \frac{\partial F}{\partial y} = 0$
-      * Como $F$ não depende diretamente de $y$, o segundo termo ($\frac{\partial F}{\partial y}$) é zero: $\frac{d}{dx}(\frac{y\prime}{\sqrt{1 + (y\prime)^{2}}}) = 0$
+      * A equação de Euler-Lagrange é $\frac{d}{dx}\Big(\frac{\partial F}{\partial y\prime}\Big) - \frac{\partial F}{\partial y} = 0$
+      * Como $F$ não depende diretamente de $y$, o segundo termo $\frac{\partial F}{\partial y}$ é zero: $\frac{d}{dx}\Big(\frac{y\prime}{\sqrt{1 + (y\prime)^{2}}}\Big) = 0$
   3) Se a derivada é nula, então temos uma constante $\frac{y\prime}{\sqrt{1 + (y\prime)^{2}}} = C$, o que implica que $y\prime$ é uma constante e que portanto, $y(x)$ é linear, ou seja, $y(x) = ax + b$
   4) Logo, a função $y(x)$ que minimiza o comprimento da curva dado pelo funcional $L[y]$ é uma reta
 
@@ -259,7 +262,7 @@ section {
 
 <br />
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 <br />
 
@@ -304,7 +307,7 @@ section {
 
 <br />
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 ### O Problema da braquistócrona
   
@@ -357,7 +360,7 @@ section {
 
 <br />
 
-## **1. O que é o método variacional?**
+## **1. Cálculo variacional**
 
 <br />
 
@@ -380,7 +383,7 @@ $$
 </div>
 <div>
 
-* Aplica-se a equação de Euler-Lagrange $\frac{d}{dx}\big(\frac{\partial F}{\partial y\prime}\big) - \frac{\partial F}{\partial y} = 0$, a partir da qual obtém-se uma equação diferencial cuja solução é a curva cicloide:
+* Aplica-se a equação de Euler-Lagrange $\frac{d}{dx}\Big(\frac{\partial F}{\partial y\prime}\Big) - \frac{\partial F}{\partial y} = 0$, a partir da qual obtém-se uma equação diferencial cuja solução é a curva cicloide:
 
 * Forma paramétrica da ciclóide:
 
@@ -455,10 +458,11 @@ section {
 ## **2. Revisão de Álgebra Linear (Matrizes)**
 
 - Matrizes de mesmo tamanho podem ser adicionadas ou subtraídas elemento por elemento
-- Multiplicação de matrizes é possível desde que o número de colunas da primeira matriz, seja igaul ao número de linhas da segunda matriz
-- O tamanho de uma matriz é definido como o número de linhas e colunas que ela contém
+- Multiplicação de matrizes é possível desde que o número de colunas da primeira matriz, seja igual ao número de linhas da segunda matriz
 - Uma matriz com $m$ linhas é $n$ colunas é chamada matriz $m \times n$, onde $m$ e $n$ são chamados de dimensões da matriz
 - Uma matriz $3 \times 2$:
+
+<br />
 
 $$
 \mathbf{A} = 
@@ -489,7 +493,7 @@ section {
 
 ## **2. Revisão de Álgebra Linear (Matrizes)**
 
-- Matrizes com uma única linha são chamadas de vetor linha e matrizes com uma única coluna, são chamadas de vetor coluna
+- Matrizes com uma única linha são chamadas de **vetor linha** e matrizes com uma única coluna, são chamadas de **vetor coluna**
 - Matrizes com o mesmo número de linhas e colunas, são chamadas de matrizes quadradas
 - Exemplos:
   
@@ -524,9 +528,9 @@ $$
 \mathbf{A} = 
 \begin{bmatrix}
 1 & -10 & -9,1 & 0 \\
-45 & 0,01 & -0.8 & 3 \\
+45 & 0,01 & -0,8 & 3 \\
 -11 & -90 & 11 & -3 \\
-3,14 & 11.1 & 1 & 6
+3,14 & 11,1 & 1 & 6
 \end{bmatrix}
 $$
 
@@ -553,8 +557,8 @@ section {
 
 ## **2. Revisão de Álgebra Linear (Matrizes)**
 
-- Os subscritos, normalmente representados por $i,j$, correspondem à posição de uma dado elemento dentro da matriz:
-- Por exemplo, o elemento $\mathbf{A}_{3,2} = 11$
+- Os subscritos, normalmente representados por $i,j$, correspondem à posição de um dado elemento dentro da matriz
+- Por exemplo, o elemento $\mathbf{A}_{3,3} = 11$
   
 <br />  
   
@@ -562,9 +566,9 @@ $$
 \mathbf{A} = 
 \begin{bmatrix}
 1 & -10 & -9,1 & 0 \\
-45 & 0,01 & -0.8 & 3 \\
+45 & 0,01 & -0,8 & 3 \\
 -11 & -90 & \textcolor{red}{11} & -3 \\
-3,14 & 11.1 & 1 & 6
+3,14 & 11,1 & 1 & 6
 \end{bmatrix}
 $$
 
@@ -668,7 +672,7 @@ section {
 ### Transposição de matrizes
 
 - A transposição de uma matriz representa a reflexão em relação à sua diagonal principal, que se inicia no canto superior esquerdo
-- Se $\mathbf{A}$ é uma matriz $n \times m$, então a sua transposta é a $\mathbf{A}^{\text{T}}$ de dimensões $m \times n$:
+- Se $\mathbf{A}$ é uma matriz $m \times n$, então a sua transposta é a $\mathbf{A}^{\text{T}}$ de dimensões $n \times m$:
 
 <br />
 
@@ -691,10 +695,10 @@ $$
 $$
 \mathbf{A}^{\text{T}} = 
 \begin{bmatrix}
-a_{11} & a_{21} & \cdots & a_{m1} \\
-a_{12} & a_{22} & \cdots & a_{m2} \\
+a_{11} & a_{21} & \cdots & a_{n1} \\
+a_{12} & a_{22} & \cdots & a_{n2} \\
 \vdots & \vdots & \ddots & \vdots \\
-a_{1n} & a_{2n} & \cdots & a_{nm}
+a_{1m} & a_{2m} & \cdots & a_{nm}
 \end{bmatrix}
 $$
 
@@ -702,6 +706,8 @@ $$
 </div>
   
 ---
+
+<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -735,7 +741,7 @@ $$
 (\mathbf{A} + \mathbf{B})^{\text{T}} = \mathbf{A}^\text{T} + \mathbf{B}^\text{T} 
 $$
 $$
-(\mathbf{A}\mathbf{B})^\text{T}=\mathbf{B}^{T}\mathbf{A}^\text{T}
+(\mathbf{A}\mathbf{B})^\text{T}=\mathbf{B}^{\text{T}}\mathbf{A}^\text{T}
 $$
 $$
 (\mathbf{A}^\text{T})^{-1}=(\mathbf{A}^{-1})^\text{T}
@@ -756,6 +762,10 @@ $$
 
 </div>
 </div>
+
+<br />
+
+- **Nota:** $\mathbf{a}$ e $\mathbf{b}$ são vetores coluna e $\cdot$ é o produto escalar
 
 ---
 
@@ -823,7 +833,7 @@ $$
 
 $$
 \color{red}{c_{ij}} = 
-\color{blue}{a_{i1}, a_{i2}, \dots, a_{in}} \cdot 
+\color{blue}[{a_{i1}, a_{i2}, \dots, a_{in}}] \cdot 
 \color{green}{\begin{bmatrix}b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj}\end{bmatrix}}
 = a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj}
 $$
@@ -864,7 +874,7 @@ $$
 \mathbf{A}(\mathbf{B}\mathbf{C})=(\mathbf{A}\mathbf{B})\mathbf{C}
 $$
 $$
-\text{tr}(\mathbf{A}\mathbf{B})=\text{det}(\mathbf{A})\text{det}\mathbf{B}
+\text{tr}(\mathbf{A}\mathbf{B})=\text{tr}(\mathbf{BA})
 $$
 $$
 \mathbf{A}(\mathbf{B}+\mathbf{C}) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}, \quad (\mathbf{A}+\mathbf{B})\mathbf{C} = \mathbf{A}\mathbf{C} + \mathbf{B}\mathbf{C}
@@ -874,7 +884,7 @@ $$
 <div>
 
 $$
-\lambda(\mathbf{A}\mathbf{B})=(\lambda\mathbf{A})\mathbf{B}
+\lambda(\mathbf{A}\mathbf{B})=(\lambda\mathbf{A})\mathbf{B}=A(\lambda\mathbf{B})
 $$
 $$
 (\mathbf{A}\mathbf{B})^\text{T} = \mathbf{B}^\text{T} \mathbf{A}^\text{T}
@@ -888,6 +898,10 @@ $$
 
 </div>
 </div>
+
+<br />
+
+- **Nota:** $\lambda$ é um escalar 
 
 ---
 
@@ -1108,6 +1122,8 @@ section {
     - Sejam $\mathbf{A} = \begin{pmatrix} 2 & 0 & 1 \\ 1 & -1 & 3 \\ 0 & 4 & 2 \end{pmatrix}, \quad
     \mathbf{B} = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 3 & -1 \\ 5 & 1 & 2 \end{pmatrix}$, calcule $\mathbf{A}+\mathbf{B}$
  
+<br /> 
+ 
 2) Multiplicação de matrizes 3 x 3
 
     - Sejam $\mathbf{A} = \begin{pmatrix} 2 & 0 & 1 \\ 1 & -1 & 3 \\ 0 & 4 & 2 \end{pmatrix}, \quad
@@ -1140,6 +1156,8 @@ section {
 3. Determinante de matriz 3 x 3
   
     - Calcule o determinante de $\mathbf{C} = \begin{pmatrix} 2 & 0 & 1 \\ -1 & 3 & 2 \\ 0 & 4 & -1 \end{pmatrix}$
+  
+<br />   
   
 4) Inversa de matriz 2 x 2
   
@@ -1284,12 +1302,14 @@ section {
    
 4. Inversa de matriz 2 x 2
   
-    - Seja $\mathbf{D} = \begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix}$, enconte $\mathbf{D}^{-1}$, se existir   
+    - Seja $\mathbf{D} = \begin{pmatrix} 2 & 1 \\ 3 & 5 \end{pmatrix}$, enconte $\mathbf{D}^{-1}$, se existir   
 
     <br />
   
-    * 👉 $\text{det}({\mathbf{H}}) = 2\cdot2-1\cdot3=4-3=1$
-    * 👉 $\mathbf{H}^{-1} = \begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix}$
+    * 👉 $\text{det}({\mathbf{D}}) = 2\cdot5-1\cdot3=10-3=7$
+    * 👉 $\mathbf{D}^{-1} = \frac{1}{\text{det}({\mathbf{D}})}\begin{pmatrix} 5 & -1 \\ -3 & 2 \end{pmatrix}$
+    * 👉 $\mathbf{D}^{-1} = \frac{1}{7}\begin{pmatrix} 5 & -1 \\ -3 & 2 \end{pmatrix}$
+    * 👉 $\mathbf{D}^{-1} = \begin{pmatrix} 0,71 & -0,14 \\ -0,43 & 0,29 \end{pmatrix}$
     
 ---
 
