@@ -165,8 +165,6 @@ section {
 * 👉 Funções de correlação com decaimento exponencial simples
 * 👉 Raio de influência - limita o número de observações consideradas ao redor de cada ponto de grade (escala de correlação)
 
-<br />
-
 * A interpolação ótima é um esquema de análise multivariado
 * Durante das décadas de 1980 e 1990, foi operacional em diversos centros (inclusive no CPTEC)
 
@@ -902,7 +900,7 @@ obs_vals = np.array([-2.2, -1.8, 0.9, 0, 1, 2, 3, 4])
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 19px;
 }
 .columns {
   display: grid;
@@ -922,7 +920,11 @@ section {
 ```
 # Função peso IO
 
-def weight_io(x_grid, obs_x, obs_val, xb, L=1.0, sigma_b=0.5, sigma_o=0.1):
+L=0.5
+sigma_b=0.5
+sigma_o=0.1
+
+def weight_io(x_grid, obs_x, obs_val, xb, L=L, sigma_b=sigma_b, sigma_o=sigma_o):
     def cov(a, b): return sigma_b**2 * np.exp(-((a - b)**2)/(2*L**2))
     n = len(x_grid)
     p = len(obs_x)
@@ -1790,6 +1792,244 @@ section {
 
 ---
 
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<div class="columns">
+<div>
+
+<br />
+
+### Exemplo 2D
+
+- Considere um modelo matemático simples:
+
+$$
+f(x, y) = \sin(x) + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2), \quad -\pi \le x \le \pi, \quad -\pi \le y \le \pi
+$$
+
+- A função seno com a adição de um ruído normalmente distribuído
+- Definimos um plano Cartesiano de 100 pontos onde esta função será aplicada
+
+</div>
+<div>
+
+<br />
+<br />
+
+<div align="center">
+  <img src="./figs/gandinbkg2d2.png" width="400"/>
+</div> 
+
+</div>
+</div> 
+
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<br />
+
+### Exemplo 2D
+
+- Definimos dois vetores com o domínio para $x$ e $y$
+- Definimos uma malha a partir dos valores do domínio
+
+```
+lon = np.linspace(-np.pi, np.pi, 10)
+lat = np.linspace(-np.pi, np.pi, 10)
+
+X, Y = np.meshgrid(lon, lat)
+```
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<br />
+
+### Exemplo 2D
+
+- Aplicamos a função $\sin$ para os valores do domínio
+- Definimos um ruído
+- Somamos o ruído à função
+
+```
+xb_seno = np.sin(X)
+
+sigma = 0.5  
+ruido = np.random.randn(*X.shape) * sigma
+
+xb_2d = xb_seno + ruido
+```
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+### Exemplo 2D
+
+- Definição das posições e valores das observações
+
+```
+# Posições
+obs_x = np.array([-2.2, -2.1, -2.0, -1.8, 0.9, 1.0, 2.0, 3.0])  
+obs_y = np.array([ -1, 0.5, -0.5, 2, -2.8, 1.0, 0.0, 0.5]) 
+
+# Valores medidos
+obs_val = np.array([-1.0, -1.5, -2.0, -1.0, 1.0, 0.0, 0.5, 0.0]) 
+```
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 18px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<br />
+
+### Exemplo 2D
+
+```
+# Função peso IO
+
+L=0.5
+sigma_b=0.5
+sigma_o=0.1
+
+def weight_io_2d(X, Y, obs_x, obs_y, obs_val, xb, L=L, sigma_b=sigma_b, sigma_o=sigma_o):
+    obs_pos = np.vstack((obs_x, obs_y)).T
+    grid_pos = np.vstack((X.ravel(), Y.ravel())).T
+    def cov(p1, p2): return sigma_b**2 * np.exp(-np.sum((p1 - p2)**2)/(2*L**2))
+    B = np.array([[cov(p1, p2) for p2 in obs_pos] for p1 in obs_pos])
+    Hx = np.array([[cov(p1, p2) for p2 in obs_pos] for p1 in grid_pos])
+    R = np.eye(len(obs_x))*sigma_o**2
+    K = Hx @ np.linalg.inv(B + R)
+    Hxb = np.interp(obs_x, np.linspace(0, 2*np.pi, X.shape[1]), xb.mean(axis=0))
+    ana = xb.ravel() + K @ (obs_val - Hxb)
+    return ana.reshape(X.shape)
+```
+
+* Note que estamos utilizando o modelo de covariâncias Gaussiano para $\mathbf{B}$ e $\mathbf{R}$, com média $\mu=0,5$ e desvios-padrão $\sigma_b = 0,5$ e $\sigma_o = 0,1$ 
+* $L$, assim como no exemplo do método de correções sucessivas, restringe a influência das observações no ponto analisado
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Histórico da Assimilação de Dados
+
+<br />
+<br />
+
+## **_Objective Analysis of Meteorological Fields_ (Gandin, 1963)**
+
+<br />
+
+### Exemplo 1D 
+
+<br />
+
+```
+# Cálculo da Análise - embutido na função anterior e dada por xb + K @ (obs_val - Hxb)
+
+# Chamada da função peso (retorna o valor da análise)
+
+xa = weight_io_2d(X, Y, obs_x, obs_y, obs_val, xb_2d)
+```
+
+---
+
 <!-- _footer: "" -->
 
 <!-- Scoped style -->
@@ -2338,9 +2578,7 @@ section {
 
 <br />
 
-Em breve...
-
-🎲 Notebook com <a href="" target="_blank">Atividade Prática 5</a>
+🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_05_analise_gandin1963_1d2d.ipynb" target="_blank">Atividade Prática 5</a>
 
 ---
 
