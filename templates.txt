@@ -1,0 +1,48 @@
+
+![bg](./figs/weather_factory.jpg)
+
+<!-- _header: "https://x.gd/TWX3t" -->
+<!-- _footer: "" -->
+
+
+<div class="columns">
+<div>
+
+##
+
+
+
+</div>
+<div>
+
+<div align="center">
+  <img src="./figs/carta_sinotica.png" width="500"/>
+</div>
+
+</div>
+</div>
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+
+<span class="github-code">learning_rate</span>
