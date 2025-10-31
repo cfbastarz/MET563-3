@@ -338,7 +338,7 @@ section {
       
   * O erro da observação $\epsilon_o = y_o - H(x_t)$ (gaussiano - média zero e covariância $\mathbf{R}$)    
       $$
-        p(y_o|x_b) \propto \text{exp} \bigg\{-\frac{1}{2}[y_o-H(x_t)]^\text{T}\mathbf{R}^{-1}[y_o-H(x_t)]\bigg\}
+        p(y_o|x_t) \propto \text{exp} \bigg\{-\frac{1}{2}[y_o-H(x_t)]^\text{T}\mathbf{R}^{-1}[y_o-H(x_t)]\bigg\}
       $$  
     
 * Pelo Teorema de Bayes, temos:
@@ -835,19 +835,19 @@ section {
 - O método iterativo atualiza a estimativa da solução com base no passo anterior, da seguinte forma:
 
 $$
-\mathbf{x}_{k+1} = \mathbf{x}_{k} - \alpha \nabla J(\mathbf{x}_k)
+\theta{i} := \theta_{i-1} - \alpha \nabla (\frac{dy}{d\theta_{i-1}})
 $$
 
-<p style="text-align: center;">ou</p>
+<p style="text-align: center;">Utilizando a notação vetorial e o gradiente da função custo:</p>
 
 $$
-\mathbf{x}_{k} = \mathbf{x}_{k-1} - \alpha \nabla J(\mathbf{x}_{k-1})
+\mathbf{x}_{i} = \mathbf{x}_{i-1} - \alpha \nabla J(\mathbf{x}_{i-1})
 $$
 
 * Onde:
-  * $\mathbf{x}_k$ é a estimativa da solução no passo atual
-  * $\alpha$ é a taxa de atualização (controla o tamanho da descida)
-  * $\nabla J(\mathbf{x}_k)$ é o gradiente calculado no passo $k$ 
+  * $\mathbf{x}_i$ (ou $\theta_i$) é a estimativa da solução no passo atual $i$
+  * $\alpha$ é a taxa de atualização (controla o passo da descida)
+  * $\nabla J(\mathbf{x}_i)-1$ (ou $\frac{dy}{d\theta_{i-1}}$) é o gradiente calculado no passo $i-1$ 
 
 ---
 
@@ -1559,9 +1559,7 @@ section {
 
 <br />
 
-Em breve...
-
-🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_04_analise_cressman1959_1d2d.ipynb" target="_blank">Atividade Prática 6</a>
+🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_06_metodo_gradiente_descendende.ipynb" target="_blank">Atividade Prática 6</a>
 
 </div>
 <div>
