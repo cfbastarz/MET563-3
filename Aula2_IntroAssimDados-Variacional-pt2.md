@@ -808,6 +808,8 @@ section {
 
 ---
 
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
