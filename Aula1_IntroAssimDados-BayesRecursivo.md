@@ -76,6 +76,7 @@ section {
 4. _Inflation_ e _Localization_
 5. Visão geral sobre os esquemas derivados
 6. Atividades realizadas no CPTEC com o método LETKF
+7. Filtro de Bayes Recursivo
 
 ---
 
@@ -165,6 +166,8 @@ section {
 
 ---
 
+<!-- _transition: drop -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -180,17 +183,44 @@ section {
 
 <br />
 
-
 ---
+
+<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
 section {
   font-size: 21px;
 }
+p {
+  text-align: center;
+  font-size: 100px;
+}
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+<br />
+<br />
+  
+**Ninja Vs. Codorna**
+
+🥷  🐦
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **7. Filtro de Bayes Recursivo**
 
 <br />
 <!--  -->
@@ -225,14 +255,15 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
-
-## **Conceitos Iniciais**
+# Métodos Baseados em Conjuntos
 
 <br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-### **Palavras-chave**
+### Palavras-chave
 
 * **Hipótese:** uma pergunta - uma teoria seria uma afirmação?
 * **"Dado":** uma informação, uma observação
@@ -241,20 +272,26 @@ section {
 * **Informação à _posteriori_:** (ou _posterior_) aquilo que se conclui a partir da informação à _priori_
 * **Probabilidade conjunta:** probabilidade de dois ou mais eventos ocorrerem simultaneamente
 
-### **Conceito-chave**
+### Conceito-chave
 
 * **Probabilidade condicional:** ocorrência de um evento dada uma informação à _priori_
 
 ---
 
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 19px;
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **7. Filtro de Bayes Recursivo**
 
 $$
 P(H|D) = \frac{P(H)P(D|H)}{P(D)}
@@ -300,15 +337,16 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
-<br />
-<br />
 
-## **Probabilidade Vs. Verossimilhança**
+## **7. Filtro de Bayes Recursivo**
 
 <br />
+
+### Probabilidade Vs. Verossimilhança
+
 <br />
 
 - **Probabilidade:** é a chance de ocorrência de um determinado evento possível
@@ -327,13 +365,15 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
-<br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-## **Verossimilhança**
+### Verossimilhança
 
 <br />
 
@@ -344,6 +384,8 @@ section {
 
 ---
 
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -351,34 +393,38 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-## **1. Dado viciado**
+### 🎲 Dado viciado
 
 * Neste cado, os 20 dados apresentam o mesmo valor (e.g., 5). A probabilidade conjunta destes eventos $P(dado_{1}) \times P(dado_{2}) \times ... \times P(dado_{20})$ é $({\frac{1}{1}})^{20}=1$
 
-<br />
 
-## **2. Dado não viciado**
+### 🎲 Dado não viciado
 
 * Neste caso, cada um dos 20 dados possui a mesma probabilidade de apresentar um dos 6 números possíveis. A probabilidade conjunta neste caso é $({\frac{1}{6}})^{20} \approxeq 0$
   
-<div style="
-  background-color: #f8d7da; 
-  color: #721c24; 
-  padding: 20px; 
-  border-radius: 10px; 
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top:0px;
-  font-size: 18px;
-">
-Portanto, é muito mais verossímil que o dado seja viciado dada a observação inicial
-</div>
+<br />  
+  
+  <div style="
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 20px; 
+    border-radius: 10px; 
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top:0px;
+    font-size: 18px;
+  ">
+  Portanto, é muito mais verossímil que o dado seja viciado dada a observação inicial
+  </div>
   
 ---
 
@@ -389,19 +435,21 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
 
-## **Provabilidade Vs. Verossimilhança**
+## **7. Filtro de Bayes Recursivo**
 
-### Exemplo
+<br />
+
+### Provabilidade Vs. Verossimilhança
+
+#### Exemplo
 
 - $D$: o ninja 🥷 ouve um canto na mata
 - $H$: há uma andorinha :bird: na mata
 - $L(H|D)$: é a verossimilhança
-
-<br />
 
 * $P(D|H) \neq P(H|D)$: o fato de o ninja ouvir um canto na mata, dado que há uma andorinha na mata, não significa que dado que há uma andorinha na mata, o ninja ouvirá um canto - ela pode estar dormindo 💤
 * $P(H|D)$, então $L(H|D)$ é baixa: se há uma andorinha na mata, não necessariamente ela está cantando e o que o ninja ouve não é uma andorinha, mas sim um pardal &#128038;
@@ -416,13 +464,15 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
-<br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-## **Estimativa de Máxima Verossimilhança**
+### Estimativa de Máxima Verossimilhança
 
 <br />
 
@@ -441,13 +491,15 @@ section {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
-<br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-## **Exemplo de Inferência Bayesiana (ou Filtro Bayesiano)**  
+### Exemplo de Inferência Bayesiana (ou Filtro Bayesiano)
 
 <br />
 
@@ -468,13 +520,17 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
 }
 </style>
 
 ![bg right:50%](./figs/normal2.png)
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **7. Filtro de Bayes Recursivo**
   
 - Distribuição Normal - ou Gaussiana:
 
@@ -502,24 +558,59 @@ $$
 section {
   font-size: 21px;
 }
-p {
-  text-align: center;
-  font-size: 100px;
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
-## **Prior, posterior, likelihood, distribuição de probabilidade...**
+<br />
 
-- Teorema de Bayes: $P(H|D)=\frac{P(H)P(D|H)}{P(D)}$
-- Distrbuição Gaussiana: $p_{\sigma_{1}}(T_{1}|T) = \frac{1}{\sqrt{2\pi}\sigma_{1}}{e}^{-\frac{(T_{1}-T)^{2}}{2\sigma_{1}^{2}}}$
+## **7. Filtro de Bayes Recursivo**
+
+<br />
+
+### Prior, posterior, likelihood, distribuição de probabilidade...
+
+<br />
+
+<div class="columns">
+<div>
+
+<br />
+
+- Teorema de Bayes: 
+
+$$
+P(H|D)=\frac{P(H)P(D|H)}{P(D)}
+$$
+
+- Distrbuição Gaussiana: 
+
+$$
+p_{\sigma_{1}}(T_{1}|T) = \frac{1}{\sqrt{2\pi}\sigma_{1}}{e}^{-\frac{(T_{1}-T)^{2}}{2\sigma_{1}^{2}}}
+$$
+
+</div>
+<div>
+
+<br />
+<br />
+<br />
 
 <div align="center">
-  <img src="./figs/vero.png" width="900"/>
+  <img src="./figs/vero.png" width="600"/>
+</div>
+
+</div>
 </div>
 
 ---
+
+<!-- _transition: drop -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -532,16 +623,15 @@ p {
 }
 </style>
 
-# Teorema de Bayes e o "Filtro de Bayes Recursivo"
+# Métodos Baseados em Conjuntos
 
 <br />
+
+## **7. Filtro de Bayes Recursivo**
+
 <br />
 
-## **Inferência Bayesiana Recursiva (ou "Filtro de Bayes Recursivo")**
-  
-<br />  
-  
-- Como assim, por exemplo?
+### Inferência Bayesiana Recursiva (ou "Filtro de Bayes Recursivo")
 
 * Um ninja ouve o canto intermitente de uma codorna (ela está parada). A cada canto, ele tenta descobrir a posição da codorna. **Como o ninja pode inferir a posição da codorna?**
   * Brincadeira do "quente-frio"
@@ -551,6 +641,8 @@ p {
   
 ---
 
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -562,6 +654,7 @@ p {
 }
 </style>
 
+<br />
 <br />
   
 **Ninja Vs. Codorna**
@@ -579,45 +672,75 @@ section {
 }
 </style>
 
-## Inferência Bayesiana Recursiva (ou "Filtro de Bayes Recursivo")
-  
-## **Exemplo prático: Ninja Vs. Codorna**  
-  
+# Métodos Baseados em Conjuntos
+
 <br />
+
+## **7. Filtro de Bayes Recursivo**
+  
+<br />  
+  
+### Exemplo prático: Ninja Vs. Codorna
   
 - 🔴 posição real da codorna
-- ▪️ posição da codorna, segundo o ninja ($N=100$)
+- ➕ posição da codorna, segundo o ninja ($N=100$)
   
 * A cada canto da codorna, o ninja tenta descobrir a posição real da ave
 * O ninja pode modelar a situação e, com um número finitor de tentativas, pode estimar a posição mais provável da codorna
   
 ---
 
+<!-- _footer: "" -->
+
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
 }
 </style>
 
-## **Inferência Bayesiana Recursiva (ou "Filtro de Bayes Recursivo")**
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **7. Filtro de Bayes Recursivo**
   
 <br />
 
-<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; height: 100%;">
+<div class="columns">
+<div>
 
-<div style="flex: 1;">
-<iframe width="560" height="500" 
-src="https://www.youtube.com/embed/Ihj4IJ47rLo?si=zm1gHw4U3eD1VGDS" 
-frameborder="0" allowfullscreen></iframe>
+<br />
+<br />
+<br />
+
+<video width="500" controls>
+  <source src="./figs/bayes_recursivo.mp4" type="video/mp4">
+  Seu navegador não suporta vídeo.
+</video>
+
 </div>
+<div>
 
-<div style="flex: 1;">
 Para cada posição inferida pelo ninja, a "função iterativa de Bayes", calcula a verossimilhança da posição:
 
-```python
+<span class="github-code">
 m[i,j] =  norm * np.exp(np.matmul(-(x[:,n] - me), np.matmul(inv, (x[:,n] - me) / 2.)))
-```
+</span>
+
 ou seja, 
 
 $$
@@ -638,11 +761,7 @@ $$
 A melhor estimativa obtida pelo ninja utilizando-se a inferência Bayesiana recursiva, é chamada de "Estimativa de Máxima Verossimilhança" e representa o valor mais provável a ser obtido (cores mais quentes na superfície) da posição da cordona
 </div>
 
-🎲 Notebook com <a href="https://colab.research.google.com/" target="_blank">Atividade Prática 3</a>
-
-
 </div>
-
 </div>
  
 ---
@@ -663,7 +782,7 @@ section {
 
 <br />
 
-## **Filtro de Bayes Recursivo**
+## **7. Filtro de Bayes Recursivo**
 
 <br />
 
