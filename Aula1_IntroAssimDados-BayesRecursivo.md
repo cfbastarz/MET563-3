@@ -85,6 +85,11 @@ section {
 section {
   font-size: 21px;
 }
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
 </style>
 
 # Métodos Baseados em Conjuntos
@@ -94,6 +99,11 @@ section {
 ## **1. Introdução ao método EnKF**
 
 <br />
+
+- Método Monte-Carlo
+- Cadeia de Markhov
+- EnSRF
+- Filtro de Kalman linear
 
 ---
 
@@ -112,6 +122,40 @@ section {
 
 <br />
 
+- O Kalman Filter linear foi introduzido em 1960:
+  * _A New Approach to Linear Filtering and Prediction Problems_ (Kalman, 1960)
+  * https://x.gd/VlIfX
+- O Ensemble Kalman Filter foi introduzido em 1994:
+  * _Sequential data assimilation with a nonlinear quasi-geostrophic model using Monte Carlo methods to forecast error statistics_ (Evensen, 1994)
+  * https://x.gd/VsQ1V
+- Com a evolução dos computadores e o aumento da complexidade do sistema de observação global, novas técnicas derivadas do EnKF surgiram:
+  * ETKF - _Ensemble Transform Kalman Filter_
+  * LETKF - _Local Ensemble Transform Kalman Filter_
+  * Muitos outros...
+  
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **2. Histórico e desenvolvimento**
+
+<br />
+
+- O KF original é aplicado a problemas com dinâmica linear
+  * Extensões do KF original foram desenvolvidas para serem aplicadas a problemas com dinâmica não linear (EKF - _Extended Kalman Filter_)
+  * O EKF lineariza a solução sucessiva da trajetória do modelo através da aplicação de um modelo tangente linear (tal como o 4DVar)
+- O EnKF original é estocástico, no sentido de que as observações são perturbadas para gerar um conjunto de análises
+  
+  
 ---
 
 <!-- Scoped style -->
@@ -129,6 +173,17 @@ section {
 
 <br />
 
+- No EnKF, a covariância dos erros de previsão é substituída pela covariância do conunto:
+
+  $$ 
+  \mathbf{P}^{f} = \frac{1}{N-1} \sum_{i=1}^{N}{ <\mathbf{x}_{i} - \bar{\mathbf{x}}>^{\text{T}} <\mathbf{x}_{i} - \bar{\mathbf{x}}>}
+  $$
+  
+  - Se o conjunto for pequeno, as covariâncias são subestimadas
+  - Quanto maior o conjunto, melhor será a representação das covariâncias
+    * Qual é o tamanho ideal de um conjunto para que se tenha a melhor estimativa das covariâncias do ("erro") do modelo?
+  
+  
 ---
 
 <!-- Scoped style -->
@@ -146,6 +201,11 @@ section {
 
 <br />
 
+- No ciclo de assimilação de dados do EnKF (e variantes), as observações são utilizadas para corrigir o estado do modelo
+  * Mas o EnKF perturba o modelo para amostrar a sua incerteza 
+  * Ambiguidade: ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
+  * Então, ao longo do tempo, a tendência é a de a incerteza do EnKF seja cada vez mais subestimada, de forma que é necessário inflar a incerteza do conjunto para evitar:
+  * A localização é utilizada para compensar o efeito cíclico de correções sobre o espalhamento do conjunto de previsões devido ao seu tamanho
 
 ---
 
@@ -448,12 +508,12 @@ section {
 #### Exemplo
 
 - $D$: o ninja 🥷 ouve um canto na mata
-- $H$: há uma andorinha :bird: na mata
+- $H$: há uma codorna :bird: na mata
 - $L(H|D)$: é a verossimilhança
 
-* $P(D|H) \neq P(H|D)$: o fato de o ninja ouvir um canto na mata, dado que há uma andorinha na mata, não significa que dado que há uma andorinha na mata, o ninja ouvirá um canto - ela pode estar dormindo 💤
-* $P(H|D)$, então $L(H|D)$ é baixa: se há uma andorinha na mata, não necessariamente ela está cantando e o que o ninja ouve não é uma andorinha, mas sim um pardal &#128038;
-* $P(D|H)$, então $L(H|D)$ é alta: se há uma andorinha na mata, então há um canto ecoando na mata
+* $P(D|H) \neq P(H|D)$: o fato de o ninja ouvir um canto na mata, dado que há uma codorna na mata, não significa que dado que há uma codorna na mata, o ninja ouvirá um canto - ela pode estar dormindo 💤
+* $P(H|D)$, então $L(H|D)$ é baixa: se há uma codorna na mata, não necessariamente ela está cantando e o que o ninja ouve não é uma codorna, mas sim um pardal &#128038;
+* $P(D|H)$, então $L(H|D)$ é alta: se há uma codorna na mata, então há um canto ecoando na mata
 
 ---
 
@@ -556,7 +616,7 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
 }
 .columns {
   display: grid;
@@ -564,6 +624,9 @@ section {
   gap: 1rem;
 }
 </style>
+
+<div class="columns">
+<div>
 
 # Métodos Baseados em Conjuntos
 
@@ -574,11 +637,6 @@ section {
 <br />
 
 ### Prior, posterior, likelihood, distribuição de probabilidade...
-
-<br />
-
-<div class="columns">
-<div>
 
 <br />
 
@@ -597,16 +655,63 @@ $$
 </div>
 <div>
 
-<br />
-<br />
-<br />
-
 <div align="center">
-  <img src="./figs/vero.png" width="600"/>
+  <img src="./figs/vero2.png" width="600"/>
 </div>
+
 
 </div>
 </div>
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 20px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+<div id="plotly-div" style="width: 100%; height: 700px;"></div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+var H = [];
+for(var i=-4; i<=4; i+=0.04){ H.push(i); }
+
+var D = H.slice();  // mesma discretização
+var P_H = H.map(h => Math.exp(-0.5*(h/1.5)*(h/1.5)));
+
+// Superfície simples (só exemplo)
+var z = [];
+for(var i=0;i<H.length;i++){
+    var row = [];
+    for(var j=0;j<D.length;j++){
+        row.push(Math.exp(-0.5*((D[j]-H[i])/1.0)**2)*P_H[i]);
+    }
+    z.push(row);
+}
+
+var data = [{
+    z: z,
+    x: H,
+    y: D,
+    type: 'surface',
+    colorscale: 'Viridis'
+}];
+
+Plotly.newPlot('plotly-div', data);
+</script>
+
+
+
 
 ---
 
