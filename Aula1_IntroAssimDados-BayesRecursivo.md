@@ -66,9 +66,14 @@ Dr. Dirceu Luis Herdies
 <br />
 <br />
 <span class="date">05 de Outubro de 2025</span>
+<br />
+<br />
+🥷  🐦
 </p>
 
 ---
+
+![bg right:40%](./figs/ensemble.jpg)
 
 <!-- Scoped style -->
 <style scoped>
@@ -85,15 +90,21 @@ section {
 
 <br />
 
-1. Introdução ao método EnKF
-2. Histórico e desenvolvimento
-3. Características principais
-4. _Inflation_ e _Localization_
+1. Filtro de Kalman linear
+2. Método de Monte-Carlo
+3. Ensembles
+4. Ensemble Kalman Filter
+  4.1 Histórico e desenvolvimento
+  4.2 Características principais
+  4.3 _Inflation_
+  4.4 Localização
 5. Visão geral sobre os esquemas derivados
 6. Atividades realizadas no CPTEC com o método LETKF
-7. Filtro de Bayes Recursivo
+7. Atividade - Filtro de Bayes Recursivo
 
 ---
+
+![bg right:40%](./figs/rkalman.jpg)
 
 <!-- Scoped style -->
 <style scoped>
@@ -111,11 +122,7 @@ section {
 
 <br />
 
-## **1. Introdução ao método EnKF**
-
-<br />
-
-### O Filtro de Kalman linear (clássico)
+## **1. Filtro de Kalman linear**
 
 <br />
 
@@ -123,9 +130,9 @@ section {
   * Linearidade
   * Ruído gaussiano
 
-$$
-x_k = F_k(x_{k-1}) + w_{k-1}, \quad y_k = H_k(x_k) + v_k
-$$
+    $$
+    x_k = F_k(x_{k-1}) + w_{k-1}, \quad y_k = H_k(x_k) + v_k
+    $$
 
 * Onde:
   * $x_k$ é o estado do sistema no tempo $k$
@@ -152,11 +159,7 @@ section {
 
 <br />
 
-## **1. Introdução ao método EnKF**
-
-<br />
-
-### O Filtro de Kalman linear (clássico)
+## **1. Filtro de Kalman linear**
 
 <br />
 
@@ -173,7 +176,234 @@ section {
 * Limitações do Filtro de Kalman linear:
   * Não é adequado para sistemas de alta dimensão (e.g., atmosfera, oceado), pois as matrizes de covariâncias ($\mathbf{P}^{f}$ e $\mathbf{P}^{a}$) são explícitas e enormes
   * Requer que o modelo dinâmico seja (quase) linear
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **2. Método Monte-Carlo**
+
+<br />
+
+<div class="columns">
+<div>
+
+- O método Monte-Carlo foi introduzido nos anos 1940:
+  * Jon von Neumman, durante o desenvolvimento do projeto Manhattan (bomba atômica)
+  * Se não é possível calcular algo diretamente, pode-se estimar o resultado por meio de simulações aleatórias
+  * 🎲 Exemplo simples: estimar o valor de $\pi$ contando quantos pontos caem dentro de um quadrado que contém um círculo inscrito (a razão entre os pontos dentro do círculo e o total é $\approx \frac{\pi}{4}$)
+
+</div>
+<div>
+
+<div align="center">
+  <img src="./figs/estpi.png" width="400"/>
+</div>
+
+</div>
+</div>  
   
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **2. Método Monte-Carlo**
+  
+<br />  
+  
+<div class="columns">
+<div>
+
+  - 🎲 Exemplo simples:
+  
+    ```python
+    import numpy as np
+
+    np.random.seed(42)
+    
+    N = 1000000
+    x = np.random.rand(N)
+    y = np.random.rand(N)
+    dentro_circulo = (x**2 + y**2) <= 1
+
+    estima_pi = 4 * np.sum(dentro_circulo) / N
+    print(estima_pi)
+    ```  
+  
+</div>
+<div style="margin-left:110px; margin-top:-50px;">
+
+* 👉 Resultados:
+
+  | Valores de <span class="github-code">N</span> | Valores de $\pi$ |
+  |-----------------------------------------------|------------------|
+  | 1                                             | 0,0              |
+  | 10                                            | 2,8              |
+  | 100                                           | 3,2              |
+  | 1.000                                         | 3,112            |
+  | 10.000                                        | 3,1556           |
+  | 100.000                                       | 3,1376           |
+  | 1.000.000                                     | 3,141864         |
+  | 10.000.000                                    | 3,1415772        |
+
+</div>
+</div>
+   
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **3. Ensembles**
+
+- Ensemble ou conjunto (de análises ou previsões) representam múltiplas simulações para a mesma data alvo
+  * O objetivo é tentar amostrar a incerteza do modelo 
+* Diferentes técnicas podem ser utilizadas para se construir um ensemble
+  * O mais simples: utilizar previsões de diferentes modelos (superensemble)
+    * A desvantagem: pós-processar diferentes previsões de diferentes modelos
+  * O mais complexo: utilizar assimilação de dados
+    * A vantagem: fornece um ensemble de análises e previsões
+  * Outras técnicas:
+    * _Poor man's ensemble_: utiliza análises defasadas para gerar um ensemble inicial de previsões
+    * Perturbação de física: utiliza diferentes parametrizações físicas do modelo para construir o ensemble
+    * EOF: Funções Ortogonais Empíricas, utilizado pelo CPTEC
+    * _Singular Vectors_: utilizado pelo ECMWF
+    * _Bred Vectors_: utilizado pelo NCEP (passado)
+    * EnKF: Ensemble Kalman Filter para assimilação de dados (e técnicas derivadas)
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+## **3. Ensembles**
+
+- **Benefícios**:
+  - Em geral, a média de um ensemble (bem construído) fornece uma boa estimativa em relação à previsão determinística (o skill tende a ser melhor)
+  - Fornece também a incerteza da previsão (_spread_ ou espalhamento do ensemble)
+  
+
+<div class="columns">
+<div>
+
+<div align="center">
+  <img src="./figs/scorecard.png" width="480"/>
+</div>
+
+</div>
+<div>
+
+<div align="center">
+  <img src="./figs/mediaspread.png" width="400"/>
+</div>
+
+</div>
+</div>
+ 
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+## **3. Ensembles**
+
+- **Dificuldades**:
+  - Custo computacional (relação tamanho do ensemble X resolução espacial)
+  - Armazenamento
+  - Subestimativa da incerteza (_undersampling_) devido ao tamanho do ensemble
+  - Acurácia e precisão
+ 
+ <br />
+ <br />
+ 
+<div align="center">
+  <img src="./figs/precisao.png" width="800"/>
+</div> 
+ 
 ---
 
 <!-- Scoped style -->
@@ -192,7 +422,7 @@ section {
 
 <br />
 
-## **1. Introdução ao método EnKF**
+## **4. Ensemble Kalman Filter**
 
 <br />
 
@@ -226,7 +456,11 @@ section {
 
 <br />
 
-## **2. Histórico e desenvolvimento**
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.1 Histórico e desenvolvimento**
 
 <br />
 
@@ -243,105 +477,10 @@ section {
  
 ---
 
-<!-- _footer: "" -->
-
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 17px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-.github-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.95em;
-  background-color: #323742;
-  color: #f6f8fa;
-  padding: 0.2em 0.4em;
-  border-radius: 6px;
-}
-</style>
-
-# Métodos Baseados em Conjuntos
-
-<br />
-
-## **2. Histórico e desenvolvimento**
-  
-<div class="columns">
-<div>
-
-- O método Monte-Carlo foi introduzido nos anos 1940:
-  * Jon von Neumman, durante o desenvolvimento do projeto Manhattan (bomba atômica)
-  * Se não é possível calcular algo diretamente, pode-se estimar o resultado por meio de simulações aleatórias
-  * Exemplo: estimar o valor de $\pi$ contando quantos pontos caem dentro de um quadrado que contém um círculo inscrito (a razão entre os pontos dentro do círculo e o total é $\approx \frac{\pi}{4}$)
-
-  * 🎲 Exemplo:
-  
-    ```python
-    import numpy as np
-
-    np.random.seed(42)
-    
-    N = 1000000
-    x = np.random.rand(N)
-    y = np.random.rand(N)
-    dentro_circulo = (x**2 + y**2) <= 1
-
-    estima_pi = 4 * np.sum(dentro_circulo) / N
-    print(estima_pi)
-    ```  
-  
-</div>
-<!--<div style="margin-left:150px; margin-top:-100px;">-->
-<div>
-    
-<div class="columns">
-<div>
-
-<br />
-<br />
-<br />
-<br />
-
-<div align="center">
-  <img src="./figs/estpi.png" width="300"/>
-</div>
-
-</div>
-<div>
-
-<br />
-<br />
-
-* 👉 Resultados:
-
-  | Valores de <span class="github-code">N</span> | Valores de $\pi$ |
-  |-----------------------------------------------|------------------|
-  | 1                                             | 0,0              |
-  | 10                                            | 2,8              |
-  | 100                                           | 3,2              |
-  | 1.000                                         | 3,112            |
-  | 10.000                                        | 3,1556           |
-  | 100.000                                       | 3,1376           |
-  | 1.000.000                                     | 3,141864         |
-  | 10.000.000                                    | 3,1415772        |
-
-</div>
-</div>
-
-</div>
-</div>  
-
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
+  font-size: 18px;
 }
 .columns {
   display: grid;
@@ -354,7 +493,11 @@ section {
 
 <br />
 
-## **2. Histórico e desenvolvimento**
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.1 Histórico e desenvolvimento**
 
 <br />
 
@@ -382,16 +525,19 @@ section {
 
 <br />
 
-## **2. Histórico e desenvolvimento**
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.1 Histórico e desenvolvimento**
 
 <br />
 
 - O KF original é aplicado a problemas com dinâmica linear
   * Extensões do KF original foram desenvolvidas para serem aplicadas a problemas com dinâmica não linear (EKF - _Extended Kalman Filter_)
   * O EKF lineariza a solução sucessiva da trajetória do modelo através da aplicação de um modelo tangente linear (tal como o 4DVar)
-- O EnKF original é estocástico, no sentido de que as observações são perturbadas para gerar um conjunto de análises
-  
-  
+* O EnKF original é estocástico, no sentido de que as observações são perturbadas para gerar um conjunto de análises
+    
 ---
 
 <!-- Scoped style -->
@@ -405,7 +551,11 @@ section {
 
 <br />
 
-## **3. Características principais**
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.2 Características principais**
 
 <br />
 
@@ -417,9 +567,108 @@ section {
   
   - Se o conjunto for pequeno, as covariâncias são subestimadas
   - Quanto maior o conjunto, melhor será a representação das covariâncias
-    * Qual é o tamanho ideal de um conjunto para que se tenha a melhor estimativa das covariâncias do ("erro") do modelo?
+    * 🧠 Qual é o tamanho ideal de um conjunto para que se tenha a melhor estimativa das covariâncias do ("erro") do modelo?
   
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 18px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+<div class="columns">
+<div>
+
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.3 _Inflation_**
+
+<br />
+
+- No EnKF, $\mathbf{P}^f$ é estimada a partir de um número finito de membros
+  * Como consequência, a estimativa da incerteza do modelo é subestimada
+  * Isso faz com que o filtro confie mais nas previsões e menos nas observações!
+  * Problemas podem ocorrer com a divergência do filtro 
+    * ⏳ Com o tempo, o modelo se afasta das observações
+    
+      $$
+      \mathbf{x}_{i}^{I} = \bar{\mathbf{x}} + \sqrt{\lambda} (\mathbf{x}_{i} - \bar{\mathbf{x}})
+      $$
+      
+  * 💡 O _inflation_ é um mecanismo artificial para aumentar a variância do ensemble
   
+</div>
+<div>
+
+<br />
+<br />
+<br />
+<br />
+
+* Cada membro é "inflado" em torno da média do ensemble $\to$ é empírico!
+
+* Onde:
+  * $\mathbf{x}_{i}^{I}$ é o membro do ensemble com variância inflada
+  * $\bar{\mathbf{x}}$ é a média do ensemble
+  * $\lambda$ é o fator de inflação ($\lambda \in \mathbb{R}$)
+* $\lambda = 1$: não inflaciona o ensemble
+* $\lambda > 1$: aumenta a dispersão do ensemble $\to$ aumenta a incerteza $\to$ aumenta a variância
+* $\lambda < 1$: diminui a dispersão do ensemble $\to$ diminui a incerteza $\to$ diminui a variância
+
+* Se o ensemble for pequeno, maior é o valor de $\lambda$
+
+</div>
+</div> 
+ 
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.3 _Inflation_**
+
+<br />
+
+- A escolha de um valor para $\lambda$ é empírica e depende do tamanho do ensemble
+  * Quanto menor o ensemble, maior pode ser o valor de $\lambda$
+- O _inflation_ pode ser implementado de forma que seja adaptativo
+  * Pode variar em função do spread e do erro da análise
+    * Uma das avaliações que se faz a partir de um ensemble, é justamente a comparação do espalhamento do ensemble de análise/previsão com o REMQ da análise/previsão
+ 
 ---
 
 <!-- Scoped style -->
@@ -433,13 +682,17 @@ section {
 
 <br />
 
-## **4. _Inflation_ e _Localization_**
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.3 Localização**
 
 <br />
 
 - No ciclo de assimilação de dados do EnKF (e variantes), as observações são utilizadas para corrigir o estado do modelo
   * Mas o EnKF perturba o modelo para amostrar a sua incerteza 
-  * Ambiguidade: ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
+  * 🃏 Ambiguidade: ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
   * Então, ao longo do tempo, a tendência é a de a incerteza do EnKF seja cada vez mais subestimada, de forma que é necessário inflar a incerteza do conjunto para evitar:
   * A localização é utilizada para compensar o efeito cíclico de correções sobre o espalhamento do conjunto de previsões devido ao seu tamanho
 
@@ -551,7 +804,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 <!--  -->
@@ -590,7 +843,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -622,7 +875,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 $$
 P(H|D) = \frac{P(H)P(D|H)}{P(D)}
@@ -672,7 +925,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -700,7 +953,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -728,7 +981,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -770,7 +1023,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -799,7 +1052,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -826,7 +1079,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -861,7 +1114,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
   
 - Distribuição Normal - ou Gaussiana:
 
@@ -903,7 +1156,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -981,9 +1234,6 @@ var data = [{
 Plotly.newPlot('plotly-div', data);
 </script>
 
-
-
-
 ---
 
 <!-- _transition: drop -->
@@ -1003,7 +1253,7 @@ p {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
@@ -1044,7 +1294,7 @@ p {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 19px;
 }
 </style>
 
@@ -1052,12 +1302,13 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
   
 <br />  
   
 ### Exemplo prático: Ninja Vs. Codorna
   
+- Método Monte-Carlo  
 - 🔴 posição real da codorna
 - ➕ posição da codorna, segundo o ninja ($N=100$)
   
@@ -1092,7 +1343,7 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
   
 <br />
 
@@ -1158,172 +1409,11 @@ section {
 
 <br />
 
-## **7. Filtro de Bayes Recursivo**
+## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
 
 🎲 Notebook com <a href="https://colab.research.google.com/github/cfbastarz/MET563-3/blob/main/atividade_07_filtro_bayes_recursivo.ipynb" target="_blank">Atividade Prática 7</a> 
- 
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# 1. Ensemble Forecast Exemplo
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-np.random.seed(0)
-N = 20  # membros do ensemble
-x_true = 5.0
-x_f = np.random.normal(4.0, 1.0, N)  # forecast ensemble
-y_obs = 5.2
-R = 0.2**2
-
-plt.figure(figsize=(8,4))
-plt.scatter(np.arange(N), x_f, color='blue', label='Forecast Ensemble')
-plt.hlines(y_obs, 0, N-1, color='red', linestyles='--', label='Observação')
-plt.ylabel('Estado')
-plt.xlabel('Membro do Ensemble')
-plt.title('Ensemble Forecast')
-plt.legend()
-plt.show()
-```
-
----
-
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# 2. Atualização EnKF Clássico (Estocástico)
-
-```python
-K = 0.5  # simplificação para ilustração
-x_a_enkf = []
-
-for xi in x_f:
-    y_i = y_obs + np.random.normal(0, np.sqrt(R))  # observação perturbada
-    xi_a = xi + K*(y_i - xi)
-    x_a_enkf.append(xi_a)
-
-plt.figure(figsize=(8,4))
-plt.scatter(np.arange(N), x_f, color='blue', label='Forecast')
-plt.scatter(np.arange(N), x_a_enkf, color='green', label='Análise EnKF')
-plt.hlines(y_obs, 0, N-1, color='red', linestyles='--', label='Observação')
-plt.title('Atualização Ensemble - EnKF Estocástico')
-plt.xlabel('Membro do Ensemble')
-plt.ylabel('Estado')
-plt.legend()
-plt.show()
-```
-
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# 3. Atualização EnSRF (Determinístico)
-
-```python
-x_bar_f = np.mean(x_f)
-x_bar_a = x_bar_f + K*(y_obs - x_bar_f)  # atualização da média
-X_prime_f = x_f - x_bar_f
-T = np.sqrt(1 - K)  # simplificação de transformação
-X_prime_a = X_prime_f * T
-x_a_ensrf = x_bar_a + X_prime_a
-
-plt.figure(figsize=(8,4))
-plt.scatter(np.arange(N), x_f, color='blue', label='Forecast')
-plt.scatter(np.arange(N), x_a_ensrf, color='orange', label='Análise EnSRF')
-plt.hlines(y_obs, 0, N-1, color='red', linestyles='--', label='Observação')
-plt.title('Atualização Ensemble - EnSRF Determinístico')
-plt.xlabel('Membro do Ensemble')
-plt.ylabel('Estado')
-plt.legend()
-plt.show()
-```
-    
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# 4. Comparação Conceitual
-
-EnKF clássico: perturba observações → spread preservado mas com ruído
-EnSRF: determinístico → covariância preservada sem ruído adicional
-
-      EnKF clássico                     EnSRF
-  ------------------              ------------------
-    x^f members                     x^f members
-       |                                |
-  perturb observation                 média atualizada
-       |                                |
-  update each member                 ajustar desvios
-       |                                |
-  x^a members                        x^a members
-(spread com ruído)                  (spread consistente)
-
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# 5. Conclusão
-
-- KF clássico: linear, baixa dimensão
-- EnKF: estocástico, simples, bom para grandes ensembles
-- EnSRF: determinístico, covariância precisa, ideal para ensembles pequenos
-
-Visualização do spread ajuda a entender como cada método trata a incerteza
 
 ---
 
