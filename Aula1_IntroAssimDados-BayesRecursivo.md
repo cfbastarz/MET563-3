@@ -956,7 +956,7 @@ section {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 19px;
+  font-size: 18px;
 }
 .columns {
   display: grid;
@@ -983,35 +983,39 @@ section {
 - É uma extensão do Filro de Kalman linear para sistemas não lineares (não é ensemble!)
 - Lineariza o modelo e o operador observação ao redor do estado estimado
 
-$$
-\mathbf{x}_{k}^{b} = M_{k-1}(\mathbf{x}_{k-1}^{a}) + \mathbf{w}_{k-1}
-$$
+<br />
 
-$$
-\mathbf{P}_{k}^{b}=\mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}
-$$
+- Equações do modelo
 
-$$
-\mathbf{K}_{k}=\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}(\mathbf{H}_{k}\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}+\mathbf{R}_{k})^{-1}
-$$
+  $$
+  \mathbf{x}_{k}^{b} = M_{k-1}(\mathbf{x}_{k-1}^{a}) + \mathbf{w}_{k-1}
+  $$
 
-$$
-\mathbf{x}_{k}^{a}=\mathbf{x}_{k}^{b}+\mathbf{K}_{k}[\mathbf{y}_{k}-H(\mathbf{x}_{k}^{b})]
-$$
+  $$
+  \mathbf{P}_{k}^{b}=\mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}
+  $$
 
-$$
-\mathbf{P}_{k}^{a}=(\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})\mathbf{P}_{k}^{b}
-$$
+
 
 </div>
 <div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
+- Equações da análise  
+  
+  $$
+  \mathbf{K}_{k}=\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}(\mathbf{H}_{k}\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}+\mathbf{R}_{k})^{-1}
+  $$
 
+  $$
+  \mathbf{x}_{k}^{a}=\mathbf{x}_{k}^{b}+\mathbf{K}_{k}[\mathbf{y}_{k}-H(\mathbf{x}_{k}^{b})]
+  $$
+
+  $$
+  \mathbf{P}_{k}^{a}=(\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})\mathbf{P}_{k}^{b}
+  $$
+
+<br />
+  
 - Onde:
   - $\mathbf{M}_{k-1}=\frac{\partial M}{\partial \mathbf{x}} \big\rvert_{\mathbf{x}_{k-1}^{a}}$ é a matriz jacobiana do operador observação
   - $\mathbf{H}_{k}=\frac{\partial H}{\partial \mathbf{x}} \big\rvert_{\mathbf{x}_{k}^{b}}$ é a matriz jacobiana do operador observação
@@ -1024,7 +1028,7 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 20px;
+  font-size: 18px;
 }
 .columns {
   display: grid;
@@ -1051,35 +1055,42 @@ section {
 - É a forma determinística do EnKF (o EnKF é estocástico porque perturba as observações!)
 - Cada membro é atualizado em torno da média do ensemble
 
-$$
-\mathbf{\bar{x}}_{k}^{a} = \mathbf{\bar{x}}_{k}^{b}+\mathbf{K}_{k}(\mathbf{y}_{k}-\mathbf{\bar{y}}_{k}^{b})
-$$
+<br />
 
-$$
-\mathbf{K}_{k}=\mathbf{P}_{xy,k}^{b}(\mathbf{P}_{yy,k}^{b}+\mathbf{R}_{k})^{-1}
-$$
+- Atualização do ensemble médio (análise)
 
-$$
-\mathbf{P}_{xy,k}^{b}=\frac{1}{N-1}\mathbf{X}_{k}^{b}(\mathbf{Y}_{k}^{b})^{\text{T}}, \quad \mathbf{P}_{yy,k}^{b}=\frac{1}{N-1}\mathbf{Y}_{k}^{b}(\mathbf{Y}_{k}^{b})^{\text{T}}
-$$
+  $$
+  \mathbf{\bar{x}}_{k}^{a} = \mathbf{\bar{x}}_{k}^{b}+\mathbf{K}_{k}(\mathbf{y}_{k}-\mathbf{\bar{y}}_{k}^{b})
+  $$
+
+  $$
+  \mathbf{K}_{k}=\mathbf{P}_{xy,k}^{b}(\mathbf{P}_{yy,k}^{b}+\mathbf{R}_{k})^{-1}
+  $$
+
+  $$
+  \mathbf{P}_{xy,k}^{b}=\frac{1}{N-1}\mathbf{X}_{k}^{b}(\mathbf{Y}_{k}^{b})^{\text{T}}, \quad \mathbf{P}_{yy,k}^{b}=\frac{1}{N-1}\mathbf{Y}_{k}^{b}(\mathbf{Y}_{k}^{b})^{\text{T}}
+  $$
 
 </div>
 <div>
 
-$$
-\mathbf{x}_{k}^{a(i)} = \mathbf{\bar{x}}_{k}^{a}+\mathbf{X}_{k}^{a(i)}
-$$
+- Atualização das anomalias (covariâncias)
 
-$$
-\mathbf{X}_{k}^{a}=\mathbf{X}_{k}^{b}\mathbf{T}_{k}
-$$
+  $$
+  \mathbf{x}_{k}^{a(i)} = \mathbf{\bar{x}}_{k}^{a}+\mathbf{X}_{k}^{a(i)}
+  $$
 
-$$
-\mathbf{T}_{k}\mathbf{T}_{k}^{\text{T}}=\mathbf{I}-\frac{\mathbf{Y}_{k}^{b\text{T}}(\mathbf{P}_{yy,k}^{b}+\mathbf{R}_{k})^{-1}\mathbf{Y}_{k}^{b}}{N-1}
-$$
+  $$
+  \mathbf{X}_{k}^{a}=\mathbf{X}_{k}^{b}\mathbf{T}_{k}
+  $$
+
+  $$
+  \mathbf{T}_{k}\mathbf{T}_{k}^{\text{T}}=\mathbf{I}-\frac{\mathbf{Y}_{k}^{b\text{T}}(\mathbf{P}_{yy,k}^{b}+\mathbf{R}_{k})^{-1}\mathbf{Y}_{k}^{b}}{N-1}
+  $$
 
 - Onde:
-  - $\mathbf{T}_{k}$ é a matriz square root (raiz quadrada) que garante que as covariâncias do ensemble correspondam às covariâncias do filtro de Kalman linear sem precisar perturbar as observações
+  - $\mathbf{P}_{xy,k}^{b}$ e $\mathbf{P}_{yy,k}^{b}$ são covariâncias cruzadas entre o espaço do modelo e o espaço físico (observações)
+  - $\mathbf{T}_{k}$ é a matriz square root (raiz quadrada) que garante que as covariâncias do ensemble correspondam às covariâncias do filtro de Kalman linear, sem precisar perturbar as observações
 
 </div>
 </div>  
@@ -1089,7 +1100,7 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 18px;
 }
 .columns {
   display: grid;
@@ -1115,6 +1126,10 @@ section {
 
 - Atualiza cada ponto de grade de forma independente no espaço do ensemble (é mais eficiente)
 
+<br />
+
+- Matriz peso da análise ($\mathbf{W}$) no espaço do ensemble:
+
 $$
 \mathbf{Y}_{k}^{b}=[\mathbf{y}_{k}^{b(1)}-\mathbf{\bar{y}}_{k}^{b} \cdots \mathbf{y}_{k}^{b(N)}-\mathbf{\bar{y}}_{k}^{b}]
 $$
@@ -1123,12 +1138,18 @@ $$
 \mathbf{W}_{k}^{a}=[(N-1)\mathbf{I}+(\mathbf{Y}_{k}^{b})^{\text{T}}\mathbf{R}^{-1}\mathbf{Y}_{k}^{b}]^{-\frac{1}{2}}
 $$
 
+<br />
+
+- Matriz de ganho transformado
+
 $$
 \mathbf{K}_{w}=\mathbf{W}_{k}^{a}(\mathbf{Y}_{k}^{b})^{\text{T}}\mathbf{R}^{-1}
 $$
 
 </div>
 <div>
+
+- Atualização da média e anomalias no espaço dos pesos
 
 $$
 \mathbf{\bar{w}}_{k}^{a}=\mathbf{K}_{w}(\mathbf{y}_{k}-\mathbf{\bar{y}}_{k}^{b})
@@ -1137,6 +1158,8 @@ $$
 $$
 \mathbf{W}_{k}^{a(i)}=\mathbf{\bar{w}}_{k}^{a(i)}+\mathbf{W}_{k}^{a}\mathbf{e}^{(i)}
 $$
+
+- Equação da análise no espaço do modelo
 
 $$
 \mathbf{x}_{k}^{a(i)}=\mathbf{\bar{x}}_{k}^{b}+\mathbf{X}_{k}^{b}\mathbf{W}_{k}^{a(i)}
