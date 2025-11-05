@@ -104,7 +104,7 @@ section {
 
 ---
 
-![bg right:40%](./figs/rkalman.jpg)
+![bg right:35%](./figs/rkalman.jpg)
 
 <!-- Scoped style -->
 <style scoped>
@@ -126,21 +126,106 @@ section {
 
 <br />
 
+
+<div class="columns">
+<div>
+
 - O Filtro de Kalman calcula analiticamente a atualização do estado e da covariância, assumindo:
   * Linearidade
   * Ruído gaussiano
-
-    $$
-    x_k = F_k(x_{k-1}) + w_{k-1}, \quad y_k = H_k(x_k) + v_k
-    $$
-
-* Onde:
-  * $x_k$ é o estado do sistema no tempo $k$
-  * $y_k$ são as observações
-  * $F_k$ é a matriz de transição do estado
-  * $H_k$ é a matriz de observação
-  * $w_k$ e $v_k$ são ruídos de processo e observação gaussianos
   
+- Processo é realizado em duas etapas
+  * Previsão
+  * Correção
+
+</div>
+<div>
+
+- Na etapa de previsão
+  * Ocorre a extrapolação do estado do modelo e da incerteza
+
+- Na etapa da correção
+  * Ocorre o cálculo da matriz ganho de Kalman (matriz peso, tal como na Interpolação Ótima)
+  * Ocorre a atualização da estimativa do estado com as observações
+  * Ocorre a atualização da estimativa da incerteza
+
+</div>
+</div>
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **1. Filtro de Kalman linear**
+ 
+<br /> 
+
+<div class="columns">
+<div>
+
+- Na etapa de previsão
+  - 👉 Extrapolação do estado do modelo e da incerteza
+  
+  $$
+  \mathbf{x}_{k}^{b} = \mathbf{M}_{k-1}(\mathbf{x}_{k-1}^{a})+\mathbf{w}_{k-1}
+  $$
+  
+  $$
+  \mathbf{P}^{b}_{k} = \mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}
+  $$
+  
+  - Onde:
+    - $\mathbf{x}_{k}^{b}$ é o vetor background no tempo $k$
+    - $\mathbf{M}_{k-1}$ é o modelo de previsão (linear), integrado do tempo $k-1$ até $k$
+    - $\mathbf{x}_{k-1}^{a}$ é o vetor análise no tempo $k-1$
+    - $\mathbf{w}_{k-1}$ é o erro do modelo, com covariância $\mathbf{Q}_{k-1}$
+    - $\mathbf{P}_{k}^{b}$ é a covariância do background no tempo $k$
+  
+</div>
+<div>
+
+
+
+- Na etapa da correção
+  - 👉 Cálculo da matriz ganho de Kalman (matriz peso, tal como na Interpolação Ótima)
+  
+  $$
+  \mathbf{K}_{k}=\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}(\mathbf{H}_{k}\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}+\mathbf{R}_{k})^{-1}
+  $$
+  
+  - 👉 Atualização da estimativa do estado com as observações
+  
+  $$
+  \mathbf{x}_{k}^{a}=\mathbf{x}_{k}^{b}+\mathbf{K}_{k}[\mathbf{y}_{k}-\mathbf{H}_{k}(\mathbf{x}_{k}^{b})]
+  $$
+  
+  - 👉 Atualização da estimativa da incerteza
+  
+  $$
+  \mathbf{P}_{k}^{a}=(\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})\mathbf{P}_{k}^{b}
+  $$
+
+  - Onde:
+    - $\mathbf{x}_{k}^{b}$ é o vetor análise no tempo $k$
+    - $\mathbf{P}_{k}^{a}$ é a covariância da análise no tempo $k$
+  
+</div>
+</div> 
+
 ---
 
 <!-- Scoped style -->
@@ -163,20 +248,58 @@ section {
 
 <br />
 
-- Vantagens do Filtro de Kalman linear:
+- ✅ Vantagens do Filtro de Kalman linear:
   * Além de estimar o estado do sistema (análise), estima analiticamente a covariância (incerteza)
-    * 👉 Permite quantificar a confiança na análise
+    * Permite quantificar a confiança na análise
     
       $$
-      x_a = x_f + K [y_o - H(x_f)], \quad \mathbf{P}^{a} = (I - KH)\mathbf{P}^{f}
+      \mathbf{x}_{k}^{a}=\mathbf{x}_{k}^{b}+\mathbf{K}_{k}[\mathbf{y}_{k}-\mathbf{H}_{k}(\mathbf{x}_{k}^{b})], \quad \mathbf{P}_{k}^{a}=(\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})\mathbf{P}_{k}^{b}
       $$
     
-    * A matriz $K$ (ganho de Kalman) ajusta a contribuição do modelo e da observação
+    * A matriz $\mathbf{K}$ (ganho de Kalman) ajusta a contribuição do modelo e da observação
     
-* Limitações do Filtro de Kalman linear:
-  * Não é adequado para sistemas de alta dimensão (e.g., atmosfera, oceado), pois as matrizes de covariâncias ($\mathbf{P}^{f}$ e $\mathbf{P}^{a}$) são explícitas e enormes
-  * Requer que o modelo dinâmico seja (quase) linear
+<br />
 
+* ❌ Limitações do Filtro de Kalman linear:
+  * Não é adequado para sistemas de alta dimensão (e.g., atmosfera, oceado), pois as matrizes de covariâncias ($\mathbf{P}^{b}$ e $\mathbf{P}^{a}$) são explícitas e enormes
+  * Requer que o modelo dinâmico seja linear
+
+---
+
+![bg left:40%](./figs/vonneumann.jpg)
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **2. Método Monte-Carlo**
+
+<br />
+
+- O método Monte-Carlo foi introduzido nos anos 1940:
+  * Jon von Neumman, durante o desenvolvimento do projeto Manhattan (bomba atômica)
+  * Se não é possível calcular algo diretamente, pode-se estimar o resultado por meio de simulações aleatórias
+  
 ---
 
 <!-- Scoped style -->
@@ -210,13 +333,13 @@ section {
 <div class="columns">
 <div>
 
-- O método Monte-Carlo foi introduzido nos anos 1940:
-  * Jon von Neumman, durante o desenvolvimento do projeto Manhattan (bomba atômica)
-  * Se não é possível calcular algo diretamente, pode-se estimar o resultado por meio de simulações aleatórias
-  * 🎲 Exemplo simples: estimar o valor de $\pi$ contando quantos pontos caem dentro de um quadrado que contém um círculo inscrito (a razão entre os pontos dentro do círculo e o total é $\approx \frac{\pi}{4}$)
+- 🎲 Exemplo simples
+  - Estimar o valor de $\pi$ contando quantos pontos caem dentro de um quadrado que contém um círculo inscrito (a razão entre os pontos dentro do círculo e o total é $\approx \frac{\pi}{4}$)
 
 </div>
 <div>
+
+<br />
 
 <div align="center">
   <img src="./figs/estpi.png" width="400"/>
@@ -226,8 +349,6 @@ section {
 </div>  
   
 ---
-
-<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -297,8 +418,6 @@ section {
    
 ---
 
-<!-- _footer: "" -->
-
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -355,24 +474,12 @@ section {
   - Em geral, a média de um ensemble (bem construído) fornece uma boa estimativa em relação à previsão determinística (o skill tende a ser melhor)
   - Fornece também a incerteza da previsão (_spread_ ou espalhamento do ensemble)
   
-
-<div class="columns">
-<div>
-
+  <br />
+  
 <div align="center">
-  <img src="./figs/scorecard.png" width="480"/>
+  <img src="./figs/ensembleprods.png" width="1100"/>
 </div>
 
-</div>
-<div>
-
-<div align="center">
-  <img src="./figs/mediaspread.png" width="400"/>
-</div>
-
-</div>
-</div>
- 
 ---
 
 <!-- Scoped style -->
@@ -392,89 +499,21 @@ section {
 ## **3. Ensembles**
 
 - **Dificuldades**:
-  - Custo computacional (relação tamanho do ensemble X resolução espacial)
-  - Armazenamento
-  - Subestimativa da incerteza (_undersampling_) devido ao tamanho do ensemble
-  - Acurácia e precisão
+  * Custo computacional (relação tamanho do ensemble X resolução espacial)
+  * Armazenamento
+  * Subestimativa da incerteza (_undersampling_) devido ao tamanho do ensemble
+  * Acurácia e precisão
  
- <br />
- <br />
- 
-<div align="center">
-  <img src="./figs/precisao.png" width="800"/>
-</div> 
- 
----
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-# Métodos Baseados em Conjuntos
-
-<br />
-
-## **4. Ensemble Kalman Filter**
-
-<br />
-
-- O EnKF foi desenvolvido mantendo as principais características do filtro de Kalman linear, mas com as diferenças:
-  * Estimativa das covariâncias feita com base nos membros do ensemble e não via matriz explícitas
-  * Matriz ganho de Kalman é conceitualmente igual, mas também calculada a partir do ensemble:
-  
-    $$
-    K = P^f H^T(HP^f H^T + R)^-1
-    $$
+    <br />
     
-  * O espaço do ensemble (i.e., o tamanho do ensemble), é o que define os seus graus de liberdade:
-    * A propagação das covariâncias é feita pela propagação do ensemble
-    * Permite tratar a não linearidade, pois cada membro do ensemble pode evoluir pelo modelo não linear completo
-  
----
+    <div align="center">
+      <img src="./figs/precisao.png" width="800"/>
+    </div> 
 
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
+    <br />
 
-# Métodos Baseados em Conjuntos
+* 👉 Qual destas situações é acurada e precisa?
 
-<br />
-
-## **4. Ensemble Kalman Filter**
-
-<br />
-
-## **4.1 Histórico e desenvolvimento**
-
-<br />
-
-- O Filtro de Kalman por conjunto é um filtro do tipo Monte-Carlo
-  * Assume que os erros são gaussianos
-  * Assume que as relações entre os estados são lineares
-  * Usa as matrizes de covariâncias para quantificar as incertezas
-  
-* 💔 O problema é que:
-  * Em sistemas reais (e.g., atmosfera, oceano), é impossível armazenar e propagar a matriz de covariâncias completa  
- 
-* A solução:
-  * Ao invés de armazenar as matrizes de covariâncias (teóricas) gigantes, o EnKF estima estas matrizes a partir de um conjunto de amostras (ensemble)
- 
 ---
 
 <!-- Scoped style -->
@@ -497,21 +536,96 @@ section {
 
 <br />
 
-## **4.1 Histórico e desenvolvimento**
+### **4.1 Histórico e desenvolvimento**
 
 <br />
 
-- O Kalman Filter linear foi introduzido em 1960:
+- 📖 O Kalman Filter linear foi introduzido em 1960:
   * _A New Approach to Linear Filtering and Prediction Problems_ (Kalman, 1960)
   * https://x.gd/VlIfX
-- O Ensemble Kalman Filter foi introduzido em 1994:
+- 📖 O Ensemble Kalman Filter foi introduzido em 1994:
   * _Sequential data assimilation with a nonlinear quasi-geostrophic model using Monte Carlo methods to forecast error statistics_ (Evensen, 1994)
   * https://x.gd/VsQ1V
-- Com a evolução dos computadores e o aumento da complexidade do sistema de observação global, novas técnicas derivadas do EnKF surgiram:
+- 💾 Com a evolução dos computadores e o aumento da complexidade do sistema de observação global, novas técnicas derivadas do EnKF surgiram:
   * ETKF - _Ensemble Transform Kalman Filter_
   * LETKF - _Local Ensemble Transform Kalman Filter_
   * Muitos outros...
 
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+### **4.1 Histórico e desenvolvimento**
+
+<br />
+
+- 👉 O Filtro de Kalman por conjunto é um filtro do tipo Monte-Carlo
+  * Assume que os erros são gaussianos
+  * Assume que as relações entre os estados são lineares
+  * Usa as matrizes de covariâncias para quantificar as incertezas
+  
+* 💔 O problema
+  * Em sistemas reais (e.g., atmosfera, oceano), é impossível armazenar e propagar a matriz de covariâncias completa  
+ 
+* 🧠 A solução
+  * Ao invés de armazenar as matrizes de covariâncias (teóricas) gigantes, o EnKF estima estas matrizes a partir de um conjunto de amostras (ensemble)
+ 
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+### **4.1 Histórico e desenvolvimento**
+
+<br />
+
+- O EnKF foi desenvolvido mantendo as principais características do filtro de Kalman linear, mas com as diferenças:
+  * 👉 Estimativa das covariâncias feita com base nos membros do ensemble e não via matriz explícitas
+  * 👉 Matriz ganho de Kalman é conceitualmente igual, mas também calculada a partir do ensemble
+      
+    $$
+    \mathbf{K}_{k}=\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}(\mathbf{H}_{k}\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}+\mathbf{R}_{k})^{-1}
+    $$
+    
+  * O espaço do ensemble (i.e., o tamanho do ensemble), é o que define os seus graus de liberdade:
+    * 💡 A propagação das covariâncias é feita pela propagação do ensemble
+    * 💡 Permite tratar a não linearidade, pois cada membro do ensemble pode evoluir pelo modelo não linear completo  
+  
 ---
 
 <!-- Scoped style -->
@@ -543,7 +657,7 @@ section {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
 }
 </style>
 
@@ -559,16 +673,76 @@ section {
 
 <br />
 
-- No EnKF, a covariância dos erros de previsão é substituída pela covariância do conunto:
-
-  $$ 
-  \mathbf{P}^{f} = \frac{1}{N-1} \sum_{i=1}^{N}{ <\mathbf{x}_{i} - \bar{\mathbf{x}}>^{\text{T}} <\mathbf{x}_{i} - \bar{\mathbf{x}}>}
+- No EnKF, a covariância dos erros de previsão ($\mathbf{P}^{b}_{k} = \mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}$) é substituída pela covariância do conjunto
+  
+  $$
+  \mathbf{P}_{k}^{b} = \frac{1}{N-1} \mathbf{X}_{k}^{b}(\mathbf{X}_{k})^{\text{T}}
   $$
   
-  - Se o conjunto for pequeno, as covariâncias são subestimadas
-  - Quanto maior o conjunto, melhor será a representação das covariâncias
-    * 🧠 Qual é o tamanho ideal de um conjunto para que se tenha a melhor estimativa das covariâncias do ("erro") do modelo?
+  * Onde:
+    * $\mathbf{X}_{k}^{b}$ é a matriz de perturbação do ensemble (desvio em relação à média)
+      * $\mathbf{X}_{k}^{b(i)} = \mathbf{x}_{k}^{b(i)} - \bar{\mathbf{x}}_{k}^{b}$
+      * $\bar{\mathbf{x}}_{k}^{b} = \frac{1}{N} \sum_{i=1}^{N}{\mathbf{x}_{k}^{b(i)}}$
+
+  * 🧠 Por que $\mathbf{P}^{b}$ é calculada considerando $N-1$ membros (fator de correção de Bessel)?
+      
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 20px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **4. Ensemble Kalman Filter**
+
+## **4.2 Características principais**
+
+- Se o conjunto for pequeno, as covariâncias são subestimadas
+- Quanto maior o conjunto, melhor será a representação das covariâncias
+  * 🧠 Qual é o tamanho ideal de um conjunto para que se tenha a melhor estimativa das covariâncias do ("erro") do modelo?    
+- Perturbação das observações
+  * Cada observação $\mathbf{y}_k$ é perturbada com um ruído aleatório, extraído da distribuição do erro de observação com covariância $\mathbf{R}_k$
   
+  $$
+  \mathbf{y}_{k}^{(i)} = \mathbf{y}_{k} + \epsilon_{k}^{(i)}, \quad \epsilon_{k}^{(i)} \sim \mathcal{N}(0,\mathbf{R}_{k})
+  $$
+  
+  * Cada membro $i$ do ensemble recebe uma versão ligeiramente diferente das observações reais
+  * O ruído $\epsilon_{k}^{(i)}$ é independente entre os membros e com média zero e covariância $\mathbf{R}_{k}$
+  * 👉 Isso é o que garante que o EnKF não colapse, pois garante a dispersão (da covariância) do ensemble
+ 
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **4. Ensemble Kalman Filter**
+
+<br />
+
+## **4.3 _Inflation_**
+
+<br />
+
+- 🏃‍♂️‍➡️ No ciclo de assimilação de dados do EnKF, as observações são utilizadas para corrigir o estado do modelo
+  * 💡 Mas o EnKF perturba o modelo para amostrar a sua incerteza 
+  * 🃏 Ambiguidade: ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
+  * 👉 Então, ao longo do tempo, a tendência é a de a incerteza do EnKF seja cada vez mais subestimada, de forma que é necessário inflar a incerteza do conjunto 
+ 
 ---
 
 <!-- _footer: "" -->
@@ -607,7 +781,7 @@ section {
     * ⏳ Com o tempo, o modelo se afasta das observações
     
       $$
-      \mathbf{x}_{i}^{I} = \bar{\mathbf{x}} + \sqrt{\lambda} (\mathbf{x}_{i} - \bar{\mathbf{x}})
+      \mathbf{x}_{i}^{\text{I}} = \bar{\mathbf{x}} + \sqrt{\lambda} (\mathbf{x}_{i} - \bar{\mathbf{x}})
       $$
       
   * 💡 O _inflation_ é um mecanismo artificial para aumentar a variância do ensemble
@@ -623,7 +797,7 @@ section {
 * Cada membro é "inflado" em torno da média do ensemble $\to$ é empírico!
 
 * Onde:
-  * $\mathbf{x}_{i}^{I}$ é o membro do ensemble com variância inflada
+  * $\mathbf{x}_{i}^{\text{I}}$ é o membro do ensemble com variância inflada
   * $\bar{\mathbf{x}}$ é a média do ensemble
   * $\lambda$ é o fator de inflação ($\lambda \in \mathbb{R}$)
 * $\lambda = 1$: não inflaciona o ensemble
@@ -667,7 +841,6 @@ section {
   * Quanto menor o ensemble, maior pode ser o valor de $\lambda$
 - O _inflation_ pode ser implementado de forma que seja adaptativo
   * Pode variar em função do spread e do erro da análise
-    * Uma das avaliações que se faz a partir de um ensemble, é justamente a comparação do espalhamento do ensemble de análise/previsão com o REMQ da análise/previsão
  
 ---
 
@@ -684,18 +857,21 @@ section {
 
 ## **4. Ensemble Kalman Filter**
 
-<br />
-
 ## **4.3 Localização**
 
-<br />
+- A localização é utilizada para compensar o efeito cíclico de correções sobre o espalhamento do conjunto de previsões devido ao seu tamanho, para evitar:
+  * Covariâncias espúrias
+    * Se o ensemble for pequeno, a amostragem das covariâncias é ruim, o que faz com que covariâncias distantes não reflitam as relações físicas reais
+  * Custo computacional alto
+    * A localização limita a covariância entre variáveis de estado que estão muito longe umas das outras
+      
+      $$
+      \mathbf{P}_{f}^{\text{L}} = \mathbf{P}_{f} \circ \mathbf{L}
+      $$
 
-- No ciclo de assimilação de dados do EnKF (e variantes), as observações são utilizadas para corrigir o estado do modelo
-  * Mas o EnKF perturba o modelo para amostrar a sua incerteza 
-  * 🃏 Ambiguidade: ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
-  * Então, ao longo do tempo, a tendência é a de a incerteza do EnKF seja cada vez mais subestimada, de forma que é necessário inflar a incerteza do conjunto para evitar:
-  * A localização é utilizada para compensar o efeito cíclico de correções sobre o espalhamento do conjunto de previsões devido ao seu tamanho
-
+    * Onde:
+      * $\mathbf{L}$ é uma função de correlação (funciona como um raio de influência)
+      
 ---
 
 <!-- Scoped style -->
