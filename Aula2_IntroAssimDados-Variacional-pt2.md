@@ -250,7 +250,7 @@ section {
 * Motivação: superar as limitações da Interpolação Ótima
   * IO: Atualiza o background ponto a ponto, combinações locais entre previsão e observação 
   * 3DVar: Minimiza a função custo de forma global e possui estrutura matricial
-  * 4DVar: Extende o 3DVar no tempo e considera a dinâmica do modelo
+  * 4DVar: Estende o 3DVar no tempo e considera a dinâmica do modelo
   
 <span class="footnote2">
 <sup>&#128312;</sup>PSAS: <i>Physical-space Statistical Analysis System</i>
@@ -402,7 +402,7 @@ section {
     J(x)=-\frac{1}{2}(x-x_b)^\text{T}\mathbf{B}^{-1}(x-x_b) -\frac{1}{2}[y_o-H(x)]^\text{T}\mathbf{R}^{-1}[y-H(x)] 
     $$
 
-* Portanto, quando consideramos erros gaussianos e estimativa de máxima verossiilhança, essencialmente, estamos fazendo o mesmo que a estimativa de variância mínima 🤯
+* Portanto, quando consideramos erros gaussianos e estimativa de máxima verossimilhança, essencialmente, estamos fazendo o mesmo que a estimativa de variância mínima 🤯
   
     
 ---
@@ -461,7 +461,7 @@ section {
 
 <br />
 
-### 3.5 O ciclo de asssimilação de dados
+### 3.5 O ciclo de assimilação de dados
 
 <br />
 <br />
@@ -494,7 +494,7 @@ section {
 
 <br />
 
-### 3.5 O ciclo de asssimilação de dados
+### 3.5 O ciclo de assimilação de dados
 
 <div class="columns">
 <div>
@@ -538,7 +538,7 @@ section {
 
 ## **3. Introdução ao Método 3DVar**
 
-### 3.5 O ciclo de asssimilação de dados
+### 3.5 O ciclo de assimilação de dados
 
 <br />
 
@@ -596,7 +596,7 @@ section {
 - Introduzido pelo DAO<sup>&#128312;</sup> (atualmente GMAO<sup>&#128312;</sup> da NASA) em meados dos anos 1990
   * Arlindo da Silva e Ricardo Todling (dois brasileiros) participaram do seu desenvolvimento
   * Foi desenvolvido para substituir o esquema de IO utilizado com o modelo GEOS da NASA
-  * É um algorítmo variacional com características de IO
+  * É um algoritmo variacional com características de IO
 
 </div>
 <div>
@@ -782,7 +782,7 @@ section {
 <div>
 
 - Técnica iterativa para encontrar o mínimo de uma função
-  * Se estivéssemos percorrendo um vale, o gradiente<sup>&#128312;</sup> da função que descreve esse vale indicaria a direção de subida mais íngrime
+  * Se estivéssemos percorrendo um vale, o gradiente<sup>&#128312;</sup> da função que descreve esse vale indicaria a direção de subida mais íngreme
   * Então, para descer o vale, deveríamos percorrer a direção oposta ao gradiente
 
 </div>
@@ -1601,7 +1601,7 @@ section {
 
 <br />
 
-- Fontes de incerteza são uma característica instrínseca a qualquer sistema dinâmico
+- Fontes de incerteza são uma característica intrínseca a qualquer sistema dinâmico
 * Na década de 1960, Edward N. Lorenz, mostrou que a atmosfera possui previsibilidade de suas semanas
   * Experimentos gêmeos ♊
   
@@ -1672,7 +1672,7 @@ section {
 
 * A matriz de covariâncias dos erros de previsão ($\mathbf{B}$), representa a covariância do "erro" (uma estimativa) do modelo
   
-* Na assimilação de dados, estes erros são modelados em matrizes de covariâncias que tratam das relações espaço-tempoerais entre as quantidades observadas e diagnosticadas/prognosticadas
+* Na assimilação de dados, estes erros são modelados em matrizes de covariâncias que tratam das relações espaço-temporais entre as quantidades observadas e diagnosticadas/prognosticadas
 
 * Função custo 3DVar:
 
@@ -1711,7 +1711,7 @@ section {
 
 - A matriz de covariâncias dos erros de previsão ($\mathbf{B}$), representa a covariância do "erro" (uma estimativa) do modelo
   
-- Na assimilação de dados, estes erros são modelados em matrizes de covariâncias que tratam das relações espaço-tempoerais entre as quantidades observadas e diagnosticadas/prognosticadas
+- Na assimilação de dados, estes erros são modelados em matrizes de covariâncias que tratam das relações espaço-temporais entre as quantidades observadas e diagnosticadas/prognosticadas
 
 - Função custo 3DVar:
 
@@ -2018,7 +2018,7 @@ section {
   2) Não balanceada (i.e., alta frequência)
 
 * No GSI, as variáveis de controle são $\psi$, $Tv_u$, $\chi_u$, $ps_u$, $RH_{q1,q2}$, $oz$, $cw$ e $sst$
-  * O balanço entre estas duas componentes é dado por de matrizes que projetam a função de corrente sobre a parte balanceada de $Tv_b$, $\chi_b$, $ps_b$:
+  * O balanço entre estas duas componentes é dado por matrizes que projetam a função de corrente sobre a parte balanceada de $Tv_b$, $\chi_b$, $ps_b$:
     * <span class="github-code">agvin</span>: $Tv_b = \mathbf{G}\psi \to Tv = Tv_u + \mathbf{G}\psi$ 
     * <span class="github-code">bgvin</span>: $\chi_b = \mathbf{c}\psi \to \chi = \chi_u + \mathbf{c}\psi$
     * <span class="github-code">wgvin</span>: $ps_b = \mathbf{w}\psi \to ps = ps_u + \mathbf{w}\psi$
@@ -2381,7 +2381,7 @@ section {
 
 * O modelo adjunto, é o transposto do modelo tangente linear
   * Faz o processo inverso, ou seja, propaga a sensibilidade - do tempo futuro para o passado (**como a observação corrige o estado inicial?** 🤯)
-* No 4DVar, a matriz $\mathbf{B}$ é fixa no tempo (tal como no 3DVar), mas as covariâncias são propagadas de forma imlícita pelo modelo
+* No 4DVar, a matriz $\mathbf{B}$ é fixa no tempo (tal como no 3DVar), mas as covariâncias são propagadas de forma implícita pelo modelo
 
 </div>
 <div>
