@@ -248,7 +248,7 @@ section {
 
 <br />
 
-- ✅ Vantagens do Filtro de Kalman linear:
+- ✅ Vantagens do Filtro de Kalman linear
   * Além de estimar o estado do sistema (análise), estima analiticamente a covariância (incerteza)
     * Permite quantificar a confiança na análise
     
@@ -260,7 +260,7 @@ section {
     
 <br />
 
-* ❌ Limitações do Filtro de Kalman linear:
+* ❌ Limitações do Filtro de Kalman linear
   * Não é adequado para sistemas de alta dimensão (e.g., atmosfera, oceado), pois as matrizes de covariâncias ($\mathbf{P}^{b}$ e $\mathbf{P}^{a}$) são explícitas e enormes
   * Requer que o modelo dinâmico seja linear
 
@@ -661,9 +661,8 @@ section {
     \mathbf{K}_{k}=\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}(\mathbf{H}_{k}\mathbf{P}_{k}^{b}\mathbf{H}_{k}^{\text{T}}+\mathbf{R}_{k})^{-1}
     $$
     
-  * O espaço do ensemble (i.e., o tamanho do ensemble), é o que define os seus graus de liberdade
-    * 💡 A propagação das covariâncias é feita pela propagação do ensemble
-    * 💡 Permite tratar a não linearidade, pois cada membro do ensemble pode evoluir pelo modelo não linear completo  
+  * 💡 A propagação das covariâncias é feita pela propagação do ensemble
+  * 💡 Permite tratar a não linearidade, pois cada membro do ensemble pode evoluir pelo modelo não linear completo  
   
   * O EnKF original é estocástico, no sentido de que as observações são perturbadas para gerar um conjunto de análises
     
@@ -672,7 +671,7 @@ section {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 20px;
+  font-size: 18px;
 }
 </style>
 
@@ -691,7 +690,7 @@ section {
 - No EnKF, a covariância dos erros de previsão ($\mathbf{P}^{b}_{k} = \mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}$) é substituída pela covariância do conjunto
   
   $$
-  \mathbf{P}_{k}^{b} = \frac{1}{N-1} \mathbf{X}_{k}^{b}(\mathbf{X}_{k})^{\text{T}}
+  \mathbf{P}_{k}^{b} = \frac{1}{N-1} \mathbf{X}_{k}^{b}(\mathbf{X}_{k}^{b})^{\text{T}}
   $$
   
   * Onde:
@@ -700,6 +699,8 @@ section {
       * $\bar{\mathbf{x}}_{k}^{b} = \frac{1}{N} \sum_{i=1}^{N}{\mathbf{x}_{k}^{b(i)}}$
 
   * 🧠 Por que $\mathbf{P}^{b}$ é calculada considerando $N-1$ membros (fator de correção de Bessel)?
+    * Usar $N$ no denominador do fator de correção, torna a estimativa tendenciosa, pois subestima a (co)variância real
+    * Usar $N-1$ no denominador do fator de correção, evita a estimativa tendenciosa e $\mathbf{P}^{b}$ coincide com a covariância verdadeira
   
 ---
 
@@ -725,13 +726,13 @@ section {
 - Erro do modelo X Erro da previsão
 * Na equação da covariância do erro da previsão
 
-<br />
+  <br />
 
-  $$
-  \mathbf{P}^{b}_{k} = \mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}
-  $$
- 
-<br /> 
+    $$
+    \mathbf{P}^{b}_{k} = \mathbf{M}_{k-1}\mathbf{P}_{k-1}^{a}\mathbf{M}_{k-1}^{\text{T}}+\mathbf{Q}_{k-1}
+    $$
+  
+  <br /> 
  
 * Os termos $\mathbf{P}^{b}$ e $\mathbf{Q}$ são semelhantes, mas possuem significados diferentes
   * $\mathbf{P}^{b}$ representa a covariância total da incerteza do modelo (o quanto o EnKF confia nas previsões)
@@ -792,7 +793,7 @@ section {
 - 🏃‍♂️‍➡️ No ciclo de assimilação de dados do EnKF, as observações são utilizadas para corrigir o estado do modelo
   * 💡 Mas o EnKF perturba o modelo para amostrar a sua incerteza 
   * 🃏 Ambiguidade
-    * Ao mesmo tempo que se perturba do estado, tenta-se corrigí-lo
+    * Ao mesmo tempo que se perturba do estado, tenta-se corrigi-lo
   * 👉 Então, ao longo do tempo, a tendência é a de que a incerteza do EnKF seja cada vez mais subestimada, de forma que seja necessário inflar o spread (espalhamento ou incerteza) do conjunto 
  
 ---
@@ -941,7 +942,7 @@ section {
 <br />
 
 - EKF - _Extended Kalman Filter_
-  * É uma extensão do Filro de Kalman linear para sistemas não lineares
+  * É uma extensão do Filtro de Kalman linear para sistemas não lineares
   * Lineariza o modelo e o operador observação ao redor do estado estimado
 
 - EnSRF - _Ensemble Square Root Filter_
@@ -980,7 +981,7 @@ section {
 <div class="columns">
 <div>
 
-- É uma extensão do Filro de Kalman linear para sistemas não lineares (não é ensemble!)
+- É uma extensão do Filtro de Kalman linear para sistemas não lineares (não é ensemble!)
 - Lineariza o modelo e o operador observação ao redor do estado estimado
 
 <br />
@@ -1217,13 +1218,12 @@ section {
 <br />
 
 - LETKF permaneceu como método de pesquisa do CPTEC
-  * **2010** - Tese Rosângela Cintra: "ASSIMILAÇÃO DE DADOS COM REDES NEURAIS ARTIFICIAIS EM MODELO DE CIRCULAÇÃO GERAL DA ATMOSFERA"
-  * **2010** - Pós-Doutorado José Aravéquia: "Evaluation of a Strategy for the Assimilation of Satellite Radiance Observations
-with the Local Ensemble Transform Kalman Filter"  
-  * **2011** - Dissertação Maria Medeiros: "IMPACTO DO USO DE RADIÂNCIA NA ASSIMILAÇÃO DE DADOS USANDO 4D-LETKF NA REGIÃO DA AMÉRICA DO SUL"
-  * **2013** - Bolsa PCI Lucas Avanço: "ASSIMILAÇÃO DE DADOS DE RÁDIO OCULTAÇÃO GNSS NO LETKF: DISPONIBILIDADE DE DADOS E IMPLEMENTAÇÃO DE UM OPERADOR"
-  * **2018** - Tese Helena Barbieri: "AJUSTE DINÂMICO PARA ANÁLISE HÍBRIDA ENTRE UM SISTEMA VARIACIONAL E FILTRO DE KALMAN POR CONJUNTO"
-  * **2018** - Tese Leonardo Lima: "ESTUDO DAS INCERTEZAS NA SIMULAÇÃO POR CONJUNTOS E NO USO DA ASSIMILAÇÃO DE DADOS NO OCEANO ATLÂNTICO SUDOESTE"
+  * **2010** - Tese Rosângela Cintra: "Assimilação de Dados com Redes Neurais Artificiais em Modelo de Circulação Geral da Atmosfera"
+  * **2010** - Pós-Doutorado José Aravéquia: "Evaluation of a Strategy for the Assimilation of Satellite Radiance Observations with the Local Ensemble Transform Kalman Filter"  
+  * **2011** - Dissertação Maria Medeiros: "Impacto do Uso de Radiância na Assimilação de Dados usando 4D-LETKF na Região da América do Sul"
+  * **2013** - Bolsa PCI Lucas Avanço: "Assimilação de Dados de Rádio Ocultação GNSS no LETKF: Disponibilidade de Dados e Implementação de um Operador"
+  * **2018** - Tese Helena Barbieri: "Ajuste Dinâmico para Análise Híbrida entre um Sistema Variacional e Filtro de Kalman por Conjunto"
+  * **2018** - Tese Leonardo Lima: "Estudo das Incertezas na Simulação por Conjuntos e no Uso da Assimilação de Dados no Oceano Atlântico Sudoeste"
   * Entre outros...  
   
 ---
@@ -1255,7 +1255,69 @@ p {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 19px;
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Métodos Baseados em Conjuntos
+
+<br />
+
+## **7. Atividade - Filtro de Bayes Recursivo**
+
+<div class="columns">
+<div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!--  -->
+<div style="
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top:0px;
+  font-size: 40px;
+  font-weight: bold;
+">
+Ninja Vs. Codorna
+
+🥷  🐦
+</div>
+
+</div>
+<div>
+
+<br />
+<br />
+
+* Uma codorna :bird: pia no meio da mata
+* Um ninja 🥷 escuta...
+* A codorna pia mais uma vez
+* O ninja escuta novamente...
+* O ninja quer saber **onde está a codorna**
+* A codorna pia novamente...
+* E ela faz isso mais 100 vezes
+* **Pergunta** 
+  * 🧠 Será o ninja capaz de descobrir a posição da codorna no meio da mata? (continua...)
+
+</div>
+</div>  
+  
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
 }
 </style>
 
@@ -1266,28 +1328,21 @@ section {
 ## **7. Atividade - Filtro de Bayes Recursivo**
 
 <br />
-<!--  -->
-<div style="
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top:0px;
-  font-size: 50px;
-  font-weight: bold;
-">
-Ninja Vs. Codorna
 
-🥷  🐦
-</div>
+- **Palavras-chave**
 
-* Uma codorna :bird: pia no meio da mata
-* Um ninja 🥷 escuta...
-* A codorna pia mais uma vez
-* O ninja escuta novamente...
-* O ninja quer saber **onde está a codorna**
-* A codorna pia novamente...
-* E ela faz isso mais 100 vezes
-* **Pergunta:** será o ninja capaz de descobrir a posição da codorna no meio da mata? (continua...)
+  * **Hipótese:** uma pergunta - uma teoria seria uma afirmação?
+  * **Dado:** uma informação, uma observação
+  * **Verossimilhança:** (ou _likelihood_) o grau de veracidade de uma determinada informação
+  * **Informação à _priori_:** (ou _prior_) aquilo que se conhece a princípio
+  * **Informação à _posteriori_:** (ou _posterior_) aquilo que se conclui a partir da informação à _priori_
+  * **Probabilidade conjunta:** probabilidade de dois ou mais eventos ocorrerem simultaneamente
+
+  <br />
+  
+- **Conceito-chave**
+
+  * **Probabilidade condicional:** ocorrência de um evento dada uma informação à _priori_
 
 ---
 
@@ -1306,70 +1361,19 @@ section {
 
 <br />
 
-### Palavras-chave
-
-* **Hipótese:** uma pergunta - uma teoria seria uma afirmação?
-* **"Dado":** uma informação, uma observação
-* **Verossimilhança:** (ou _likelihood_) o grau de veracidade de uma determinada informação
-* **Informação à _priori_:** (ou _prior_) aquilo que se conhece a princípio
-* **Informação à _posteriori_:** (ou _posterior_) aquilo que se conclui a partir da informação à _priori_
-* **Probabilidade conjunta:** probabilidade de dois ou mais eventos ocorrerem simultaneamente
-
-### Conceito-chave
-
-* **Probabilidade condicional:** ocorrência de um evento dada uma informação à _priori_
-
----
-
-<!-- _footer: "" -->
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 19px;
-}
-</style>
-
-# Métodos Baseados em Conjuntos
-
-<br />
-
-## **7. Atividade - Filtro de Bayes Recursivo**
+- **Teorema de Bayes**
 
 $$
-P(H|D) = \frac{P(H)P(D|H)}{P(D)}
+p(h|d) = \frac{p(d|h)p(h)}{p(d)}
 $$
 
-- $H$: é a hipótese
-- $D$: é o dado observado (uma informação observada)
-- $P(H|D)$: é o _posterior_ (ou posteriori, é a probabilidade da hipotese após observar o dado)
-- $P(H)$: é o _prior_ (é a probabilidade atribuída à hipótese antes de ver o dado)
-- $P(D)$: é a probabilidade do dado (constante de normalização)
-- $P(D|H)$: verossimilhança (é a probabilidade da observar o dado, considerando-se a hipótese verdadeira)
-
-<br />
-
-👉 Normaliza-se a probabilidade da hipótese (_prior_) e a verossimilhança pela probabilidade do dado. **Por que?**
-
-$$
-P(H|D) \propto P(H)P(D|H)
-$$
-
-<br />
-
-<div style="
-  background-color: #f8d7da; 
-  color: #721c24; 
-  padding: 20px; 
-  border-radius: 10px; 
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top:0px;
-  font-size: 18px;
-">
-O que significa "máxima verossimilhança"?
-</div>
+- Onde:
+  - $h$: é a hipótese
+  - $d$: é o dado observado (uma informação observada)
+  - $p(h|d)$: é o _posterior_ (ou posteriori, é a probabilidade da hipotese após observar o dado)
+  - $p(h)$: é o _prior_ (é a probabilidade atribuída à hipótese antes de ver o dado)
+  - $p(d)$: é a probabilidade do dado (constante de normalização)
+  - $p(d|h)$: verossimilhança (é a probabilidade da observar o dado, considerando-se a hipótese verdadeira)
 
 ---
 
@@ -1392,12 +1396,15 @@ section {
 
 <br />
 
-- **Probabilidade:** é a chance de ocorrência de um determinado evento possível
-- **Verossimilhança:** é provável (ou possível) que este evento exista? Este evento é plausível?
+- Probabilidade
+  * É a chance de ocorrência de um determinado evento possível
+- Verossimilhança
+  * É provável (ou possível) que este evento exista? Este evento é plausível?
 
 <br />
 
-Para que um determinado evento ocorra, é necessário que ele evista e que pertença a um determinado conjunto de eventos possíveis. A máxima verossimilhança destaca, portanto, o quão verossímil é a probabilidade do evento.
+- Para que um determinado evento ocorra, é necessário que ele exista e que pertença a um determinado conjunto de eventos possíveis
+  * A máxima verossimilhança destaca, portanto, o quão verossímil é a probabilidade do evento
 
 ---
 
@@ -1420,19 +1427,20 @@ section {
 
 <br />
 
-* Considere que você observa o lançamento de 20 dados :dice: sobre uma mesa e deseja saber qual é a verossimilhança desta observação. Todos os dados apresentam os mesmos valores
+* Considere que você observa o lançamento de 20 dados 🎲 sobre uma mesa e deseja saber qual é a verossimilhança desta observação - todos os dados apresentam os mesmos valores
+
+<br />
+
 * Para isto, consideramos duas hipóteses:
   1. Dado viciado
   2. Dado não viciado
 
 ---
 
-<!-- _footer: "" -->
-
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 21px;
+  font-size: 20px;
 }
 </style>
 
@@ -1446,28 +1454,21 @@ section {
 
 ### 🎲 Dado viciado
 
-* Neste cado, os 20 dados apresentam o mesmo valor (e.g., 5). A probabilidade conjunta destes eventos $P(dado_{1}) \times P(dado_{2}) \times ... \times P(dado_{20})$ é $({\frac{1}{1}})^{20}=1$
+* Neste cado, os 20 dados apresentam o mesmo valor (e.g., 5)
+  * A probabilidade conjunta destes eventos
+
+    $$
+    p(dado_{1}) \times p(dado_{2}) \times ... \times p(dado_{20}) = \bigg({\frac{1}{1}}\bigg)^{20}=1
+    $$
 
 
 ### 🎲 Dado não viciado
 
-* Neste caso, cada um dos 20 dados possui a mesma probabilidade de apresentar um dos 6 números possíveis. A probabilidade conjunta neste caso é $({\frac{1}{6}})^{20} \approxeq 0$
+* Neste caso, cada um dos 20 dados possui a mesma probabilidade de apresentar um dos 6 números possíveis
+  * A probabilidade conjunta neste caso é $\big({\frac{1}{6}}\big)^{20} \approx 0$
   
-<br />  
   
-  <div style="
-    background-color: #f8d7da; 
-    color: #721c24; 
-    padding: 20px; 
-    border-radius: 10px; 
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    margin-top:0px;
-    font-size: 18px;
-  ">
-  Portanto, é muito mais verossímil que o dado seja viciado dada a observação inicial
-  </div>
+* 👉 Portanto, é muito mais verossímil que o dado seja viciado dada a observação inicial
   
 ---
 
@@ -1488,15 +1489,15 @@ section {
 
 ### Provabilidade Vs. Verossimilhança
 
-#### Exemplo
+- Exemplo
 
-- $D$: o ninja 🥷 ouve um canto na mata
-- $H$: há uma codorna :bird: na mata
-- $L(H|D)$: é a verossimilhança
+  - $d$: o ninja 🥷 ouve um canto na mata
+  - $h$: há uma codorna :bird: na mata
+  - $L(h|d)$: é a verossimilhança
 
-* $P(D|H) \neq P(H|D)$: o fato de o ninja ouvir um canto na mata, dado que há uma codorna na mata, não significa que dado que há uma codorna na mata, o ninja ouvirá um canto - ela pode estar dormindo 💤
-* $P(H|D)$, então $L(H|D)$ é baixa: se há uma codorna na mata, não necessariamente ela está cantando e o que o ninja ouve não é uma codorna, mas sim um pardal &#128038;
-* $P(D|H)$, então $L(H|D)$ é alta: se há uma codorna na mata, então há um canto ecoando na mata
+    * $p(d|h) \neq p(h|d)$: o fato de o ninja ouvir um canto na mata, dado que há uma codorna na mata, não significa que dado que há uma codorna na mata, o ninja ouvirá um canto - ela pode estar dormindo :bird: 💤
+    * $p(h|d)$, então $l(h|d)$ é baixa: se há uma codorna na mata, não necessariamente ela está cantando e o que o ninja ouve não é uma codorna, mas sim um pardal &#128038;
+    * $p(d|h)$, então $l(h|d)$ é alta: se há uma codorna na mata, então há um canto ecoando na mata
 
 ---
 
@@ -1521,7 +1522,7 @@ section {
 
 * Permite estimar, por exemplo, os momentos estatísticos de uma determinada distribuição. Por exemplo:
   * Quais são os valores de média ($\mu$) e desvio-padrão ($\sigma$) que maximizam a probabilidade de um determinado evento (ou hipótese) ou dado observado?
-  * Em outras palavras, quais são os valores de $\mu$ e $\sigma$ que tornam os dados observados mais prováveis (considerando que os dados vem de uma distribuição normal $N(\mu,\sigma^{2})$)?
+  * Em outras palavras, quais são os valores de $\mu$ e $\sigma$ que tornam os dados observados mais prováveis (considerando que os dados vem de uma distribuição normal $\mathcal{N}(\mu,\sigma^{2})$)?
   
 ---
 
@@ -1549,7 +1550,7 @@ section {
 - Kalnay (2002)<sup>&#128312;</sup>: dadas duas observações independentes $T_{1}$ e $T_{2}$, as quais são assumidas possuírem distribuição normal e erros com desvios-padrão $\sigma_{1}$ e $\sigma_{2}$, qual é o valor mais provável de $T$? Neste caso, define-se a análise como sendo o valor mais provável de $T$ dadas as observações e as suas estatísticas de erro:
 
 $$
-P(T|T_{1},T_{2}) = \frac{P(T)P(T_{1},T_{2}|T)}{P(T_{1},T_{2})}
+p(T|T_{1},T_{2}) = \frac{p(T)p(T_{1},T_{2}|T)}{p(T_{1},T_{2})}
 $$
   
 <span class="footnote">
@@ -1563,7 +1564,7 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 20px;
+  font-size: 18px;
 }
 </style>
 
@@ -1575,7 +1576,7 @@ section {
 
 ## **7. Atividade - Filtro de Bayes Recursivo**
   
-- Distribuição Normal - ou Gaussiana:
+- Distribuição Normal - ou Gaussiana
 
 $$
 p_{\sigma_{1}}(T_{1}|T) = \frac{1}{\sqrt{2\pi}\sigma_{1}}{e}^{-\frac{(T_{1}-T)^{2}}{2\sigma_{1}^{2}}}
@@ -1599,7 +1600,7 @@ $$
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 20px;
+  font-size: 19px;
 }
 .columns {
   display: grid;
@@ -1623,13 +1624,13 @@ section {
 
 <br />
 
-- Teorema de Bayes: 
+- Teorema de Bayes
 
 $$
-P(H|D)=\frac{P(H)P(D|H)}{P(D)}
+p(h|d)=\frac{p(d|h)p(h)}{p(d)}
 $$
 
-- Distrbuição Gaussiana: 
+- Distribuição Gaussiana
 
 $$
 p_{\sigma_{1}}(T_{1}|T) = \frac{1}{\sqrt{2\pi}\sigma_{1}}{e}^{-\frac{(T_{1}-T)^{2}}{2\sigma_{1}^{2}}}
@@ -1647,55 +1648,6 @@ $$
 </div>
 
 ---
-
-<!-- _footer: "" -->
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 20px;
-}
-.columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-</style>
-
-<div id="plotly-div" style="width: 100%; height: 700px;"></div>
-
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-var H = [];
-for(var i=-4; i<=4; i+=0.04){ H.push(i); }
-
-var D = H.slice();  // mesma discretização
-var P_H = H.map(h => Math.exp(-0.5*(h/1.5)*(h/1.5)));
-
-// Superfície simples (só exemplo)
-var z = [];
-for(var i=0;i<H.length;i++){
-    var row = [];
-    for(var j=0;j<D.length;j++){
-        row.push(Math.exp(-0.5*((D[j]-H[i])/1.0)**2)*P_H[i]);
-    }
-    z.push(row);
-}
-
-var data = [{
-    z: z,
-    x: H,
-    y: D,
-    type: 'surface',
-    colorscale: 'Viridis'
-}];
-
-Plotly.newPlot('plotly-div', data);
-</script>
-
----
-
-<!-- _transition: drop -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -1718,33 +1670,16 @@ p {
 
 ### Inferência Bayesiana Recursiva (ou "Filtro de Bayes Recursivo")
 
-* Um ninja ouve o canto intermitente de uma codorna (ela está parada). A cada canto, ele tenta descobrir a posição da codorna. **Como o ninja pode inferir a posição da codorna?**
-  * Brincadeira do "quente-frio"
-* Um outro problema real poderia ser: ajustar um modelo aos valores observados a cada ciclo de análise (iterativamente)
-  * Como isso pode ser feito?
-* Qualquer algorítmo de ajuste iterativo pode ser realizado como uma inferência Bayesiana recursiva? 
-  
----
+<br />
 
-<!-- _footer: "" -->
-
-<!-- Scoped style -->
-<style scoped>
-section {
-  font-size: 21px;
-}
-p {
-  text-align: center;
-  font-size: 100px;
-}
-</style>
+* Um ninja ouve o canto intermitente de uma codorna (ela está parada)
+* A cada canto, ele tenta descobrir a posição da codorna
+  * 🧠 Como o ninja pode inferir a posição da codorna?
 
 <br />
-<br />
-  
-**Ninja Vs. Codorna**
 
-🥷  🐦
+* Um outro problema real poderia ser: ajustar um modelo aos valores observados a cada ciclo de análise 
+  * 🧠 Como isso pode ser feito de forma iterativa?
   
 ---
 
@@ -1767,12 +1702,12 @@ section {
   
 ### Exemplo prático: Ninja Vs. Codorna
   
-- Método Monte Carlo  
-- 🔴 posição real da codorna
-- ➕ posição da codorna, segundo o ninja ($N=100$)
+- Método Monte Carlo
+  - 🔴 posição real da codorna
+  - ➕ posição da codorna, segundo o ninja ($N=100$)
   
 * A cada canto da codorna, o ninja tenta descobrir a posição real da ave
-* O ninja pode modelar a situação e, com um número finitor de tentativas, pode estimar a posição mais provável da codorna
+* O ninja pode modelar a situação e, com um número finito de tentativas, pode estimar a posição mais provável da codorna
   
 ---
 
@@ -1781,7 +1716,7 @@ section {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 20px;
+  font-size: 19px;
 }
 .columns {
   display: grid;
@@ -1812,6 +1747,7 @@ section {
 <br />
 <br />
 <br />
+<br />
 
 <video width="500" controls>
   <source src="./figs/bayes_recursivo.mp4" type="video/mp4">
@@ -1821,31 +1757,19 @@ section {
 </div>
 <div>
 
-Para cada posição inferida pelo ninja, a "função iterativa de Bayes", calcula a verossimilhança da posição:
+- Para cada posição inferida pelo ninja, a "função iterativa de Bayes", calcula a verossimilhança da posição:
 
-<span class="github-code">
+```python
 m[i,j] =  norm * np.exp(np.matmul(-(x[:,n] - me), np.matmul(inv, (x[:,n] - me) / 2.)))
-</span>
+```
 
-ou seja, 
+- Ou seja, 
 
 $$
 p_{\sigma_{1}}(T_{1}|T) = \frac{1}{\sqrt{2\pi}\sigma_{1}}{e}^{-\frac{(T_{1}-T)^{2}}{2\sigma_{1}^{2}}}
 $$
 
-<div style="
-  background-color: #f8d7da; 
-  color: #721c24; 
-  padding: 20px; 
-  border-radius: 10px; 
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top:20px;
-  font-size: 18px;
-">
-A melhor estimativa obtida pelo ninja utilizando-se a inferência Bayesiana recursiva, é chamada de "Estimativa de Máxima Verossimilhança" e representa o valor mais provável a ser obtido (cores mais quentes na superfície) da posição da cordona
-</div>
+* A melhor estimativa obtida pelo ninja utilizando-se a inferência Bayesiana recursiva, é chamada de "Estimativa de Máxima Verossimilhança" e representa o valor mais provável a ser obtido (cores mais quentes na superfície) da posição da codorna
 
 </div>
 </div>
