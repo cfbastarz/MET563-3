@@ -63,13 +63,15 @@ span.footnote2 {
 }
 </style>
 
+<br />
+
 # **Introdução à Assimilação de Dados (MET 563-3)**
 
 ### Métodos Híbridos 
 
+<br />
 <p>Dr. Carlos Frederico Bastarz
 <br />
-Dr. Dirceu Luis Herdies
 <br />
 <br />
 <span class="program">Programa de Pós-Graduação em Meteorologia (PGMET) do INPE</span>
@@ -1083,3 +1085,12 @@ section {
 :octopus: https://github.com/cfbastarz/MET563-3
 :email: carlos.bastarz@inpe.br
 
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p style="font-size:13px;">
+👉 This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+<p>

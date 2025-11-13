@@ -63,13 +63,15 @@ span.footnote2 {
 }
 </style>
 
+<br />
+
 # **Introdução à Assimilação de Dados (MET 563-3)**
 
 ### Frameworks de Assimilação de Dados
 
+<br />
 <p>Dr. Carlos Frederico Bastarz
 <br />
-Dr. Dirceu Luis Herdies
 <br />
 <br />
 <span class="program">Programa de Pós-Graduação em Meteorologia (PGMET) do INPE</span>
@@ -159,7 +161,7 @@ section {
 <!-- Scoped style -->
 <style scoped>
 section {
-  font-size: 19px;
+  font-size: 21px;
 }
 .columns {
   display: grid;
@@ -202,10 +204,6 @@ section {
 <br />
 
 ### 1.1 Docker
-
-<br />
-
-### Exemplo 1D
 
 <br />
 
@@ -585,10 +583,6 @@ docker run hello-world
 
 ---
 
-<!-- _footer: "" -->
-
-![bg right:40%](./figs/jedi.png)
-
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -599,23 +593,122 @@ section {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 200px;
+  right: 80px;
+  width: 200px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
 </style>
 
 # Frameworks de Assimilação de Dados
 
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Instalação do Apptainer/Singularity
+
+<br />
+
+- Forma simples para o Ubuntu Linux e derivados
+
+```bash
+wget -c https://github.com/apptainer/apptainer/releases/download/v1.4.2/apptainer_1.4.2_amd64.deb
+wget -c https://github.com/apptainer/apptainer/releases/download/v1.4.2/apptainer-suid_1.4.2_amd64.deb
+sudo dpkg -i apptainer_1.4.2_amd64.deb
+sudo dpkg -i apptainer-suid_1.4.2_amd64.deb
+sudo apt install -f
+```
+
+- Há pacotes pré-compilados disponíveis para outras distribuições Linux
+
+<div>
+  <img src="./figs/apptainer.png" class="floating" alt="Docker logo">
+</div>
+
+---
+
+<!-- _footer: "" -->
+
+![bg right:40%](./figs/jedi.png)
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 200px;
+  right: 80px;
+  width: 200px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
 ## **3. JEDI<sup>&#128312;</sup>**
 
-- É um esforço conjunto liderado pelo JCSDA<sup>&#128313;</sup> para o desenvolvimento de um novo sistema de assimilação de dados
-- Novo framework de assimilação de dados
+- É um esforço conjunto liderado pelo JCSDA<sup>&#128313;</sup> para o desenvolvimento de um novo sistema de assimilação de dados unificado 🔗 [link](https://www.jcsda.org/jcsda-project-jedi)
+* Novo framework de assimilação de dados
   * Mais moderno: escrito do zero, com abordagem de separação de conceitos
   * Implementa os métodos de assimilação de dados mais utilizados (variacionais e por conjuntos)
-- Foco é a operação e a colaboração de desenvolvimento com a comunidade de usuários
-  - Anualmente são oferecidas as _JEDI Academies_ 
+  * Implementa interfaces para diversos modelos (globais, regionais, atmosféricos e oceânicos)
+* Foco é a operação e a colaboração de desenvolvimento com a comunidade de usuários
+  * Anualmente são oferecidas as _JEDI Academies_ 
 
 <span class="footnote">
-<sup>&#128312;</sup>JEDI: <i>Joint Effort for Data Assimilation Integration<i>
+<sup>&#128312;</sup>JEDI: <i>Joint Effort for Data Assimilation Integration</i>
 <br />
-<sup>&#128313;</sup>JCSDA: <i>Joint Center for Satellite Data Assimilation<i>
+<sup>&#128313;</sup>JCSDA: <i>Joint Center for Satellite Data Assimilation</i>
 </span>
 
 ---
@@ -630,17 +723,108 @@ section {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 200px;
+  right: 100px;
+  width: 500px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+## **3. JEDI**
+
+<br />
+
+### _JEDI Academy_
+
+<br />
+<br />
+
+- <img src="./figs/pepejedi-emoji.png" width="24" style="vertical-align:middle;"/> 7a Jedi Academy 
+  - 4 a 8 de outurbo de 2021
+  - Formato virtual
+  - Página da JEDI Academy: 🔗 [link](https://www.jcsda.org/jedi-academies)
+  - Conteúdo do curso: 🔗 [link](http://academy.jcsda.org/2021-10/index.html)
+
+<div>
+  <img src="./figs/jediacademy.png" class="floating" alt="Docker logo">
+</div>
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 320px;
+  right: 250px;
+  width: 800px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
 </style>
 
 # Frameworks de Assimilação de Dados
 
 <br />
 
-## **3. JEDI<sup>&#128312;</sup>**
+## **3. JEDI**
 
 <br />
 
-### Separação de Conceitos
+### Paradigmas de desenvolvimento do JEDI - Separação de Conceitos
+
+<div>
+  <img src="./figs/jedisoc.png" class="floating" alt="Docker logo">
+</div>
 
 ---
 
@@ -660,7 +844,7 @@ section {
 
 <br />
 
-## **4. Informações sobre containers**
+
 
 <br />
 
@@ -757,4 +941,14 @@ section {
 :link: https://cfbastarz.github.io/met563-3/
 :octopus: https://github.com/cfbastarz/MET563-3
 :email: carlos.bastarz@inpe.br
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p style="font-size:13px;">
+👉 This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+<p>
 
