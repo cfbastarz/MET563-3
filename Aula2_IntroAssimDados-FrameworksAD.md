@@ -110,8 +110,7 @@ section {
 3. JEDI
    3.1 Paradigmas de desenvolvimento do JEDI
    3.2 Instruções para exercícios em casa
-4. Outros frameworks de assimilação de dados
-5. Atividades realizadas no CPTEC com o GSI e JEDI
+4. Atividades realizadas no CPTEC com o GSI e JEDI
 
 ---
 
@@ -321,7 +320,7 @@ section {
 * Foco em sistemas operacionais
 * Mantido pelo DTC<sup>&#128313;</sup>/NCAR
   * Centraliza as contribuições, faz o gerenciamento do código, distribui releases e realiza tutoriais para a comunidade de usuários
-- Recebe contribuições da NASA, NCEP e universidades  
+* Recebe contribuições da NASA, NCEP e universidades  
 
 <span class="footnote">
 <sup>&#128312;</sup>GSI: <i>Gridpoint Statistical Interpolation</i>
@@ -628,7 +627,7 @@ section {
 
 <br />
 
-### Instalação do Apptainer/Singularity
+### ✨ EXTRA - Instalação do Apptainer/Singularity
 
 <br />
 
@@ -647,6 +646,561 @@ sudo apt install -f
 <div>
   <img src="./figs/apptainer.png" class="floating" alt="Docker logo">
 </div>
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 200px;
+  right: 80px;
+  width: 200px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Exercícios com o GSI (Docker)
+
+- Arquivos disponíveis no 🔗 [link](https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/)
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 200px;
+  right: 80px;
+  width: 200px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+<div class="columns">
+<div>
+
+### Instruções
+
+0. Instalação do Docker ✅
+1. Escolher um diretório na máquina local (com pelo menos 10GB ) e executar
+```bash
+mkdir GSI-Docker
+cd GSI-Docker
+```
+2. Download do GSI
+  ```bash
+  docker pull comgsi/docker
+  ```
+</div>
+<div>
+
+👉 Alternativamente
+  ```bash
+  wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/comgsi_docker.tar.gz
+  ```
+3. Desempacotar
+```bash
+gunzip comgsi_docker.tar.gz
+```
+4. Carregar o container
+```bash
+docker load -i comgsi_docker.tar
+```
+</div>
+</div>
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 530px;
+  right: 350px;
+  width: 600px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Instruções
+
+5. Inicializar o container
+```bash
+echo 'docker run -h GSI_Docker -v "$(pwd)":/tutorial -ti --rm comgsi/docker' > rungsidocker; chmod +x rungsidocker
+```
+
+👉 Execute <span class="github-code">./rungsidocker</span> para inicializar o container
+
+<div align="center">
+  <img src="./figs/gsidocker.png" class="floating" alt="Docker GSI">
+</div>
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 450px;
+  right: 350px;
+  width: 690px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Instruções
+
+- Para abrir um novo shell do GSI Docker, execute
+```bash
+docker ps
+```
+
+- Anote o número referente à instância do docker em execução (e.g., ed09947d9d92) e execute
+
+```bash
+docker exec -it ed09947d9d92 bash
+```
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 450px;
+  right: 350px;
+  width: 690px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+### Compilação do GSI
+
+1. Dentro do diretório <span class="github-code">/tutorial</span>, faça o download do arquivo <span class="github-code">comGSIv3.7_EnKFv1.3.tar.gz</span>
+
+```bash
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/comGSIv3.7_EnKFv1.3.tar.gz
+```
+
+2. Desempacotar o arquivo baixado
+```bash
+tar -zxvf comGSIv3.7_EnKFv1.3.tar.gz
+```
+3. Execute os comandos
+```bash
+cd build
+cmake ../comGSIv3.7_EnKFv1.3
+make
+```
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 450px;
+  right: 350px;
+  width: 690px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Compilação do GSI
+
+1. Entrar no diretório <span class="github-code">/tutorial/run</span> e executar os comandos
+```bash
+cd /tutorial/run
+ln -s ../build/bin/gsi.x .
+ln -sf ../build/bin/enkf_wrf.x .
+```
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 450px;
+  right: 350px;
+  width: 690px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Download do testcase
+
+1. Entrar no diretório <span class="github-code">/tutorial/case_data</span> e executar os comandos
+```bash
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/data/2018081212.tar.gz
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/data/2018081218.tar.gz
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/data/CRTM_v2.3.0.tar.gz
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/data/T62.gfs.tar.gz
+wget -c https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/data/chemdata.tar.gz
+```
+2. Desempacotar os arquivos
+```bash
+tar -zxvf 2018081212.tar.gz
+tar -zxvf 2018081218.tar.gz
+tar -zxvf CRTM_v2.3.0.tar.gz
+tar -zxvf T62.gfs.tar.gz
+tar -zxvf chemdata.tar.gz
+```
+
+---
+
+<!-- _footer: "" -->
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 450px;
+  right: 350px;
+  width: 690px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.github-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7em;
+  background-color: #323742;
+  color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **2.1 Exercícios em sala**
+
+<br />
+
+### Preparação do script de execução
+
+- Usar como referência as instruções em 🔗 [link](https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/tutorial/00.PrepareBaseRunScript/Prepare%20Base%20Run%20Script.pdf)
+- Realize as modificações e execute o script <span class="github-code">run_gsi_regional.ksh_basic</span>
+```bash
+./run_gsi_regional.ksh_basic
+```
+- Neste primeiro teste, verifique o conteúdo do diretório <span class="github-code">/tutorial/run/basic</span>
+
+### Realização dos casos
+
+- 11 casos, descritos 🔗 [link](https://dataserver.cptec.inpe.br/dataserver_dimnt/das/carlos.bastarz/GSITutorialDTC/tutorial/01.ARWPracticeCases/ARW%20Practice%20Cases.pdf)
+  - Para cada caso, será necessário fazer ajustes no script de submissão
+  - Crie os diretórios necessários para a realização dos experimentos e execute o script a partir deles
 
 ---
 
@@ -773,8 +1327,6 @@ section {
 
 ---
 
-<!-- _footer: "" -->
-
 <!-- Scoped style -->
 <style scoped>
 section {
@@ -793,7 +1345,7 @@ section {
 /* Imagem flutuante no canto inferior direito */
 .floating {
   position: absolute;
-  top: 320px;
+  top: 290px;
   right: 250px;
   width: 800px;
   opacity: 0.9;
@@ -820,13 +1372,23 @@ section {
 
 <br />
 
-### Paradigmas de desenvolvimento do JEDI - Separação de Conceitos
+### Paradigmas de desenvolvimento do JEDI - Principais Componentes
 
-<div>
-  <img src="./figs/jedisoc.png" class="floating" alt="Docker logo">
-</div>
+- OOPS (_Object-Oriented Prediction System_)
+  * É o núcleo do JEDI (implementa os métodos e algorítmos de assimilação)
+
+- SABER (_System-Agnostic Background Error Representation_)
+  * Parte responsável pela modelagem de covariâncias dos erros de previsão (matriz $\mathbf{B}$)
+
+- UFO (_Unified Forward Operator_)
+  * Parte responsável pelos operadores de observação (operador $H$ e matriz $\mathbf{R}$)
+
+- IODA (_Interface for Observation Data Access_)
+  * Responsável pela manipulação das observações para tratamento interno (padroniza as observações para uso com o UFO e OOPS)
 
 ---
+
+<!-- _footer: "" -->
 
 <!-- Scoped style -->
 <style scoped>
@@ -838,15 +1400,123 @@ section {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 290px;
+  right: 250px;
+  width: 800px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
 </style>
 
 # Frameworks de Assimilação de Dados
 
+## **3. JEDI**
+
+### Paradigmas de desenvolvimento do JEDI - Separação de Conceitos
+
+<div>
+  <img src="./figs/jedisoc.png" class="floating" alt="Docker logo">
+</div>
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+/* Garante que elementos absolutos sejam posicionados em relação ao slide */
+section {
+  position: relative;
+}
+
+/* Imagem flutuante no canto inferior direito */
+.floating {
+  position: absolute;
+  top: 290px;
+  right: 250px;
+  width: 800px;
+  opacity: 0.9;
+  pointer-events: none; /* evita interferir com seleção de texto */
+}
+
+/* Exemplo flex: texto + imagem lado a lado */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+.row .left-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+## **3. JEDI**
+
+### Paradigmas de desenvolvimento do JEDI - Separação de Conceitos
+
 <br />
 
+<div class="columns">
+<div>
 
+- Cada parte do sistema pode ser desenvolvida independente da outra
 
-<br />
+- Foco em engenharia de software
+  * Modularidade
+  * Reprodutibilidade
+  * Escalabilidade
+  * Interoperabilidade
+
+- Implementação de interfaces abstratas
+  * Não implementa os modelos de forma direta (código reutilizável)
+  * Permite que os códigos implementados sejam utilizados para qualquer modelo que esteja sendo utilizado
+
+</div>
+<div>
+
+- Utiliza orientação a objetos (C++)
+  * Mais moderno que o Fortran tradicional
+
+- Testes unitários
+  * Todas as componentes implementadas podem ser testadas
+  * Permite checar se e como modificações em uma parte do sistema afeta as demais 
+
+- Configurações por meio de arquivos YAML
+  * Evita configurações no meio do código (o GSI e o BAM tem coisas assim!)
+  * Evita recompilar o código
+
+- Entre outros
+
+</div>
+</div>
 
 ---
 
@@ -868,9 +1538,19 @@ section {
 
 ## **5. Atividades realizadas no CPTEC com o GSI e JEDI**
 
----
+<br />
 
-<!-- _footer: "" -->
+- **2012-2016:** G3DVar (_Global 3DVar_)
+  - GSI (3.2) + MCGA, TQ0299L064, coordenada vertical sigma, modelo de superfície SSiB
+  - Marcou o início dos trabalhos com o framework do GSI no CPTEC
+  - Executado na máquina Tupã
+  - Treinamento Carlos Bastarz e Bruna Silveira no NCAR
+    - Bruna passou mais 1 semana na NASA para configurar o GSI junto com o Ricardo Todling
+  - Operacional entre 2013 e 2015
+  - Último commit no código do G3DVar que está no SVN data de 2016, quando Carlos finalizou a tese de doutorado
+    - Mesmo não sendo mais operacional, foi implementado e testado o sistema híbrido 3DVar utilizando o EnKF e EnSRF
+
+---
 
 <!-- Scoped style -->
 <style scoped>
@@ -884,38 +1564,84 @@ section {
 }
 </style>
 
-# Método Variacional - Parte I
+# Frameworks de Assimilação de Dados
 
 <br />
 
-## **3. Introdução ao Método 3DVar**
+## **5. Atividades realizadas no CPTEC com o GSI e JEDI**
 
 <br />
 
-* O 3DVar é uma das primeiras aplicações do cálculo variacional em meteorologia
-  * **Objetivo:** combinar previsão do modelo e observações para obter a melhor estimativa do estado atmosférico
-  
-* **Função Custo:**
-  $$
-  J(\mathbf{x}) =
-  \frac{1}{2}(\mathbf{x} - \mathbf{x}_b)^{\text{T}}\mathbf{B}^{-1}(\mathbf{x} - \mathbf{x}_b)
+- **2016-2021:** SMG (Sistema de Modelagem Global)
+  - GSI (3.4) + BAM, TQ0299OL064, coordenada vertical sigma, modelo de superfície SSiB
+  - Executado na máquina XC50
+  - Marcou um novo início para o G3DVar, sendo rebatizado como SMG
+    - Atualização do modelo atmosférico para o BAM
+    - Revisão completa e reescrita da interface entre o BAM e o GSI
+    - Nova matriz de covariâncias
 
-  + \frac{1}{2}[\mathbf{y}_o - H(\mathbf{x})]^{\text{T}}\mathbf{R}^{-1}[\mathbf{y}_o - H(\mathbf{x})]
-  $$
-* **Gradiente:**
-  $$
-  \nabla J(\mathbf{x}) = (\mathbf{B}^{-1}+\mathbf{H}^\text{T}\mathbf{R}^{-1}\mathbf{H})(\mathbf{x}-\mathbf{x}_b) - (\mathbf{H}^\text{T}\mathbf{R}^{-1}) [\mathbf{y}_{o}-H(\mathbf{x}_b)] = 0
-  $$
-* **Solução Analítica Exata:**<sup>&#128312;</sup>
-  $$
-  \mathbf{x}_a = \mathbf{x}_b + \mathbf{W}[\mathbf{y}_o - H(\mathbf{x}_b)], \quad \mathbf{W} = \mathbf{BH}^{\text{T}}(\mathbf{HBH}^{\text{T}}+\mathbf{R})^{-1}
-  $$
-  
-<span class="footnote">
-👉 O 3DVar foi implementado operacionalmente no ECMWF em 1996 e foi substituído pelo 4DVar em 1997; 👉 No CPTEC, o 3DVar começou a ser aplicado em 1997
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
 <br />
-<sup>&#128312;</sup>Utilizando a identidade de Sherman-Morrison-Woodburry
-</span>
+
+## **5. Atividades realizadas no CPTEC com o GSI e JEDI**
+
+<br />
+
+- **2021-2025:** SMNA (Sistema de Modelagem Numérica e Assimilação de dados)
+  - GSI (3.7) + BAM, TQ0299L064, coordenada vertical híbrida, modelo de superfície IBIS
+  - Executado na máquina XC50 (operacional) e portado para a máquina Egeon (P&D)
+  - Marcou um novo início para o SMG, sendo rebatizado como SMNA
+    - Recebeu contribuições do grupo de desenvolvimento do modelo BAM (nova coordenada vertical, modelo de superfície IBIS)
+    - Revisão completa do sistema e atualização para a última versão disponível do GSI
+    - Nova matriz de covariâncias
+
+---
+
+<!-- Scoped style -->
+<style scoped>
+section {
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+</style>
+
+# Frameworks de Assimilação de Dados
+
+<br />
+
+## **5. Atividades realizadas no CPTEC com o GSI e JEDI**
+
+<br />
+
+- **2024-presente:** Início dos trabalhos com o JEDI para prover o MONAN com a sua própria análise
+  - 2024 ocorreu o tutorial oferecido pelo NCAR no CPTEC
+  - Compilação do JEDI na máquina Egeon
+  - Treinamento inicial do grupo de assimilação de dados para o entendimento da estrutura de software para assimilação de dados
+
+- 🔗 Links
+  - [Site Treinamento NCAR/CPTEC](https://www.cptec.inpe.br/treinamento-monan-2024/)
+  - [Programação e Apresentações](https://monanadmin.github.io/trainings_1_MONAN.html)
+  - [Tutorial MPAS](https://dataserver.cptec.inpe.br/dataserver_dimnt/monan/trainings_1_MONAN_2024_08_12a16/mpas-a_lectures/mpas_tutorial_practice_session_guide.html)
+  - [Tutotial JEDI](https://dataserver.cptec.inpe.br/dataserver_dimnt/monan/trainings_1_MONAN_2024_08_12a16/jedi_lectures/mpas_jedi_tutorial_practice_session_guide.html)
 
 ---
 
